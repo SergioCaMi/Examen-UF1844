@@ -3,6 +3,9 @@ const express = require("express");
 const app = express();
 const PORT = 3000;
 
+// Colores predominantes
+const getColors = require("get-image-colors");
+
 // Data
 const fs = require("fs");
 const path = require("path");
@@ -35,6 +38,16 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 
 app.get("/", (req, res) => {
+  
+    //Probamos el modulo de los colores
+  // dataImage.forEach((image) => {
+  //   getColors(image.urlImagen).then((colors) => {
+  //     console.log(colors);
+  //   });
+    //Fin prueba
+
+
+
   res.render("home.ejs", { title: "Home", dataImage: dataImage });
 });
 
@@ -92,6 +105,11 @@ app.get("/delete-image", (req, res) => {
 // Enpoint donde enviamos los datos a eliminar
 app.post("/delete-image", (req, res) => {
   console.log("Petición recibida", req.body);
+  dataImage.forEach((image) => {
+    getColors("ruta/a/la/imagen.jpg").then((colors) => {
+      console.log(colors);
+    });
+  });
 });
 
 // Iniciar el servidor
