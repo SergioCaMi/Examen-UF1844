@@ -35,7 +35,7 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 
 app.get("/", (req, res) => {
-  res.send("funciona");
+  res.render("index.ejs", { title: "Home", dataImage:dataImage });
 });
 
 // Add new image
@@ -81,41 +81,12 @@ app.post("/new-image", (req, res) => {
 // Delete  image
 app.get("/delete-image", (req, res) => {
   // Mostramos la vista del formulario
-  res.render("deleteImage.ejs", { title: "Dfghhgelete Image", dataImage:dataImage });
+  res.render("deleteImage.ejs", { title: "Delete Image", dataImage:dataImage });
 });
 
 // Enpoint donde enviamos los datos a eliminar
 app.post("/delete-image", (req, res) => {
-  console.log("Petición recibida");
-  console.log("Body del formulario: ", req.body);
-  // La imagen ya se encuentra en el archivo?
-  if (dataImage.find((p) => p.urlImagen == req.body.urlImagen)) {
-    // SI
-    res.send(`La imagen "${req.body.title}" ya se encontraba en el archivo.`);
-  } else {
-    // NO
-    // Construimos el objeto
-    const newImage = {
-      title: req.body.title,
-      urlImagen: req.body.urlImagen,
-      date: req.body.date,
-    };
-    // Añadimos
-    dataImage.push(newImage.sort((a, b) => a.date - b.date));
-    // Lo guardamos en el archivo JSON
-    fs.writeFile(
-      filePath,
-      JSON.stringify(dataImage, null, 2),
-      "utf8",
-      (err) => {
-        err
-          ? res.send(`Error al añadir la imagen "${req.body.title}".`)
-          : res.send(
-              `La imagen "${req.body.title}" se ha añadido satisfactoriamente.`
-            );
-      }
-    );
-  }
+  console.log("Petición recibida", req.body);
 });
 
 
