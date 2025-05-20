@@ -81,7 +81,7 @@ app.post("/new-image", (req, res) => {
 // Delete  image
 app.get("/delete-image", (req, res) => {
   // Mostramos la vista del formulario
-  res.render("deleteImage.ejs", { title: "Dfghhgelete Image" });
+  res.render("deleteImage.ejs", { title: "Dfghhgelete Image", dataImage:dataImage });
 });
 
 // Enpoint donde enviamos los datos a eliminar

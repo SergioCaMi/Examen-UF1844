@@ -1,0 +1,22 @@
+[
+  {
+    "title": "img1",
+    "urlImagen": "https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+    "date": "2025-01-01"
+  },
+  {
+    "title": "img2",
+    "urlImagen": "https://media.istockphoto.com/id/1443562748/es/foto/lindo-gato-de-jengibre.jpg?s=612x612&w=0&k=20&c=JVC5Z3LxpaTQaXu_fMZjIb73r39z6b0SnAxvNI8iZG0=",
+    "date": "2025-01-02"
+  },
+  {
+    "title": "img3",
+    "urlImagen": "https://upload.wikimedia.org/wikipedia/commons/4/4d/Cat_November_2010-1a.jpg",
+    "date": "2024-01-01"
+  },
+  {
+    "title": "img4",
+    "urlImagen": "https://cdn.sanity.io/images/5vm5yn1d/pro/41c7e7ce298604b0801fc2b1b76371a47e9ebb83-950x633.jpg?fm=webp&q=80",
+    "date": "2025-05-05"
+  }
+]
