@@ -1,25 +1,7 @@
 
 <%- include("template/cabecera", {title: title}) %>
 <%- include("template/aside")%>
-
-<form class="container" action="/delete-image" method="POST">
-        <div class="grid">
-            <% dataImage.forEach(image => { %>
-                <div class="card">
-                    <img src="<%= image.urlImagen %>" alt="<%= image.title %>">
-                    <div class="card-content">
-                        <h3><%= image.title %></h3>
-                        <h4><%= image.date %></h4>
-                        <label>
-                            <input type="checkbox" name="selectedImages" value="<%= image.urlImagen %>">
-                            Seleccionar
-                        </label>
-                    </div>
-                </div>
-            <% }); %>
-        </div>
-        <button type="submit">Eliminar Imágenes Seleccionadas</button>
-    </form>
-    <%- include("template/footer")%>
+<h2><%= dataImage.urlImage %></h2>
+<%- include("template/footer")%>
 
 

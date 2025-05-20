@@ -104,37 +104,28 @@ app.post("/new-image", async (req, res) => {
                 message: `Error al añadir la imagen "${req.body.title}".`,
                 colorMessage: "red",
               })
-            : // ? res.send(`Error al añadir la imagen "${req.body.title}".`)
+            : 
               res.render("addImage.ejs", {
                 title: "New Image",
                 message: `La imagen "${req.body.title}" se ha añadido satisfactoriamente.`,
                 colorMessage: "green",
               });
-
-          // : res.send(`La imagen "${req.body.title}" se ha añadido satisfactoriamente.`);
         }
       );
     }
   }
 });
 
-// Delete  image
-app.get("/delete-image", (req, res) => {
-  // Mostramos la vista del formulario
-  res.render("deleteImage.ejs", {
-    title: "Delete Image",
-    dataImage: dataImage,
-  });
-});
 
 // Enpoint donde enviamos los datos a eliminar
 app.post("/delete-image", (req, res) => {
   console.log("Petición recibida", req.body);
-  dataImage.forEach((image) => {
-    getColors("ruta/a/la/imagen.jpg").then((colors) => {
-      console.log(colors);
-    });
+    res.render("deleteImage.ejs", {
+    title: "Delete Image",
+    dataImage: req.body,
   });
+
+
 });
 
 // Iniciar el servidor

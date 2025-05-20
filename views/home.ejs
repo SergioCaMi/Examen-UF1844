@@ -5,7 +5,8 @@
 
         <%if (dataImage.length==0) { %>
             <div class="container">
-                <h2>Puedes añadir tus imagenes en este botón!  <button onclick="window.location.href='/new-image'">➕</button></h2>
+                <h2>Puedes añadir tus imagenes en este botón! <button
+                        onclick="window.location.href='/new-image'">➕</button></h2>
             </div>
 
             <% } else { %>
@@ -27,20 +28,24 @@
                                     <h5>
                                         <%= image.description %>
                                     </h5>
-                                    <h5> Color principal: <div style="width: 30px; height: 10px;"></div></h5>
-                                    
-                                    <label>
+                                    <div class="color-circles">
+                                        <% image.colors.forEach(color=> { %>
+                                            <div class="color-circle"
+                                                style="background-color: rgba(<%= color._rgb.join(', ') %>);"></div>
+                                            <% }); %>
+                                    </div>
+                                    <!-- <label>
                                         <input type="checkbox" name="selectedImages" value="<%= image.urlImagen %>">
                                         Seleccionar
-                                    </label>
+                                    </label> -->
                                 </div>
                             </div>
                             <% }); %>
                     </div>
-                    <button type="submit">Eliminar Imágenes Seleccionadas</button>
+                    <!-- <button type="submit">Eliminar Imágenes Seleccionadas</button> -->
                 </form>
-                
-               <%}%> 
-                
-                
-                <%- include("template/footer")%>
+
+                <%}%>
+
+
+                    <%- include("template/footer")%>

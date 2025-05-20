@@ -94,5 +94,101 @@
         ]
       }
     ]
+  },
+  {
+    "title": "ery",
+    "urlImagen": "https://i.pinimg.com/474x/49/6c/9d/496c9d566862735ef8b75caeb8042703.jpg",
+    "date": "2025-05-02",
+    "description": "ery",
+    "colors": [
+      {
+        "_rgb": [
+          204,
+          198,
+          189,
+          1
+        ]
+      },
+      {
+        "_rgb": [
+          150,
+          106,
+          57,
+          1
+        ]
+      },
+      {
+        "_rgb": [
+          117,
+          65,
+          26,
+          1
+        ]
+      },
+      {
+        "_rgb": [
+          146,
+          123,
+          96,
+          1
+        ]
+      },
+      {
+        "_rgb": [
+          51,
+          30,
+          21,
+          1
+        ]
+      }
+    ]
+  },
+  {
+    "title": "imagen 3",
+    "urlImagen": "https://static.wikia.nocookie.net/gatos-guerreros/images/2/2d/Gato.jpg/revision/latest?cb=20180401210734&path-prefix=es",
+    "date": "2025-05-05",
+    "description": "imagen de un gato que va por la calle y se encuentra un caramelo.",
+    "colors": [
+      {
+        "_rgb": [
+          126,
+          129,
+          96,
+          1
+        ]
+      },
+      {
+        "_rgb": [
+          229,
+          228,
+          223,
+          1
+        ]
+      },
+      {
+        "_rgb": [
+          48,
+          48,
+          41,
+          1
+        ]
+      },
+      {
+        "_rgb": [
+          216,
+          176,
+          162,
+          1
+        ]
+      },
+      {
+        "_rgb": [
+          75,
+          63,
+          59,
+          1
+        ]
+      }
+    ]
   }
 ]
