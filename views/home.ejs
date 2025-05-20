@@ -8,8 +8,9 @@
                 <div class="card">
                     <img src="<%= image.urlImagen %>" alt="<%= image.title %>">
                     <div class="card-content">
-                        <h3><%= image.title %></h3>
+                        <h3><%= image.title.toUpperCase() %></h3>
                         <h4><%= image.date %></h4>
+                        <h5><%= image.description %></h5>
                         <label>
                             <input type="checkbox" name="selectedImages" value="<%= image.urlImagen %>">
                             Seleccionar

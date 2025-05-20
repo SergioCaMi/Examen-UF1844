@@ -18,5 +18,11 @@
     "title": "img4",
     "urlImagen": "https://cdn.sanity.io/images/5vm5yn1d/pro/41c7e7ce298604b0801fc2b1b76371a47e9ebb83-950x633.jpg?fm=webp&q=80",
     "date": "2025-05-05"
+  },
+  {
+    "title": "img6",
+    "urlImagen": "https://static.nationalgeographic.es/files/styles/image_3200/public/75552.ngsversion.1422285553360.webp?w=1600&h=1067",
+    "date": "2026-03-03",
+    "description": "Esto es un gato muy enfadado."
   }
 ]

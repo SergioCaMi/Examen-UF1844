@@ -35,7 +35,7 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 
 app.get("/", (req, res) => {
-  res.render("index.ejs", { title: "Home", dataImage:dataImage });
+  res.render("home.ejs", { title: "Home", dataImage: dataImage });
 });
 
 // Add new image
@@ -49,7 +49,7 @@ app.post("/new-image", (req, res) => {
   console.log("Petición recibida");
   console.log("Body del formulario: ", req.body);
   // La imagen ya se encuentra en el archivo?
-  if (dataImage.find((p) => p.urlImagen == req.body.urlImagen)) {
+  if (dataImage.find((p) => p.urlImagen === req.body.urlImagen)) {
     // SI
     res.send(`La imagen "${req.body.title}" ya se encontraba en el archivo.`);
   } else {
@@ -59,9 +59,11 @@ app.post("/new-image", (req, res) => {
       title: req.body.title,
       urlImagen: req.body.urlImagen,
       date: req.body.date,
+      description: req.body.description,
     };
     // Añadimos
     dataImage.push(newImage);
+    dataImage.sort((a, b) => new Date(a.date) - new Date(b.date));
     // Lo guardamos en el archivo JSON
     fs.writeFile(
       filePath,
@@ -81,14 +83,16 @@ app.post("/new-image", (req, res) => {
 // Delete  image
 app.get("/delete-image", (req, res) => {
   // Mostramos la vista del formulario
-  res.render("deleteImage.ejs", { title: "Delete Image", dataImage:dataImage });
+  res.render("deleteImage.ejs", {
+    title: "Delete Image",
+    dataImage: dataImage,
+  });
 });
 
 // Enpoint donde enviamos los datos a eliminar
 app.post("/delete-image", (req, res) => {
   console.log("Petición recibida", req.body);
 });
-
 
 // Iniciar el servidor
 app.listen(PORT, () => {
