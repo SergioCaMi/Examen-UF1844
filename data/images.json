@@ -1,28 +1,98 @@
 [
   {
-    "title": "img1",
-    "urlImagen": "https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-    "date": "2025-01-01"
-  },
-  {
-    "title": "img2",
+    "title": "imagen 1",
     "urlImagen": "https://media.istockphoto.com/id/1443562748/es/foto/lindo-gato-de-jengibre.jpg?s=612x612&w=0&k=20&c=JVC5Z3LxpaTQaXu_fMZjIb73r39z6b0SnAxvNI8iZG0=",
-    "date": "2025-01-02"
+    "date": "2022-02-02",
+    "description": "imagen 1",
+    "colors": [
+      {
+        "_rgb": [
+          250,
+          249,
+          249,
+          1
+        ]
+      },
+      {
+        "_rgb": [
+          201,
+          143,
+          87,
+          1
+        ]
+      },
+      {
+        "_rgb": [
+          225,
+          183,
+          150,
+          1
+        ]
+      },
+      {
+        "_rgb": [
+          132,
+          134,
+          124,
+          1
+        ]
+      },
+      {
+        "_rgb": [
+          140,
+          124,
+          124,
+          1
+        ]
+      }
+    ]
   },
   {
-    "title": "img3",
-    "urlImagen": "https://upload.wikimedia.org/wikipedia/commons/4/4d/Cat_November_2010-1a.jpg",
-    "date": "2024-01-01"
-  },
-  {
-    "title": "img4",
-    "urlImagen": "https://cdn.sanity.io/images/5vm5yn1d/pro/41c7e7ce298604b0801fc2b1b76371a47e9ebb83-950x633.jpg?fm=webp&q=80",
-    "date": "2025-05-05"
-  },
-  {
-    "title": "img6",
-    "urlImagen": "https://static.nationalgeographic.es/files/styles/image_3200/public/75552.ngsversion.1422285553360.webp?w=1600&h=1067",
-    "date": "2026-03-03",
-    "description": "Esto es un gato muy enfadado."
+    "title": "imagen 2",
+    "urlImagen": "https://hospitalveterinariodonostia.com/wp-content/uploads/2020/10/gatos.png",
+    "date": "2022-02-02",
+    "description": "sdfh",
+    "colors": [
+      {
+        "_rgb": [
+          137,
+          119,
+          107,
+          1
+        ]
+      },
+      {
+        "_rgb": [
+          39,
+          27,
+          21,
+          1
+        ]
+      },
+      {
+        "_rgb": [
+          210,
+          215,
+          219,
+          1
+        ]
+      },
+      {
+        "_rgb": [
+          82,
+          50,
+          35,
+          1
+        ]
+      },
+      {
+        "_rgb": [
+          219,
+          182,
+          143,
+          1
+        ]
+      }
+    ]
   }
 ]

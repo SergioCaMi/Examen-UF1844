@@ -6,7 +6,6 @@
         <%if (dataImage.length==0) { %>
             <div class="container">
                 <h2>Puedes añadir tus imagenes en este botón!  <button onclick="window.location.href='/new-image'">➕</button></h2>
-                
             </div>
 
             <% } else { %>
@@ -28,6 +27,8 @@
                                     <h5>
                                         <%= image.description %>
                                     </h5>
+                                    <h5> Color principal: <div style="width: 30px; height: 10px;"></div></h5>
+                                    
                                     <label>
                                         <input type="checkbox" name="selectedImages" value="<%= image.urlImagen %>">
                                         Seleccionar

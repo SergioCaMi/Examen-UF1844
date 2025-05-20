@@ -21,10 +21,16 @@ if (!fs.existsSync(dirPath)) {
 let dataImage = [];
 try {
   const data = fs.readFileSync(filePath, "utf8");
-  dataImage = JSON.parse(data);
-  console.log("Archivo JSON leído correctamente");
+  if (data.trim()) {
+    // Analizar el contenido del archivo JSON
+    dataImage = JSON.parse(data);
+    console.log("Archivo JSON leído correctamente");
+  } else {
+    console.log("El archivo JSON está vacío.");
+  }
 } catch (err) {
   console.log("Error al leer el archivo JSON:", err);
+  console.log();
 }
 
 // Nos permite procesar peticiones POST que vengan de un formulario
@@ -38,58 +44,77 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 
 app.get("/", (req, res) => {
-  
-    //Probamos el modulo de los colores
-  // dataImage.forEach((image) => {
-  //   getColors(image.urlImagen).then((colors) => {
-  //     console.log(colors);
-  //   });
-    //Fin prueba
-
-
-
   res.render("home.ejs", { title: "Home", dataImage: dataImage });
 });
 
 // Add new image
 app.get("/new-image", (req, res) => {
   // Mostramos la vista del formulario
-  res.render("addImage.ejs", { title: "New Image" });
+  res.render("addImage.ejs", {
+    title: "New Image",
+    message: undefined,
+    colorMessage: "black",
+  });
 });
 
 // Enpoint donde enviamos los datos del formulario
-app.post("/new-image", (req, res) => {
+app.post("/new-image", async (req, res) => {
   console.log("Petición recibida");
   console.log("Body del formulario: ", req.body);
-  // La imagen ya se encuentra en el archivo?
-  if (dataImage.find((p) => p.urlImagen === req.body.urlImagen)) {
-    // SI
-    res.send(`La imagen "${req.body.title}" ya se encontraba en el archivo.`);
+  if (req.body.urlImagen.endsWith(".webp")) {
+    res.render("addImage.ejs", {
+      title: "New Image",
+      message: `Formato de imagen no soportado: WebP`,
+      colorMessage: "red",
+    });
   } else {
-    // NO
-    // Construimos el objeto
-    const newImage = {
-      title: req.body.title,
-      urlImagen: req.body.urlImagen,
-      date: req.body.date,
-      description: req.body.description,
-    };
-    // Añadimos
-    dataImage.push(newImage);
-    dataImage.sort((a, b) => new Date(a.date) - new Date(b.date));
-    // Lo guardamos en el archivo JSON
-    fs.writeFile(
-      filePath,
-      JSON.stringify(dataImage, null, 2),
-      "utf8",
-      (err) => {
-        err
-          ? res.send(`Error al añadir la imagen "${req.body.title}".`)
-          : res.send(
-              `La imagen "${req.body.title}" se ha añadido satisfactoriamente.`
-            );
-      }
-    );
+    // La imagen ya se encuentra en el archivo?
+    if (dataImage.find((p) => p.urlImagen === req.body.urlImagen)) {
+      // SI
+      res.render("addImage.ejs", {
+        title: "New Image",
+        message: `La imagen "${req.body.title}" ya se encontraba en el archivo.`,
+        colorMessage: "red",
+      });
+    } else {
+      // NO
+      // Construimos el objeto
+      // Obtener los colores de manera asíncrona
+      const colors = await getColors(req.body.urlImagen);
+
+      // Construir el objeto newImage con los colores obtenidos
+      const newImage = {
+        title: req.body.title,
+        urlImagen: req.body.urlImagen,
+        date: req.body.date,
+        description: req.body.description,
+        colors: colors,
+      }; // Añadimos
+      dataImage.push(newImage);
+      dataImage.sort((a, b) => new Date(a.date) - new Date(b.date));
+      // Lo guardamos en el archivo JSON
+      fs.writeFile(
+        filePath,
+        JSON.stringify(dataImage, null, 2),
+        "utf8",
+        (err) => {
+          err
+            ? res.render("addImage.ejs", {
+                title: "New Image",
+                message: `Error al añadir la imagen "${req.body.title}".`,
+                colorMessage: "red",
+              })
+            : // ? res.send(`Error al añadir la imagen "${req.body.title}".`)
+              res.render("addImage.ejs", {
+                title: "New Image",
+                message: `La imagen "${req.body.title}" se ha añadido satisfactoriamente.`,
+                colorMessage: "green",
+              });
+
+          // : res.send(`La imagen "${req.body.title}" se ha añadido satisfactoriamente.`);
+        }
+      );
+    }
   }
 });
 
