@@ -28,13 +28,16 @@
                                     <h5>
                                         <%= image.description %>
                                     </h5>
-                                    <div class="color-circles">
-                                        <% image.colors.forEach(color=> { %>
-                                            <div class="color-circle"
-                                                style="background-color: rgba(<%= color._rgb.join(', ') %>);"></div>
-                                            <% }); %>
-                                    </div>
-                                    <!-- <label>
+                                    <% if (image.colors && image.colors.length) { %>
+                                        <div class="color-circles">
+                                            <% image.colors.forEach(color=> { %>
+                                                <div class="color-circle"
+                                                    style="background-color: rgba(<%= color._rgb.join(', ') %>);"></div>
+                                                <% }); %>
+                                        </div>
+                                        <% } else { %>
+                                            <p style="color: red;">Colores no disponibles en esta imagen.</p>
+                                        <% } %> <!-- <label>
                                         <input type="checkbox" name="selectedImages" value="<%= image.urlImagen %>">
                                         Seleccionar
                                     </label> -->
