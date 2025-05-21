@@ -13,40 +13,43 @@
 
 
 
-                <form class="container" action="/delete-image" method="POST">
-                    <div class="grid">
-                        <% dataImage.forEach(image=> { %>
-                            <div class="card">
-                                <img src="<%= image.urlImagen %>" alt="<%= image.title %>">
-                                <div class="card-content">
-                                    <h3>
-                                        <%= image.title.toUpperCase() %>
-                                    </h3>
-                                    <h4>
-                                        <%= image.date %>
-                                    </h4>
-                                    <h5>
-                                        <%= image.description %>
-                                    </h5>
-                                    <% if (image.colors && image.colors.length) { %>
-                                        <div class="color-circles">
-                                            <% image.colors.forEach(color=> { %>
-                                                <div class="color-circle"
-                                                    style="background-color: rgba(<%= color._rgb.join(', ') %>);"></div>
-                                                <% }); %>
-                                        </div>
-                                        <% } else { %>
-                                            <p style="color: red;">Colores no disponibles en esta imagen.</p>
-                                        <% } %> <!-- <label>
+                <div class="grid container">
+                    <% dataImage.forEach(image=> { %>
+                        <div class="card">
+                            <img src="<%= image.urlImagen %>" alt="<%= image.title %>">
+                            <div class="card-content">
+                                <h3>
+                                    <i onclick="window.location.href='/delete-image'" class="fas fa-times"
+                                        style="cursor: pointer;color: red; margin-right: 0.5rem;font-size: 15px;"></i>
+                                    <%= image.title.toUpperCase() %>
+                                </h3>
+                                <h4>
+                                    <%= image.date %>
+                                </h4>
+                                <h5>
+                                    <%= image.description %>
+                                </h5>
+                                <% if (image.colors && image.colors.length) { %>
+                                    <div class="color-circles">
+                                        <% image.colors.forEach(color=> { %>
+                                            <div class="color-circle"
+                                                style="border: 2px solid black;background-color: rgba(<%= color._rgb.join(', ') %>);">
+                                                <!-- <p style="font-size: 5px;">RGB: <%= color._rgb.join(', ') %></p> -->
+                                            </div>
+                                            <% }); %>
+                                    </div>
+                                    <% } else { %>
+                                        <p style="color: red;">Colores no disponibles en esta imagen.</p>
+                                        <% } %>
+                                            <!-- <label>
                                         <input type="checkbox" name="selectedImages" value="<%= image.urlImagen %>">
                                         Seleccionar
                                     </label> -->
-                                </div>
                             </div>
-                            <% }); %>
-                    </div>
-                    <!-- <button type="submit">Eliminar Imágenes Seleccionadas</button> -->
-                </form>
+                        </div>
+                        <% }); %>
+                </div>
+                <!-- <button type="submit">Eliminar Imágenes Seleccionadas</button> -->
 
                 <%}%>
 

@@ -67,7 +67,6 @@ app.get("/new-image", (req, res) => {
 // Enpoint donde enviamos los datos del formulario
 app.post("/new-image", async (req, res) => {
   console.log("Petición recibida");
-  console.log("Body del formulario: ", req.body);
   // if (!(req.body.urlImagen.endsWith(".jpg"))||!(req.body.urlImagen.endsWith(".jpeg"))) {
   //   res.render("addImage.ejs", {
   //     title: "New Image",
@@ -87,8 +86,9 @@ app.post("/new-image", async (req, res) => {
     // NO
     // Construimos el objeto
     // Obtener los colores de manera asíncrona
+    let colors;
     try {
-      const colors = await getColors(req.body.urlImagen);
+      colors = await getColors(req.body.urlImagen);
     } catch (error) {
       console.error("Error al leer los colores de la imagen:", error);
       colors = null;
@@ -114,6 +114,8 @@ app.post("/new-image", async (req, res) => {
       console.error("Error al leer los datos EXIF:", error);
       exifData = null;
     }
+      console.log("Body del formulario: ", req.body);
+    console.log(`id: ${id} \n colores: ${colors} \n datos EXIF: ${exifData}`)
     // Construir el objeto newImage con los colores obtenidos
     const newImage = {
       id: id,
