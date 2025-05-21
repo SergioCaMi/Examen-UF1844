@@ -19,7 +19,7 @@
                             <img src="<%= image.urlImagen %>" alt="<%= image.title %>">
                             <div class="card-content">
                                 <h3>
-                                    <i onclick="window.location.href='/delete-image'" class="fas fa-times"
+                                    <i onclick="window.location.href='/delete-image/id=<%= image.id %>'" class="fas fa-times"
                                         style="cursor: pointer;color: red; margin-right: 0.5rem;font-size: 15px;"></i>
                                     <%= image.title.toUpperCase() %>
                                 </h3>

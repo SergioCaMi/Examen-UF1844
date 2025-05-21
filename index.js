@@ -153,7 +153,7 @@ app.post("/new-image", async (req, res) => {
 });
 
 // Enpoint donde enviamos los datos a eliminar
-app.post("/delete-image", (req, res) => {
+app.post("/delete-image/:id", (req, res) => {
   console.log("Petición recibida", req.body);
   res.render("deleteImage.ejs", {
     title: "Delete Image",
