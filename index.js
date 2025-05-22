@@ -1,7 +1,7 @@
 // ********** Server **********
 const express = require("express");
 const app = express();
-const PORT = process.env.PORT || 3000//para publicar
+const PORT = process.env.PORT || 3000//para renderizar
 
 // ********** Colores predominantes **********
 const getColors = require("get-image-colors");
@@ -12,6 +12,9 @@ const { v4: uuidv4 } = require("uuid");
 // ********** Datos EXIF **********
 const exifr = require("exifr");
 const fetch = require("node-fetch");
+// const { createRequire } = require('module');
+// import exifr from 'exifr';
+// import fetch from 'node-fetch';
 
 // ********** Data **********
 const fs = require("fs");
@@ -93,21 +96,31 @@ app.post("/new-image", async (req, res) => {
     const id = uuidv4();
 
     //Datos EXIF
-
-    // Descargamos la imagen
-    const response = await fetch(req.body.urlImagen);
-
-    // Pasamos la imagen a binario (buffer)
-    const imageBuffer = await response.buffer();
-
+async function extractExifFromUrl(imageUrl) {
     try {
-      const exifData = await exifr.parse(imageBuffer);
+        // Descargar la imagen desde la URL
+        const response = await fetch(imageUrl);
+        if (!response.ok) {
+            throw new Error(`Error al descargar la imagen: ${response.statusText}`);
+        }
+
+        // Convertir la respuesta a un buffer
+        const imageBuffer = await response.buffer();
+
+        // Extraer los datos EXIF
+        const exifData = await exifr.parse(imageBuffer);
+
+        console.log('Datos EXIF:', exifData);
+        return exifData;
     } catch (error) {
-      console.error("Error al leer los datos EXIF:", error);
-      exifData = null;
+        console.error('Error al leer los datos EXIF:', error);
+              exifData = null;
+
     }
+}
+
     console.log("Body del formulario: ", req.body);
-    console.log(`id: ${id} \n colores: ${colors} \n datos EXIF: ${exifData}`);
+    console.log(`id: ${id} \n colores: ${colors} \n datos EXIF:datos almacenados`);
     // Construir el objeto newImage con los colores obtenidos
     const newImage = {
       id: id,
@@ -116,7 +129,7 @@ app.post("/new-image", async (req, res) => {
       date: req.body.date,
       description: req.body.description,
       colors: colors,
-      exif: exifData,
+      exif: extractExifFromUrl(req.body.urlImagen),
     };
     // Añadimos
     dataImage.push(newImage);

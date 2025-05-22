@@ -1,5 +1,55 @@
 [
    {
+      "id": "c3f6ff4e-a765-433e-833d-7549b2f1b9a7",
+      "title": "Probando EXIF 2",
+      "urlImagen": "https://github.com/ianare/exif-samples/blob/master/jpg/gps/DSCN0021.jpg?raw=true",
+      "date": "2001-01-01",
+      "description": "exif????",
+      "colors": [
+         {
+            "_rgb": [
+               113,
+               101,
+               67,
+               1
+            ]
+         },
+         {
+            "_rgb": [
+               215,
+               200,
+               184,
+               1
+            ]
+         },
+         {
+            "_rgb": [
+               31,
+               30,
+               20,
+               1
+            ]
+         },
+         {
+            "_rgb": [
+               166,
+               163,
+               168,
+               1
+            ]
+         },
+         {
+            "_rgb": [
+               179,
+               181,
+               167,
+               1
+            ]
+         }
+      ],
+      "exif": {}
+   },
+   {
       "id": "0af6de3d-a222-454d-800c-eaf4eee8aad8",
       "title": "Datos EXIF",
       "urlImagen": "https://github.com/ianare/exif-samples/blob/master/jpg/gps/DSCN0012.jpg?raw=true",
