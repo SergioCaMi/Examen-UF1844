@@ -105,25 +105,17 @@ app.post("/new-image", async (req, res) => {
             `Error al descargar la imagen: ${response.statusText}`
           );
         }
-
         // Convertir la respuesta a un buffer
         const imageBuffer = await response.buffer();
-
         // Extraer los datos EXIF
         const exifData = await exifr.parse(imageBuffer);
-
-        console.log("Datos EXIF:", exifData);
         return exifData;
       } catch (error) {
         console.error("Error al extraer los datos EXIF:", error);
         return null;
       }
     }
-
     const exifData = await extractExifFromUrl(req.body.urlImagen);
-
-    console.log("Body del formulario: ", req.body);
-    console.log(`id: ${id} \n colores: ${colors}`);
     // Construir el objeto newImage con los colores obtenidos
     const newImage = {
       id: id,
@@ -180,9 +172,9 @@ app.post("/image/:id/delete", (req, res) => {
 
 // ******************** Visualizar una imagen ********************
 app.get("/image/:id/view", (req, res) => {
-  // POST!
   const id = req.params.id;
-  res.render("home.ejs", { title: "View", dataImage: dataImage });
+  const index = dataImage.findIndex(image => image.id === id);
+  res.render("viewImage.ejs", { title: "View", dataImage: dataImage, index: index });
 });
 
 // ******************** Iniciar el servidor ********************
