@@ -1,4 +1,3 @@
-Funci
 async function deleteImage(imageId) {
   const response = await fetch(`/image/${imageId}/delete`, {
     method: "POST",
@@ -24,28 +23,35 @@ async function viewImage(imageId) {
   }
 }
 
-document.addEventListener("DOMContentLoaded", (event) => {
-  alert("Holaaaa");
+function showUtils() {
+  const searchUtils = document.querySelectorAll(".search");
   const inputSearch = document.querySelector(".searchInput");
-  alert("Input de búsqueda:", inputSearch);
-
   const cards = document.querySelectorAll(".card");
-  alert("Cards a revisar:", cards);
 
-  // inputSearch.addEventListener("input", (event) => {
-  //     const searchText = event.target.value.toLowerCase();
-  //     // Buscamos todas las cards cuyo texto a buscar esté incluido en su nombre
-  //     let showCard = dataImage.filter(image => image.title.toLowerCase().includes(searchText));
-  //     alert("Hemos llegao");
-  //     // Recogemos todos los id de las cards a mostrar
-  //     const showId = showCard.map(image => image.id);
-  //     // Dsiplay none a las que no se deben mostrar
-  //     cards.forEach(card => {
-  //         if (!showId.includes(card.id)) {
-  //             card.style.display = 'none';
-  //         } else {
-  //             card.style.display = 'flex'; // o 'block', dependiendo del diseño
-  //         }
-  //     });
-  // });
-});
+  searchUtils.forEach((element) => {
+    if (element.style.display === "flex") {
+      element.style.display = "none";
+      inputSearch.value = "";
+    } else {
+      element.style.display = "flex";
+    }
+  });
+  inputSearch.addEventListener("input", (event) => {
+    const searchText = event.target.value.toLowerCase();
+    // Buscamos todas las cards cuyo texto a buscar esté incluido en su nombre
+    let showCard = dataImage.filter((image) =>
+      image.title.toLowerCase().includes(searchText)
+    );
+
+    // Recogemos todos los id de las cards a mostrar
+    const showId = showCard.map((image) => image.id);
+    // Dsiplay none a las que no se deben mostrar
+    cards.forEach((card) => {
+      if (!showId.includes(card.id)) {
+        card.style.display = "none";
+      } else {
+        card.style.display = "flex";
+      }
+    });
+  });
+}
