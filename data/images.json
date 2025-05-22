@@ -1,10 +1,10 @@
 [
    {
-      "id": "c3f6ff4e-a765-433e-833d-7549b2f1b9a7",
-      "title": "Probando EXIF 2",
+      "id": "9313e8ef-4ee9-4272-a571-e4adbb0cbb90",
+      "title": "111",
       "urlImagen": "https://github.com/ianare/exif-samples/blob/master/jpg/gps/DSCN0021.jpg?raw=true",
       "date": "2001-01-01",
-      "description": "exif????",
+      "description": "",
       "colors": [
          {
             "_rgb": [
@@ -47,7 +47,191 @@
             ]
          }
       ],
-      "exif": {}
+      "exif": {
+         "Make": "NIKON",
+         "Model": "COOLPIX P6000",
+         "Orientation": "Horizontal (normal)",
+         "XResolution": 300,
+         "YResolution": 300,
+         "ResolutionUnit": "inches",
+         "Software": "Nikon Transfer 1.1 W",
+         "ModifyDate": "2008-11-01T20:15:08.000Z",
+         "YCbCrPositioning": 1,
+         "ExposureTime": 0.01044932,
+         "FNumber": 4.7,
+         "ExposureProgram": "Normal program",
+         "ISO": 64,
+         "ExifVersion": "2.2",
+         "DateTimeOriginal": "2008-10-22T14:38:20.000Z",
+         "CreateDate": "2008-10-22T14:38:20.000Z",
+         "ComponentsConfiguration": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 0
+         },
+         "ExposureCompensation": 0,
+         "MaxApertureValue": 2.9,
+         "MeteringMode": "Pattern",
+         "LightSource": "Unknown",
+         "Flash": "Flash did not fire, compulsory flash mode",
+         "FocalLength": 16.6,
+         "FlashpixVersion": "1.0",
+         "ColorSpace": 1,
+         "ExifImageWidth": 640,
+         "ExifImageHeight": 480,
+         "FileSource": "Digital Camera",
+         "SceneType": "Directly photographed",
+         "CustomRendered": "Normal",
+         "ExposureMode": "Auto",
+         "WhiteBalance": "Auto",
+         "DigitalZoomRatio": 0,
+         "FocalLengthIn35mmFormat": 77,
+         "SceneCaptureType": "Standard",
+         "GainControl": "None",
+         "Contrast": "Normal",
+         "Saturation": "Normal",
+         "Sharpness": "Normal",
+         "SubjectDistanceRange": "Unknown",
+         "GPSLatitudeRef": "N",
+         "GPSLatitude": [
+            43,
+            28,
+            1.49399999
+         ],
+         "GPSLongitudeRef": "E",
+         "GPSLongitude": [
+            11,
+            53,
+            4.33799999
+         ],
+         "GPSAltitudeRef": {
+            "0": 0
+         },
+         "GPSTimeStamp": "14:36:47.23",
+         "GPSSatellites": "06",
+         "GPSMapDatum": "WGS-84",
+         "GPSDateStamp": "2008:10:23",
+         "latitude": 43.467081666663894,
+         "longitude": 11.884538333330555
+      }
+   },
+   {
+      "id": "c59a45da-4d7f-474f-9c3e-30f0f0f9b575",
+      "title": "datos exif ok",
+      "urlImagen": "https://github.com/ianare/exif-samples/blob/master/jpg/gps/DSCN0027.jpg?raw=true",
+      "date": "2002-01-01",
+      "description": "",
+      "colors": [
+         {
+            "_rgb": [
+               122,
+               103,
+               89,
+               1
+            ]
+         },
+         {
+            "_rgb": [
+               232,
+               238,
+               244,
+               1
+            ]
+         },
+         {
+            "_rgb": [
+               29,
+               27,
+               15,
+               1
+            ]
+         },
+         {
+            "_rgb": [
+               182,
+               188,
+               193,
+               1
+            ]
+         },
+         {
+            "_rgb": [
+               162,
+               165,
+               180,
+               1
+            ]
+         }
+      ],
+      "exif": {
+         "Make": "NIKON",
+         "Model": "COOLPIX P6000",
+         "Orientation": "Horizontal (normal)",
+         "XResolution": 300,
+         "YResolution": 300,
+         "ResolutionUnit": "inches",
+         "Software": "Nikon Transfer 1.1 W",
+         "ModifyDate": "2008-11-01T20:15:09.000Z",
+         "YCbCrPositioning": 1,
+         "ExposureTime": 0.00676132,
+         "FNumber": 4.1,
+         "ExposureProgram": "Normal program",
+         "ISO": 64,
+         "ExifVersion": "2.2",
+         "DateTimeOriginal": "2008-10-22T14:44:01.000Z",
+         "CreateDate": "2008-10-22T14:44:01.000Z",
+         "ComponentsConfiguration": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 0
+         },
+         "ExposureCompensation": 0,
+         "MaxApertureValue": 2.9,
+         "MeteringMode": "Pattern",
+         "LightSource": "Unknown",
+         "Flash": "Flash did not fire, compulsory flash mode",
+         "FocalLength": 6,
+         "FlashpixVersion": "1.0",
+         "ColorSpace": 1,
+         "ExifImageWidth": 640,
+         "ExifImageHeight": 480,
+         "FileSource": "Digital Camera",
+         "SceneType": "Directly photographed",
+         "CustomRendered": "Normal",
+         "ExposureMode": "Auto",
+         "WhiteBalance": "Auto",
+         "DigitalZoomRatio": 0,
+         "FocalLengthIn35mmFormat": 28,
+         "SceneCaptureType": "Standard",
+         "GainControl": "None",
+         "Contrast": "Normal",
+         "Saturation": "Normal",
+         "Sharpness": "Normal",
+         "SubjectDistanceRange": "Unknown",
+         "GPSLatitudeRef": "N",
+         "GPSLatitude": [
+            43,
+            28,
+            6.39
+         ],
+         "GPSLongitudeRef": "E",
+         "GPSLongitude": [
+            11,
+            52,
+            53.454
+         ],
+         "GPSAltitudeRef": {
+            "0": 0
+         },
+         "GPSTimeStamp": "14:42:29.03",
+         "GPSSatellites": "05",
+         "GPSMapDatum": "WGS-84",
+         "GPSDateStamp": "2008:10:23",
+         "latitude": 43.46844166666667,
+         "longitude": 11.881515
+      }
    },
    {
       "id": "0af6de3d-a222-454d-800c-eaf4eee8aad8",

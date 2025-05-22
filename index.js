@@ -1,7 +1,7 @@
 // ********** Server **********
 const express = require("express");
 const app = express();
-const PORT = process.env.PORT || 3000//para renderizar
+const PORT = process.env.PORT || 3000; //para renderizar
 
 // ********** Colores predominantes **********
 const getColors = require("get-image-colors");
@@ -96,12 +96,14 @@ app.post("/new-image", async (req, res) => {
     const id = uuidv4();
 
     //Datos EXIF
-async function extractExifFromUrl(imageUrl) {
-    try {
+    async function extractExifFromUrl(imageUrl) {
+      try {
         // Descargar la imagen desde la URL
         const response = await fetch(imageUrl);
         if (!response.ok) {
-            throw new Error(`Error al descargar la imagen: ${response.statusText}`);
+          throw new Error(
+            `Error al descargar la imagen: ${response.statusText}`
+          );
         }
 
         // Convertir la respuesta a un buffer
@@ -110,17 +112,18 @@ async function extractExifFromUrl(imageUrl) {
         // Extraer los datos EXIF
         const exifData = await exifr.parse(imageBuffer);
 
-        console.log('Datos EXIF:', exifData);
+        console.log("Datos EXIF:", exifData);
         return exifData;
-    } catch (error) {
-        console.error('Error al leer los datos EXIF:', error);
-              exifData = null;
-
+      } catch (error) {
+        console.error("Error al extraer los datos EXIF:", error);
+        return null;
+      }
     }
-}
+
+    const exifData = await extractExifFromUrl(req.body.urlImagen);
 
     console.log("Body del formulario: ", req.body);
-    console.log(`id: ${id} \n colores: ${colors} \n datos EXIF:datos almacenados`);
+    console.log(`id: ${id} \n colores: ${colors}`);
     // Construir el objeto newImage con los colores obtenidos
     const newImage = {
       id: id,
@@ -129,7 +132,7 @@ async function extractExifFromUrl(imageUrl) {
       date: req.body.date,
       description: req.body.description,
       colors: colors,
-      exif: extractExifFromUrl(req.body.urlImagen),
+      exif: exifData,
     };
     // Añadimos
     dataImage.push(newImage);
