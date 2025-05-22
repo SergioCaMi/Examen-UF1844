@@ -1,5 +1,4 @@
 <%- include("template/cabecera", {title: title}) %>
-
     <% if (dataImage.length===0) { %>
         <div class="container">
             <h2>
@@ -13,31 +12,27 @@
                     <div class="card" id="<%= image.id %>">
                         <img src="<%= image.urlImagen %>" alt="<%= image.title %>">
                         <div class="card-content">
-                            <h3
-                                style="display: flex; align-items: center; justify-content: space-between;padding: 5px;">
+                            <h3 id="icons"
+                                style="display: flex; align-items: center; justify-content: space-between; padding: 5px;">
                                 <i onclick="window.location.href='/image/<%= image.id %>/view'" title="Ver imagen"
                                     class="fas fa-eye view-icon"></i>
                                 <i onclick="deleteImage('<%= image.id %>')" title="Eliminar imagen"
                                     class="fas fa-trash delete-icon"></i>
                             </h3>
-                            <h3>
-                                Nombre: <%= image.title.toUpperCase() %>
+                            <h3 id="name">Nombre: <%= image.title.toUpperCase() %>
                             </h3>
-                            <h5>
-                                Fecha: <%= image.date %>
+                            <h5 id="date">Fecha: <%= image.date %>
                             </h5>
-                            <h5>
+                            <h5 id="description">
                                 <%= image.description %>
                             </h5>
-                            <h5>Colores principales:</h5>
+                            <h5 id="colors">Colores principales:</h5>
                             <% if (image.colors && image.colors.length) { %>
                                 <div class="color-circles">
                                     <% image.colors.forEach(color=> { %>
                                         <div class="color-circle"
-                                        <% const rgbaColor = `rgba(${color._rgb.join(', ')})`; %>
-                                            style="background-color: <%= rgbaColor %>;"
-                                            title="rgba(<%= color._rgb.join(', ') %>)">
-                                        </div>
+                                            style="background-color: rgba(<%= color._rgb.join(', ') %>);"
+                                            title="rgba(<%= color._rgb.join(', ') %>)"></div>
                                         <% }); %>
                                 </div>
                                 <% } else { %>
@@ -48,36 +43,8 @@
                     <% }); %>
             </div>
             <% } %>
-                <%- include("template/footer") %>
-                    </div>
-                    <script>
-                        function eliminarImagen() {
-                            console.log(dataImage);
-                        }
+                </div>
+                <%- include("template/footer", {title: title}) %>
 
-                        // Función asíncrona a la dirección del enlace, con método POST para que vaya al Backend
-                        async function deleteImage(imageId) {
-                            const response = await fetch(`/image/${imageId}/delete`, {
-                                method: 'POST',
-                                headers: { 'Content-Type': 'application/json' }
-                            });
-                            if (response.ok) {
-                                document.getElementById(imageId).style.display = 'none';
-                            } else {
-                                console.error('Error al eliminar la imagen');
-                            }
-                        }
 
-                        async function viewImage(imageId) {
-                            const response = await fetch(`/image/${imageId}/view`, {
-                                method: 'POST', headers: { 'Content-Type': 'application/json' }
-                            });
-                            if (response.ok) {
-                                console.log("vista de la imagen");
-                                window.location.href = '/';
-                            } else {
-                                console.error('Error al visualizar la imagen');
-                            }
-                        }
-
-                    </script>
+                    </html>
