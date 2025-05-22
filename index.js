@@ -1,19 +1,19 @@
-// Server
+// ********** Server **********
 const express = require("express");
 const app = express();
 const PORT = 3000;
 
-// Colores predominantes
+// ********** Colores predominantes **********
 const getColors = require("get-image-colors");
 
-// Id Unicos
+// ********** Id Unicos **********
 const { v4: uuidv4 } = require("uuid");
 
-//Datos EXIF
+// ********** Datos EXIF **********
 const axios = require("axios");
 const exifReader = require("exif-reader");
 
-// Data
+// ********** Data **********
 const fs = require("fs");
 const path = require("path");
 const filePath = path.join(__dirname, "data", "images.json");
@@ -40,21 +40,23 @@ try {
   console.log();
 }
 
-// Nos permite procesar peticiones POST que vengan de un formulario
+// ********** Nos permite procesar peticiones POST que vengan de un formulario **********
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-//Cargamos las vistas EJS
+//********** Cargamos las vistas EJS **********
 app.set("view engine", "ejs");
 
-// Carpeta de recursos publicos
+// ********** Carpeta de recursos publicos **********
 app.use(express.static("public"));
+
+// ******************** Home ********************
 
 app.get("/", (req, res) => {
   res.render("home.ejs", { title: "Home", dataImage: dataImage });
 });
 
-// Add new image
+// ******************** Add new image ********************
 app.get("/new-image", (req, res) => {
   // Mostramos la vista del formulario
   res.render("addImage.ejs", {
@@ -64,7 +66,7 @@ app.get("/new-image", (req, res) => {
   });
 });
 
-// Enpoint donde enviamos los datos del formulario
+// ******************** Enpoint donde enviamos los datos del formulario ********************
 app.post("/new-image", async (req, res) => {
   console.log("Petición recibida");
   // La imagen ya se encuentra en el archivo
@@ -143,7 +145,7 @@ app.post("/new-image", async (req, res) => {
   }
 });
 
-// Enpoint donde enviamos los datos a eliminar
+// ******************** Enpoint donde enviamos los datos a eliminar ********************
 app.post("/image/:id/delete", (req, res) => {
   const id = req.params.id;
   console.log("Petición recibida para eliminar la imagen con ID:", id);
@@ -162,14 +164,14 @@ app.post("/image/:id/delete", (req, res) => {
   }
 });
 
-// Visualizar una imagen
+// ******************** Visualizar una imagen ********************
 app.get("/image/:id/view", (req, res) => {
   // POST!
   const id = req.params.id;
   res.render("home.ejs", { title: "View", dataImage: dataImage });
 });
 
-// Iniciar el servidor
+// ******************** Iniciar el servidor ********************
 app.listen(PORT, () => {
   console.log(`Servidor escuchando en http://localhost:${PORT}`);
 });
