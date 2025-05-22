@@ -1,7 +1,7 @@
 // ********** Server **********
 const express = require("express");
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000//para publicar
 
 // ********** Colores predominantes **********
 const getColors = require("get-image-colors");
@@ -10,8 +10,8 @@ const getColors = require("get-image-colors");
 const { v4: uuidv4 } = require("uuid");
 
 // ********** Datos EXIF **********
-const axios = require("axios");
-const exifReader = require("exif-reader");
+const exifr = require("exifr");
+const fetch = require("node-fetch");
 
 // ********** Data **********
 const fs = require("fs");
@@ -95,15 +95,13 @@ app.post("/new-image", async (req, res) => {
     //Datos EXIF
 
     // Descargamos la imagen
-    const response = await axios.get(req.body.urlImagen, {
-      responseType: "arraybuffer",
-    });
-    // Pasamos la imagen a binario (buffer)
-    const imageBuffer = Buffer.from(response.data, "binary");
+    const response = await fetch(req.body.urlImagen);
 
-    let exifData;
+    // Pasamos la imagen a binario (buffer)
+    const imageBuffer = await response.buffer();
+
     try {
-      exifData = exifReader(imageBuffer);
+      const exifData = await exifr.parse(imageBuffer);
     } catch (error) {
       console.error("Error al leer los datos EXIF:", error);
       exifData = null;
