@@ -67,14 +67,7 @@ app.get("/new-image", (req, res) => {
 // Enpoint donde enviamos los datos del formulario
 app.post("/new-image", async (req, res) => {
   console.log("Petición recibida");
-  // if (!(req.body.urlImagen.endsWith(".jpg"))||!(req.body.urlImagen.endsWith(".jpeg"))) {
-  //   res.render("addImage.ejs", {
-  //     title: "New Image",
-  //     message: `Formato de imagen no soportado!`,
-  //     colorMessage: "red",
-  //   });
-  // } else {
-  // La imagen ya se encuentra en el archivo?
+  // La imagen ya se encuentra en el archivo
   if (dataImage.find((p) => p.urlImagen === req.body.urlImagen)) {
     // SI
     res.render("addImage.ejs", {
@@ -97,7 +90,6 @@ app.post("/new-image", async (req, res) => {
     //Crear ID unico
     const id = uuidv4();
 
-
     //Datos EXIF
 
     // Descargamos la imagen
@@ -114,8 +106,8 @@ app.post("/new-image", async (req, res) => {
       console.error("Error al leer los datos EXIF:", error);
       exifData = null;
     }
-      console.log("Body del formulario: ", req.body);
-    console.log(`id: ${id} \n colores: ${colors} \n datos EXIF: ${exifData}`)
+    console.log("Body del formulario: ", req.body);
+    console.log(`id: ${id} \n colores: ${colors} \n datos EXIF: ${exifData}`);
     // Construir el objeto newImage con los colores obtenidos
     const newImage = {
       id: id,
@@ -132,7 +124,7 @@ app.post("/new-image", async (req, res) => {
     // Lo guardamos en el archivo JSON
     fs.writeFile(
       filePath,
-      JSON.stringify(dataImage, null, 2),
+      JSON.stringify(dataImage, null, 3),
       "utf8",
       (err) => {
         err
@@ -149,16 +141,32 @@ app.post("/new-image", async (req, res) => {
       }
     );
   }
-  // }
 });
 
 // Enpoint donde enviamos los datos a eliminar
-app.post("/delete-image/:id", (req, res) => {
-  console.log("Petición recibida", req.body);
-  res.render("deleteImage.ejs", {
-    title: "Delete Image",
-    dataImage: req.body,
-  });
+app.post("/image/:id/delete", (req, res) => {
+  const id = req.params.id;
+  console.log("Petición recibida para eliminar la imagen con ID:", id);
+
+  // Creamos los datos con la imagen ya eliminada
+  const newArray = dataImage.filter((image) => image.id != id);
+  // Guardamos los nuevos datos
+  try {
+    fs.writeFileSync(filePath, JSON.stringify(newArray), "utf-8");
+    console.log("Datos eliminados satisfactoriamente.");
+    dataImage = newArray;
+    res.status(200).json({ message: "Imagen eliminada" });
+  } catch (error) {
+    console.log(`Error al eliminar nuevo objeto con id ${id}`);
+    res.status(500).json({ message: "Error al eliminar la imagen" });
+  }
+});
+
+// Visualizar una imagen
+app.get("/image/:id/view", (req, res) => {
+  // POST!
+  const id = req.params.id;
+  res.render("home.ejs", { title: "View", dataImage: dataImage });
 });
 
 // Iniciar el servidor
