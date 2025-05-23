@@ -22,8 +22,6 @@
                         <div class="card-content">
                             <h3 id="icons"
                                 style="display: flex; align-items: center; justify-content: space-between; padding: 5px;">
-                                <i onclick="window.location.href='/image/<%= image.id %>/view'" title="Editar imagen"
-                                    class="fas fa-edit edit-icon"></i>
                                 <i onclick="window.location.href='/image/<%= image.id %>/view'" title="Ver imagen"
                                     class="fas fa-eye view-icon"></i>
                                 <i onclick="editImage('<%= image.id %>')" title="Editar imagen"
