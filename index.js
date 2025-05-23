@@ -180,9 +180,9 @@ app.post("/image/:id/delete", (req, res) => {
 
 // ******************** Visualizar una imagen ********************
 app.get("/image/:id/view", (req, res) => {
-  // POST!
   const id = req.params.id;
-  res.render("home.ejs", { title: "View", dataImage: dataImage });
+  const index = dataImage.findIndex(image => image.id === id);
+  res.render("viewImage.ejs", { title: "View", dataImage: dataImage, index: index });
 });
 
 // ******************** Iniciar el servidor ********************

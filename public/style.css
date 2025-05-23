@@ -123,7 +123,7 @@
     color: #203a43;
   }
 
-  .view-icon, .delete-icon {
+  .view-icon, .delete-icon, .edit-icon {
     cursor: pointer;
     color: #2c5364;
     font-size: 1.1rem;
@@ -222,6 +222,60 @@
     text-align: center;
     font-weight: bold;
   }
+
+/* Vistas */
+.carousel {
+    position: relative;
+    max-width: 600px;
+    min-width: 600px;
+    margin: auto;
+    overflow: hidden;
+}
+
+.carousel-item {
+    min-width: 100%;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: auto;
+}
+
+.carousel-item {
+  display: none;
+  position: relative;
+}
+
+.carousel-item.active {
+  display: block;
+}
+
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  color: black;
+  border: none;
+  padding: 10px 15px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.nav-btn:hover {
+  background:gray;
+}
+
+.nav-btn.prev {
+  left: 10px;
+}
+
+.nav-btn.next {
+  right: 10px;
+}
+
+.details{
+  width: 800px;
+}
 
   @media (max-width: 640px) {
     .formulario {

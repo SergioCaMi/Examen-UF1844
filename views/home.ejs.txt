@@ -22,10 +22,10 @@
                         <div class="card-content">
                             <h3 id="icons"
                                 style="display: flex; align-items: center; justify-content: space-between; padding: 5px;">
-                                <i onclick="window.location.href='/image/<%= image.id %>/view'" title="Editar imagen"
-                                    class="fas fa-edit edit-icon"></i>
                                 <i onclick="window.location.href='/image/<%= image.id %>/view'" title="Ver imagen"
                                     class="fas fa-eye view-icon"></i>
+                                <i onclick="editImage('<%= image.id %>')" title="Editar imagen"
+                                    class="fas fa-edit edit-icon"></i>
                                 <i onclick="deleteImage('<%= image.id %>')" title="Eliminar imagen"
                                     class="fas fa-trash delete-icon"></i>
                             </h3>
@@ -55,10 +55,10 @@
             <% } %>
                 </div>
                 <%- include("template/footer", {title: title}) %>
-<script>
-  const dataImage = <%- JSON.stringify(dataImage) %>;
-</script>
-                     <script src="/home.js" defer></script>
+                    <script>
+                        const dataImage = <% - JSON.stringify(dataImage) %>;
+                    </script>
+                    <script src="/home.js" defer></script>
                     </body>
 
                     </html>
