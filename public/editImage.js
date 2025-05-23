@@ -25,4 +25,5 @@ function showDetails() {
   
 }
 
+
 document.addEventListener("DOMContentLoaded", () => showSlide(currentIndex));

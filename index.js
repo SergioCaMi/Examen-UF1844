@@ -96,29 +96,7 @@ app.post("/new-image", async (req, res) => {
     const id = uuidv4();
 
     //Datos EXIF
-    async function extractExifFromUrl(imageUrl) {
-      try {
-        // Descargar la imagen desde la URL
-        const response = await fetch(imageUrl);
-        if (!response.ok) {
-          throw new Error(
-            `Error al descargar la imagen: ${response.statusText}`
-          );
-        }
-
-        // Convertir la respuesta a un buffer
-        const imageBuffer = await response.buffer();
-
-        // Extraer los datos EXIF
-        const exifData = await exifr.parse(imageBuffer);
-
-        console.log("Datos EXIF:", exifData);
-        return exifData;
-      } catch (error) {
-        console.error("Error al extraer los datos EXIF:", error);
-        return null;
-      }
-    }
+  
 
     const exifData = await extractExifFromUrl(req.body.urlImagen);
 
@@ -185,7 +163,49 @@ app.get("/image/:id/view", (req, res) => {
   res.render("viewImage.ejs", { title: "View", dataImage: dataImage, index: index });
 });
 
+// ******************** Editar una imagen ********************
+app.get("/image/:id/edit", (req, res) => {
+  const id = req.params.id;
+  const index = dataImage.findIndex(image => image.id === id);
+  res.render("editImage.ejs", { title: "Edit", dataImage: dataImage, index: index });
+});
+
 // ******************** Iniciar el servidor ********************
 app.listen(PORT, () => {
   console.log(`Servidor escuchando en http://localhost:${PORT}`);
 });
+
+
+
+// ******************** Funciones ********************
+/**
+ * Devuelve los datos EXIF de una imagen dada por su url
+ *
+ * @async
+ * @function extractExifFromUrl
+ * @param {imageUrl} url de una imagen
+ * @returns datos Exif de la imagen dada por como parámetros. En caso de error devolverá null
+ */
+  async function extractExifFromUrl(imageUrl) {
+      try {
+        // Descargar la imagen desde la URL
+        const response = await fetch(imageUrl);
+        if (!response.ok) {
+          throw new Error(
+            `Error al descargar la imagen: ${response.statusText}`
+          );
+        }
+
+        // Convertir la respuesta a un buffer
+        const imageBuffer = await response.buffer();
+
+        // Extraer los datos EXIF
+        const exifData = await exifr.parse(imageBuffer);
+
+        console.log("Datos EXIF:", exifData);
+        return exifData;
+      } catch (error) {
+        console.error("Error al extraer los datos EXIF:", error);
+        return null;
+      }
+    }
