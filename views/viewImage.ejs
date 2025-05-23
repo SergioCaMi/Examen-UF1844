@@ -8,7 +8,7 @@
                 <img src="<%= image.urlImagen %>" alt="<%= image.title %>">
                 <div class="carousel-controls">
                     <button class="close-btn" onclick="closeCarousel()"><i class="fas fa-times"></i></button>
-                    <button class="details-btn" onclick="showDetails()"><i class="fas fa-info-circle"></i></button>
+                    <button class="details-btn" onclick="window.location.href='/image/<%= image.id %>/details'"><i class="fas fa-info-circle"></i></button>
                 </div>
             </div>
         <% }); %>

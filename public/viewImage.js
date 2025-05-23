@@ -21,8 +21,6 @@ function closeCarousel() {
   window.location.href = "/";
 }
 
-function showDetails() {
-  
-}
+
 
 document.addEventListener("DOMContentLoaded", () => showSlide(currentIndex));

@@ -1,1 +1,325 @@
-[{"id":"9313e8ef-4ee9-4272-a571-e4adbb0cbb90","title":"111","urlImagen":"https://github.com/ianare/exif-samples/blob/master/jpg/gps/DSCN0021.jpg?raw=true","date":"2001-01-01","description":"","colors":[{"_rgb":[113,101,67,1]},{"_rgb":[215,200,184,1]},{"_rgb":[31,30,20,1]},{"_rgb":[166,163,168,1]},{"_rgb":[179,181,167,1]}],"exif":{"Make":"NIKON","Model":"COOLPIX P6000","Orientation":"Horizontal (normal)","XResolution":300,"YResolution":300,"ResolutionUnit":"inches","Software":"Nikon Transfer 1.1 W","ModifyDate":"2008-11-01T20:15:08.000Z","YCbCrPositioning":1,"ExposureTime":0.01044932,"FNumber":4.7,"ExposureProgram":"Normal program","ISO":64,"ExifVersion":"2.2","DateTimeOriginal":"2008-10-22T14:38:20.000Z","CreateDate":"2008-10-22T14:38:20.000Z","ComponentsConfiguration":{"0":1,"1":2,"2":3,"3":0},"ExposureCompensation":0,"MaxApertureValue":2.9,"MeteringMode":"Pattern","LightSource":"Unknown","Flash":"Flash did not fire, compulsory flash mode","FocalLength":16.6,"FlashpixVersion":"1.0","ColorSpace":1,"ExifImageWidth":640,"ExifImageHeight":480,"FileSource":"Digital Camera","SceneType":"Directly photographed","CustomRendered":"Normal","ExposureMode":"Auto","WhiteBalance":"Auto","DigitalZoomRatio":0,"FocalLengthIn35mmFormat":77,"SceneCaptureType":"Standard","GainControl":"None","Contrast":"Normal","Saturation":"Normal","Sharpness":"Normal","SubjectDistanceRange":"Unknown","GPSLatitudeRef":"N","GPSLatitude":[43,28,1.49399999],"GPSLongitudeRef":"E","GPSLongitude":[11,53,4.33799999],"GPSAltitudeRef":{"0":0},"GPSTimeStamp":"14:36:47.23","GPSSatellites":"06","GPSMapDatum":"WGS-84","GPSDateStamp":"2008:10:23","latitude":43.467081666663894,"longitude":11.884538333330555}},{"id":"c59a45da-4d7f-474f-9c3e-30f0f0f9b575","title":"datos exif ok","urlImagen":"https://github.com/ianare/exif-samples/blob/master/jpg/gps/DSCN0027.jpg?raw=true","date":"2002-01-01","description":"","colors":[{"_rgb":[122,103,89,1]},{"_rgb":[232,238,244,1]},{"_rgb":[29,27,15,1]},{"_rgb":[182,188,193,1]},{"_rgb":[162,165,180,1]}],"exif":{"Make":"NIKON","Model":"COOLPIX P6000","Orientation":"Horizontal (normal)","XResolution":300,"YResolution":300,"ResolutionUnit":"inches","Software":"Nikon Transfer 1.1 W","ModifyDate":"2008-11-01T20:15:09.000Z","YCbCrPositioning":1,"ExposureTime":0.00676132,"FNumber":4.1,"ExposureProgram":"Normal program","ISO":64,"ExifVersion":"2.2","DateTimeOriginal":"2008-10-22T14:44:01.000Z","CreateDate":"2008-10-22T14:44:01.000Z","ComponentsConfiguration":{"0":1,"1":2,"2":3,"3":0},"ExposureCompensation":0,"MaxApertureValue":2.9,"MeteringMode":"Pattern","LightSource":"Unknown","Flash":"Flash did not fire, compulsory flash mode","FocalLength":6,"FlashpixVersion":"1.0","ColorSpace":1,"ExifImageWidth":640,"ExifImageHeight":480,"FileSource":"Digital Camera","SceneType":"Directly photographed","CustomRendered":"Normal","ExposureMode":"Auto","WhiteBalance":"Auto","DigitalZoomRatio":0,"FocalLengthIn35mmFormat":28,"SceneCaptureType":"Standard","GainControl":"None","Contrast":"Normal","Saturation":"Normal","Sharpness":"Normal","SubjectDistanceRange":"Unknown","GPSLatitudeRef":"N","GPSLatitude":[43,28,6.39],"GPSLongitudeRef":"E","GPSLongitude":[11,52,53.454],"GPSAltitudeRef":{"0":0},"GPSTimeStamp":"14:42:29.03","GPSSatellites":"05","GPSMapDatum":"WGS-84","GPSDateStamp":"2008:10:23","latitude":43.46844166666667,"longitude":11.881515}},{"id":"0af6de3d-a222-454d-800c-eaf4eee8aad8","title":"Datos EXIF","urlImagen":"https://github.com/ianare/exif-samples/blob/master/jpg/gps/DSCN0012.jpg?raw=true","date":"2011-01-01","description":"Tiene datos EXIF?","colors":[{"_rgb":[79,64,46,1]},{"_rgb":[219,212,201,1]},{"_rgb":[146,121,81,1]},{"_rgb":[166,169,148,1]},{"_rgb":[148,146,163,1]}],"exif":null},{"id":"279d9fec-c80c-4328-9738-0019039649ab","title":"13","urlImagen":"https://i.pinimg.com/originals/23/8b/b1/238bb1559ab419dc035a9ae7f609bcf7.jpg","date":"2016-01-03","description":"2016","colors":[{"_rgb":[44,65,23,1]},{"_rgb":[196,203,167,1]},{"_rgb":[104,149,42,1]},{"_rgb":[132,191,46,1]},{"_rgb":[137,143,156,1]}],"exif":null},{"id":"f375068b-03a8-4743-96ba-709f0c35a318","title":"7","urlImagen":"https://i.pinimg.com/474x/f9/0d/19/f90d19d7811793a0140eb03b89468a28.jpg","date":"2018-02-20","description":"2018","colors":[{"_rgb":[49,50,63,1]},{"_rgb":[82,206,77,1]},{"_rgb":[71,137,96,1]},{"_rgb":[164,110,116,1]},{"_rgb":[90,143,154,1]}],"exif":null},{"id":"5d9f9d23-c202-49a3-a09a-db76a8809703","title":"1","urlImagen":"https://media.istockphoto.com/id/992637094/es/foto/gato-brit%C3%A1nico-de-pelo-corto-y-el-golden-retriever.jpg?s=2048x2048&w=is&k=20&c=_Orvd2JOniFm3XgjWWtZTS3t3sizDtzOOFbfse2taUk=","date":"2019-02-20","description":"2019","colors":[{"_rgb":[196,189,192,1]},{"_rgb":[66,57,56,1]},{"_rgb":[107,75,63,1]},{"_rgb":[141,98,77,1]},{"_rgb":[114,107,105,1]}],"exif":null},{"id":"7a28d5a3-e9f0-4513-ba70-2643d0d5e0f8","title":"2","urlImagen":"https://media.istockphoto.com/id/1443562748/es/foto/lindo-gato-de-jengibre.jpg?s=612x612&w=0&k=20&c=JVC5Z3LxpaTQaXu_fMZjIb73r39z6b0SnAxvNI8iZG0=","date":"2020-02-20","description":"2020","colors":[{"_rgb":[250,249,249,1]},{"_rgb":[201,143,87,1]},{"_rgb":[225,183,150,1]},{"_rgb":[132,134,124,1]},{"_rgb":[140,124,124,1]}],"exif":null},{"id":"3d4ffc85-ce88-4d2c-be3b-a9de42c6d8f9","title":"11","urlImagen":"https://img.freepik.com/fotos-premium/vista-panoramica-cascada_1048944-6550511.jpg?semt=ais_hybrid&w=740","date":"2020-11-20","description":"2020","colors":[{"_rgb":[204,93,148,1]},{"_rgb":[41,61,53,1]},{"_rgb":[65,181,166,1]},{"_rgb":[131,73,93,1]},{"_rgb":[92,142,170,1]}],"exif":null},{"id":"8b0b336e-f0c3-4ea0-b8d3-f40a7e863c69","title":"3","urlImagen":"https://i.pinimg.com/474x/49/6c/9d/496c9d566862735ef8b75caeb8042703.jpg","date":"2021-02-20","description":"2021","colors":[{"_rgb":[204,198,189,1]},{"_rgb":[150,106,57,1]},{"_rgb":[117,65,26,1]},{"_rgb":[146,123,96,1]},{"_rgb":[51,30,21,1]}],"exif":null},{"id":"448fe7e0-9272-4bd3-9b48-b18b4dfec065","title":"5","urlImagen":"https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500","date":"2022-02-20","description":"2022","colors":[{"_rgb":[31,19,17,1]},{"_rgb":[193,185,182,1]},{"_rgb":[137,135,131,1]},{"_rgb":[121,123,133,1]},{"_rgb":[148,84,76,1]}],"exif":null},{"id":"55769609-4aa0-4af3-8da0-1413c616bad7","title":"6","urlImagen":"https://hospitalveterinariodonostia.com/wp-content/uploads/2020/10/gatos.png","date":"2023-02-20","description":"2023","colors":[{"_rgb":[137,119,107,1]},{"_rgb":[39,27,21,1]},{"_rgb":[210,215,219,1]},{"_rgb":[82,50,35,1]},{"_rgb":[219,182,143,1]}],"exif":null},{"id":"54e6adb9-b5a0-4314-9e89-9fae788321f5","title":"12","urlImagen":"https://i.pinimg.com/736x/5e/b8/8b/5eb88bcffb73be7aef7b1fa365c91134.jpg","date":"2023-03-20","description":"2023","colors":[{"_rgb":[17,165,222,1]},{"_rgb":[29,117,21,1]},{"_rgb":[188,186,136,1]},{"_rgb":[7,44,11,1]},{"_rgb":[20,95,120,1]}],"exif":null},{"id":"aa2590ea-85bf-4971-82e7-aae5b33b5cde","title":"8","urlImagen":"https://www.abc.es/xlsemanal/wp-content/uploads/sites/5/2021/07/suimanga-siparaja-pajarp-flor-bananos-grande.jpg","date":"2024-02-20","description":"2024","colors":[{"_rgb":[67,97,60,1]},{"_rgb":[215,136,104,1]},{"_rgb":[38,21,10,1]},{"_rgb":[142,180,102,1]},{"_rgb":[141,150,175,1]}],"exif":null},{"id":"ccc3c0b1-5176-497e-9a75-ad0ef6ffbec4","title":"9","urlImagen":"https://ichef.bbci.co.uk/ace/ws/640/cpsprodpb/9db5/live/48fd9010-c1c1-11ee-9519-97453607d43e.jpg.webp","date":"2024-02-20","description":"2024","colors":null,"exif":null},{"id":"34dfe490-8f2f-4902-81ef-e9c0bdbd4800","title":"Colores","urlImagen":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS869n0G4vrb3DL3l09G-KOBq0_1moth8mp_F_TBs1_MAhNIxtM9UVKSpVupBDBDYdnvBs&usqp=CAU","date":"2025-01-31","description":"Ese día la Paula cumplió 12 años!","colors":[{"_rgb":[71,43,37,1]},{"_rgb":[221,200,199,1]},{"_rgb":[105,180,167,1]},{"_rgb":[155,87,79,1]},{"_rgb":[153,138,152,1]}],"exif":null}]
+[
+  {
+    "id": "9313e8ef-4ee9-4272-a571-e4adbb0cbb90",
+    "title": "111",
+    "urlImagen": "https://github.com/ianare/exif-samples/blob/master/jpg/gps/DSCN0021.jpg?raw=true",
+    "date": "2001-01-01",
+    "description": "",
+    "colors": [
+      { "_rgb": [113, 101, 67, 1] },
+      { "_rgb": [215, 200, 184, 1] },
+      { "_rgb": [31, 30, 20, 1] },
+      { "_rgb": [166, 163, 168, 1] },
+      { "_rgb": [179, 181, 167, 1] }
+    ],
+    "exif": {
+      "Make": "NIKON",
+      "Model": "COOLPIX P6000",
+      "Orientation": "Horizontal (normal)",
+      "XResolution": 300,
+      "YResolution": 300,
+      "ResolutionUnit": "inches",
+      "Software": "Nikon Transfer 1.1 W",
+      "ModifyDate": "2008-11-01T20:15:08.000Z",
+      "YCbCrPositioning": 1,
+      "ExposureTime": 0.01044932,
+      "FNumber": 4.7,
+      "ExposureProgram": "Normal program",
+      "ISO": 64,
+      "ExifVersion": "2.2",
+      "DateTimeOriginal": "2008-10-22T14:38:20.000Z",
+      "CreateDate": "2008-10-22T14:38:20.000Z",
+      "ComponentsConfiguration": { "0": 1, "1": 2, "2": 3, "3": 0 },
+      "ExposureCompensation": 0,
+      "MaxApertureValue": 2.9,
+      "MeteringMode": "Pattern",
+      "LightSource": "Unknown",
+      "Flash": "Flash did not fire, compulsory flash mode",
+      "FocalLength": 16.6,
+      "FlashpixVersion": "1.0",
+      "ColorSpace": 1,
+      "ExifImageWidth": 640,
+      "ExifImageHeight": 480,
+      "FileSource": "Digital Camera",
+      "SceneType": "Directly photographed",
+      "CustomRendered": "Normal",
+      "ExposureMode": "Auto",
+      "WhiteBalance": "Auto",
+      "DigitalZoomRatio": 0,
+      "FocalLengthIn35mmFormat": 77,
+      "SceneCaptureType": "Standard",
+      "GainControl": "None",
+      "Contrast": "Normal",
+      "Saturation": "Normal",
+      "Sharpness": "Normal",
+      "SubjectDistanceRange": "Unknown",
+      "GPSLatitudeRef": "N",
+      "GPSLatitude": [43, 28, 1.49399999],
+      "GPSLongitudeRef": "E",
+      "GPSLongitude": [11, 53, 4.33799999],
+      "GPSAltitudeRef": { "0": 0 },
+      "GPSTimeStamp": "14:36:47.23",
+      "GPSSatellites": "06",
+      "GPSMapDatum": "WGS-84",
+      "GPSDateStamp": "2008:10:23",
+      "latitude": 43.467081666663894,
+      "longitude": 11.884538333330555
+    }
+  },
+  {
+    "id": "c59a45da-4d7f-474f-9c3e-30f0f0f9b575",
+    "title": "datos exif ok",
+    "urlImagen": "https://github.com/ianare/exif-samples/blob/master/jpg/gps/DSCN0027.jpg?raw=true",
+    "date": "2002-01-01",
+    "description": "",
+    "colors": [
+      { "_rgb": [122, 103, 89, 1] },
+      { "_rgb": [232, 238, 244, 1] },
+      { "_rgb": [29, 27, 15, 1] },
+      { "_rgb": [182, 188, 193, 1] },
+      { "_rgb": [162, 165, 180, 1] }
+    ],
+    "exif": {
+      "Make": "NIKON",
+      "Model": "COOLPIX P6000",
+      "Orientation": "Horizontal (normal)",
+      "XResolution": 300,
+      "YResolution": 300,
+      "ResolutionUnit": "inches",
+      "Software": "Nikon Transfer 1.1 W",
+      "ModifyDate": "2008-11-01T20:15:09.000Z",
+      "YCbCrPositioning": 1,
+      "ExposureTime": 0.00676132,
+      "FNumber": 4.1,
+      "ExposureProgram": "Normal program",
+      "ISO": 64,
+      "ExifVersion": "2.2",
+      "DateTimeOriginal": "2008-10-22T14:44:01.000Z",
+      "CreateDate": "2008-10-22T14:44:01.000Z",
+      "ComponentsConfiguration": { "0": 1, "1": 2, "2": 3, "3": 0 },
+      "ExposureCompensation": 0,
+      "MaxApertureValue": 2.9,
+      "MeteringMode": "Pattern",
+      "LightSource": "Unknown",
+      "Flash": "Flash did not fire, compulsory flash mode",
+      "FocalLength": 6,
+      "FlashpixVersion": "1.0",
+      "ColorSpace": 1,
+      "ExifImageWidth": 640,
+      "ExifImageHeight": 480,
+      "FileSource": "Digital Camera",
+      "SceneType": "Directly photographed",
+      "CustomRendered": "Normal",
+      "ExposureMode": "Auto",
+      "WhiteBalance": "Auto",
+      "DigitalZoomRatio": 0,
+      "FocalLengthIn35mmFormat": 28,
+      "SceneCaptureType": "Standard",
+      "GainControl": "None",
+      "Contrast": "Normal",
+      "Saturation": "Normal",
+      "Sharpness": "Normal",
+      "SubjectDistanceRange": "Unknown",
+      "GPSLatitudeRef": "N",
+      "GPSLatitude": [43, 28, 6.39],
+      "GPSLongitudeRef": "E",
+      "GPSLongitude": [11, 52, 53.454],
+      "GPSAltitudeRef": { "0": 0 },
+      "GPSTimeStamp": "14:42:29.03",
+      "GPSSatellites": "05",
+      "GPSMapDatum": "WGS-84",
+      "GPSDateStamp": "2008:10:23",
+      "latitude": 43.46844166666667,
+      "longitude": 11.881515
+    }
+  },
+  {
+    "id": "0af6de3d-a222-454d-800c-eaf4eee8aad8",
+    "title": "Datos EXIF",
+    "urlImagen": "https://github.com/ianare/exif-samples/blob/master/jpg/gps/DSCN0012.jpg?raw=true",
+    "date": "2011-01-01",
+    "description": "Tiene datos EXIF?",
+    "colors": [
+      { "_rgb": [79, 64, 46, 1] },
+      { "_rgb": [219, 212, 201, 1] },
+      { "_rgb": [146, 121, 81, 1] },
+      { "_rgb": [166, 169, 148, 1] },
+      { "_rgb": [148, 146, 163, 1] }
+    ],
+    "exif": null
+  },
+  {
+    "id": "279d9fec-c80c-4328-9738-0019039649ab",
+    "title": "13",
+    "urlImagen": "https://i.pinimg.com/originals/23/8b/b1/238bb1559ab419dc035a9ae7f609bcf7.jpg",
+    "date": "2016-01-03",
+    "description": "2016",
+    "colors": [
+      { "_rgb": [44, 65, 23, 1] },
+      { "_rgb": [196, 203, 167, 1] },
+      { "_rgb": [104, 149, 42, 1] },
+      { "_rgb": [132, 191, 46, 1] },
+      { "_rgb": [137, 143, 156, 1] }
+    ],
+    "exif": null
+  },
+  {
+    "id": "f375068b-03a8-4743-96ba-709f0c35a318",
+    "title": "7",
+    "urlImagen": "https://i.pinimg.com/474x/f9/0d/19/f90d19d7811793a0140eb03b89468a28.jpg",
+    "date": "2018-02-20",
+    "description": "2018",
+    "colors": [
+      { "_rgb": [49, 50, 63, 1] },
+      { "_rgb": [82, 206, 77, 1] },
+      { "_rgb": [71, 137, 96, 1] },
+      { "_rgb": [164, 110, 116, 1] },
+      { "_rgb": [90, 143, 154, 1] }
+    ],
+    "exif": null
+  },
+  {
+    "id": "5d9f9d23-c202-49a3-a09a-db76a8809703",
+    "title": "1",
+    "urlImagen": "https://media.istockphoto.com/id/992637094/es/foto/gato-brit%C3%A1nico-de-pelo-corto-y-el-golden-retriever.jpg?s=2048x2048&w=is&k=20&c=_Orvd2JOniFm3XgjWWtZTS3t3sizDtzOOFbfse2taUk=",
+    "date": "2019-02-20",
+    "description": "2019",
+    "colors": [
+      { "_rgb": [196, 189, 192, 1] },
+      { "_rgb": [66, 57, 56, 1] },
+      { "_rgb": [107, 75, 63, 1] },
+      { "_rgb": [141, 98, 77, 1] },
+      { "_rgb": [114, 107, 105, 1] }
+    ],
+    "exif": null
+  },
+  {
+    "id": "7a28d5a3-e9f0-4513-ba70-2643d0d5e0f8",
+    "title": "2",
+    "urlImagen": "https://media.istockphoto.com/id/1443562748/es/foto/lindo-gato-de-jengibre.jpg?s=612x612&w=0&k=20&c=JVC5Z3LxpaTQaXu_fMZjIb73r39z6b0SnAxvNI8iZG0=",
+    "date": "2020-02-20",
+    "description": "2020",
+    "colors": [
+      { "_rgb": [250, 249, 249, 1] },
+      { "_rgb": [201, 143, 87, 1] },
+      { "_rgb": [225, 183, 150, 1] },
+      { "_rgb": [132, 134, 124, 1] },
+      { "_rgb": [140, 124, 124, 1] }
+    ],
+    "exif": null
+  },
+  {
+    "id": "3d4ffc85-ce88-4d2c-be3b-a9de42c6d8f9",
+    "title": "11",
+    "urlImagen": "https://img.freepik.com/fotos-premium/vista-panoramica-cascada_1048944-6550511.jpg?semt=ais_hybrid&w=740",
+    "date": "2020-11-20",
+    "description": "2020",
+    "colors": [
+      { "_rgb": [204, 93, 148, 1] },
+      { "_rgb": [41, 61, 53, 1] },
+      { "_rgb": [65, 181, 166, 1] },
+      { "_rgb": [131, 73, 93, 1] },
+      { "_rgb": [92, 142, 170, 1] }
+    ],
+    "exif": null
+  },
+  {
+    "id": "8b0b336e-f0c3-4ea0-b8d3-f40a7e863c69",
+    "title": "3",
+    "urlImagen": "https://i.pinimg.com/474x/49/6c/9d/496c9d566862735ef8b75caeb8042703.jpg",
+    "date": "2021-02-20",
+    "description": "2021",
+    "colors": [
+      { "_rgb": [204, 198, 189, 1] },
+      { "_rgb": [150, 106, 57, 1] },
+      { "_rgb": [117, 65, 26, 1] },
+      { "_rgb": [146, 123, 96, 1] },
+      { "_rgb": [51, 30, 21, 1] }
+    ],
+    "exif": null
+  },
+  {
+    "id": "448fe7e0-9272-4bd3-9b48-b18b4dfec065",
+    "title": "5",
+    "urlImagen": "https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+    "date": "2022-02-20",
+    "description": "2022",
+    "colors": [
+      { "_rgb": [31, 19, 17, 1] },
+      { "_rgb": [193, 185, 182, 1] },
+      { "_rgb": [137, 135, 131, 1] },
+      { "_rgb": [121, 123, 133, 1] },
+      { "_rgb": [148, 84, 76, 1] }
+    ],
+    "exif": null
+  },
+  {
+    "id": "55769609-4aa0-4af3-8da0-1413c616bad7",
+    "title": "6",
+    "urlImagen": "https://hospitalveterinariodonostia.com/wp-content/uploads/2020/10/gatos.png",
+    "date": "2023-02-20",
+    "description": "2023",
+    "colors": [
+      { "_rgb": [137, 119, 107, 1] },
+      { "_rgb": [39, 27, 21, 1] },
+      { "_rgb": [210, 215, 219, 1] },
+      { "_rgb": [82, 50, 35, 1] },
+      { "_rgb": [219, 182, 143, 1] }
+    ],
+    "exif": null
+  },
+  {
+    "id": "54e6adb9-b5a0-4314-9e89-9fae788321f5",
+    "title": "12",
+    "urlImagen": "https://i.pinimg.com/736x/5e/b8/8b/5eb88bcffb73be7aef7b1fa365c91134.jpg",
+    "date": "2023-03-20",
+    "description": "2023",
+    "colors": [
+      { "_rgb": [17, 165, 222, 1] },
+      { "_rgb": [29, 117, 21, 1] },
+      { "_rgb": [188, 186, 136, 1] },
+      { "_rgb": [7, 44, 11, 1] },
+      { "_rgb": [20, 95, 120, 1] }
+    ],
+    "exif": null
+  },
+  {
+    "id": "aa2590ea-85bf-4971-82e7-aae5b33b5cde",
+    "title": "8",
+    "urlImagen": "https://www.abc.es/xlsemanal/wp-content/uploads/sites/5/2021/07/suimanga-siparaja-pajarp-flor-bananos-grande.jpg",
+    "date": "2024-02-20",
+    "description": "2024",
+    "colors": [
+      { "_rgb": [67, 97, 60, 1] },
+      { "_rgb": [215, 136, 104, 1] },
+      { "_rgb": [38, 21, 10, 1] },
+      { "_rgb": [142, 180, 102, 1] },
+      { "_rgb": [141, 150, 175, 1] }
+    ],
+    "exif": null
+  },
+  {
+    "id": "ccc3c0b1-5176-497e-9a75-ad0ef6ffbec4",
+    "title": "9",
+    "urlImagen": "https://ichef.bbci.co.uk/ace/ws/640/cpsprodpb/9db5/live/48fd9010-c1c1-11ee-9519-97453607d43e.jpg.webp",
+    "date": "2024-02-20",
+    "description": "2024",
+    "colors": null,
+    "exif": null
+  },
+  {
+    "id": "34dfe490-8f2f-4902-81ef-e9c0bdbd4800",
+    "title": "Colores",
+    "urlImagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS869n0G4vrb3DL3l09G-KOBq0_1moth8mp_F_TBs1_MAhNIxtM9UVKSpVupBDBDYdnvBs&usqp=CAU",
+    "date": "2025-01-31",
+    "description": "Ese día la Paula cumplió 12 años!",
+    "colors": [
+      { "_rgb": [71, 43, 37, 1] },
+      { "_rgb": [221, 200, 199, 1] },
+      { "_rgb": [105, 180, 167, 1] },
+      { "_rgb": [155, 87, 79, 1] },
+      { "_rgb": [153, 138, 152, 1] }
+    ],
+    "exif": null
+  }
+]

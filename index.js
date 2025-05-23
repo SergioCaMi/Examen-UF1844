@@ -202,6 +202,17 @@ app.get("/image/:id/view", (req, res) => {
   });
 });
 
+// ******************** Detalles de una imagen ********************
+app.get("/image/:id/details", (req, res) => {
+  const id = req.params.id;
+  const index = dataImage.findIndex((image) => image.id === id);
+  res.render("detailsImage.ejs", {
+    title: "Details",
+    dataImage: dataImage,
+    index: index,
+  });
+});
+
 // ******************** Editar una imagen ********************
 app.get("/image/:id/edit", (req, res) => {
   const id = req.params.id;

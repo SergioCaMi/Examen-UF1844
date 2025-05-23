@@ -1,0 +1,79 @@
+<%- include("template/cabecera", {title: title}) %>
+
+<div class="container" style="display: flex; justify-content: center; align-items: center;">
+    <div class="card" style="padding: 30px;overflow-y: auto;">
+        <% if (dataImage && dataImage[index]) { %>
+            <h3>Title: <%= dataImage[index].title || 'No title available' %></h3>
+            <p>URL de la Imagen: <%= dataImage[index].urlImagen || 'No image URL available' %></p>
+            <p>Date: <%= dataImage[index].date || 'No date available' %></p>
+            <p>Description: <%= dataImage[index].description || 'No description available' %></p>
+        
+        
+        
+        
+        <h5 id="colors">Colores principales:</h5>
+                                <% if (dataImage[index].colors && dataImage[index].colors.length) { %>
+                                    <div class="color-circles">
+                                        <% dataImage[index].colors.forEach(color=> { %>
+                                            <div class="color-circle"
+                                                style="background-color: rgba(<%= color._rgb.join(', ') %>);"
+                                                title="rgba(<%= color._rgb.join(', ') %>)"></div>
+                                            <% }); %>
+                                    </div>
+                                    <% } else { %>
+                                        <p style="color: red;">Colores no disponibles en esta imagen.</p>
+                                        <% } %>
+        
+        
+        
+        
+        <!--
+            <% if (dataImage[index].colors && dataImage[index].colors.length > 0) { %>
+                <% dataImage[index].colors.forEach(function(color) { %>
+                    <p>Color: <%= JSON.stringify(color._rgb) %></p>
+                <% }); %>
+            <% } else { %>
+                <p>No colors available</p>
+            <% } %>
+         -->
+            
+            <h2>EXIF Data</h2>
+            <% if (dataImage[index].exif) { %>
+                <p>Make: <%= dataImage[index].exif.Make || 'No make available' %></p>
+                <p>Model: <%= dataImage[index].exif.Model || 'No model available' %></p>
+                <p>ModifyDate: <%= dataImage[index].exif.ModifyDate || 'No modify date available' %></p>
+                <p>CreateDate: <%= dataImage[index].exif.CreateDate || 'No create date available' %></p>
+                <p>Latitude: <%= dataImage[index].exif.latitude || 'No latitude available' %></p>
+                <p>Longitude: <%= dataImage[index].exif.longitude || 'No longitude available' %></p>
+                <p>Contrast: <%= dataImage[index].exif.Contrast || 'No contrast available' %></p>
+                <h3>Enlace a Google Maps</h3>
+                <% if (dataImage[index].exif.latitude && dataImage[index].exif.longitude) { %>
+                    <p>
+                        <a href="https://www.google.com/maps?q=<%= dataImage[index].exif.latitude %>,<%= dataImage[index].exif.longitude %>" target="_blank">
+                            Ver en Google Maps
+                        </a>
+                    </p>
+                <% } else { %>
+                    <p>No location data available for Google Maps</p>
+                <% } %>
+            <% } else { %>
+                <p>No EXIF data available</p>
+            <% } %>
+           
+        <% } else { %>
+            <p>No image data available</p>
+        <% } %>
+        <i style="padding: 15px;" onclick="window.location.href='/image/<%= dataImage[index].id %>/view'"
+           title="Volver a la imagen"
+           class="fas fa-arrow-left back-icon"> Volver</i>
+    </div>
+</div>
+
+<%- include("template/footer")%>
+<script>
+    const dataImage = <%- JSON.stringify(dataImage) %>;
+    const index = <%- index %>;
+</script>
+<script src="/viewImage.js" defer></script>
+</body>
+</html>
