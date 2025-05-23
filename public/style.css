@@ -123,7 +123,7 @@
     color: #203a43;
   }
 
-  .view-icon, .delete-icon, .edit-icon {
+  .view-icon, .delete-icon, .edit-icon, .download-icon {
     cursor: pointer;
     color: #2c5364;
     font-size: 1.1rem;

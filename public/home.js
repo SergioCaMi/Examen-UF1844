@@ -18,19 +18,27 @@ async function deleteImage(imageId) {
   }
 }
 
-async function viewImage(imageId) {
-  const response = await fetch(`/image/${imageId}/view`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-  });
-  if (response.ok) {
-    console.log("vista de la imagen");
-    window.location.href = "/";
-  } else {
-    console.error("Error al visualizar la imagen");
+
+
+/**
+ * Descarga una imagen al directorio /downloads
+ *
+ * @async
+ * @function downloadImage
+ * @param {imageId} imageId - id de la imagen a descargar
+ * @returns Una promesa que se resuelve cuando la imagen se descarga correctamente o se rechaza si hay un error.
+ */
+async function downloadImage(imageId) {
+  try {
+    const response = await fetch(`/image/${imageId}/download`, {
+      method: "POST",
+    });
+
+    alert("Imagen descargada en el directorio /downloads.");
+  } catch (err) {
+    alert("Error al descargar la imagen");
   }
 }
-
 /**
  * Muestra u oculta los elementos de búsqueda y filtra las imágenes según el texto de búsqueda o la fecha.
  *
@@ -43,7 +51,7 @@ function showUtils() {
   const inputSearch = document.querySelector(".searchInput");
   const cards = document.querySelectorAll(".card");
   const inputDateSearch = document.querySelector(".dateInput");
-// ********** Busqueda por título **********
+  // ********** Busqueda por título **********
   searchUtils.forEach((element) => {
     if (element.style.display === "flex") {
       element.style.display = "none";

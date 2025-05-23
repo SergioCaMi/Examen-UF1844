@@ -24,6 +24,8 @@
                                 style="display: flex; align-items: center; justify-content: space-between; padding: 5px;">
                                 <i onclick="window.location.href='/image/<%= image.id %>/edit'" title="Editar imagen"
                                     class="fas fa-edit edit-icon"></i>
+                                <i onclick="downloadImage('<%= image.id %>')" title="Descargar imagen"
+                                    class="fas fa-arrow-alt-circle-down download-icon"></i>
                                 <i onclick="window.location.href='/image/<%= image.id %>/view'" title="Ver imagen"
                                     class="fas fa-eye view-icon"></i>
                                 <i onclick="deleteImage('<%= image.id %>')" title="Eliminar imagen"
