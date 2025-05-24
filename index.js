@@ -57,9 +57,7 @@ app.post("/image/:id/download", async (req, res) => {
     }
   } catch (error) {
     console.error("Error:", error);
-    res
-      .status(500)
-      .send("No se pudo descargar la imagen.");
+    res.status(500).send("No se pudo descargar la imagen.");
   }
 });
 
@@ -224,67 +222,34 @@ app.get("/image/:id/edit", (req, res) => {
   });
 });
 
+app.post("/edit-image", async (req, res) => {
+  console.log("Petición recibida");
+  console.log(req.body);
+  // recuperamos el objeto
+  const objectImage = dataImage[req.body.index];
+  const { title, date, description } = req.body;
+  objectImage.title = title;
+  objectImage.date = date;
+  objectImage.description = description;
+  console.log(objectImage);
+  // metemos todos los objetos que no van a variar
+  const newArray = dataImage.filter((image, i) => i != req.body.index);
+  // y completamos añadiendo el nuevo objeto
+  newArray.push(objectImage);
+  // Ordenamos
+  dataImage.sort((a, b) => new Date(a.date) - new Date(b.date));
+  // Lo guardamos en el archivo JSON
+  fs.writeFile(filePath, JSON.stringify(dataImage, null, 3), "utf8", (err) => {
+    err
+      ? res.render("editImage.ejs", {
+          title: "Edit Image",
+          message: `Error al modificar la imagen "${req.body.title}".`,
+          colorMessage: "red",
+        })
+      :   res.render("home.ejs", { title: "Home", dataImage: dataImage });
 
-// app.post("/edit-image", async (req, res) => {
-//   console.log("Petición recibida");
-//     // NO
-//     // Construimos el objeto
-//     // Obtener los colores de manera asíncrona
-//     let colors;
-//     try {
-//       colors = await getColors(req.body.urlImagen);
-//     } catch (error) {
-//       console.error("Error al leer los colores de la imagen:", error);
-//       colors = null;
-//     }
-
-//     //Crear ID unico
-//     const id = uuidv4();
-
-//     //Datos EXIF
-
-//     const exifData = await extractExifFromUrl(req.body.urlImagen);
-
-//     console.log("Body del formulario: ", req.body);
-//     console.log(`id: ${id} \n colores: ${colors}`);
-//     // Construir el objeto newImage con los colores obtenidos
-//     const newImage = {
-//       id: id,
-//       title: req.body.title,
-//       urlImagen: req.body.urlImagen,
-//       date: req.body.date,
-//       description: req.body.description,
-//       colors: colors,
-//       exif: exifData,
-//     };
-//     // Añadimos
-//     dataImage.push(newImage);
-//     dataImage.sort((a, b) => new Date(a.date) - new Date(b.date));
-//     // Lo guardamos en el archivo JSON
-//     fs.writeFile(
-//       filePath,
-//       JSON.stringify(dataImage, null, 3),
-//       "utf8",
-//       (err) => {
-//         err
-//           ? res.render("addImage.ejs", {
-//               title: "New Image",
-//               message: `Error al añadir la imagen "${req.body.title}".`,
-//               colorMessage: "red",
-//             })
-//           : res.render("addImage.ejs", {
-//               title: "New Image",
-//               message: `La imagen "${req.body.title}" se ha añadido satisfactoriamente.`,
-//               colorMessage: "green",
-//             });
-//       }
-//     );
-// });
-
-
-
-
-
+  });
+});
 
 // ******************** Iniciar el servidor ********************
 app.listen(PORT, () => {

@@ -5,6 +5,8 @@
     </div>
 </div>
     <form class="formulario container" id="imageForm" action="/edit-image" method="POST">
+        <!-- Enviamos los datos que queramos, como por ejemplo, el id -->
+        <input type="hidden" name="index" value="<%= [index] %>">
         <div class="form-group">
             <label for="title">Título:</label>
             <input type="text" id="title" name="title" maxlength="30" pattern="^[a-zA-Z0-9 _]+$" value="<%= dataImage[index].title %>" required>
@@ -34,7 +36,6 @@
             const dataImage = <% - JSON.stringify(dataImage) %>;
             const index = <% - index %>;
         </script>
-        <script src="/viewImage.js" defer></script>
         </body>
 
         </html>

@@ -8,6 +8,7 @@
             </h2>
         </div>
         <% } else { %>
+            
             <div class="gallery container">
                 <nav class="search" style="display: none; position: absolute; right: 250px; top: 30px;">
                     <div>
@@ -35,7 +36,7 @@
                             </h3>
                             <h5 id="date">Fecha: <%= image.date %>
                             </h5>
-                            <h5 id="description">
+                            <h5 style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px;" id="description">
                                 <%= image.description %>
                             </h5>
                             <h5 id="colors">Colores principales:</h5>

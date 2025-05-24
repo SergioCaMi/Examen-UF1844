@@ -1,7 +1,7 @@
 <%- include("template/cabecera", {title: title}) %>
 
     <div class="container" style="display: flex; justify-content: center; align-items: center;">
-        <div class="card" style="padding: 30px; overflow-y: auto;">
+        <div class="card" style="padding: 30px; overflow-y: auto; max-width: 80%;">
             <% if (dataImage && dataImage[index]) { %>
                 <!-- Datos introducidos por el usuario -->
                 <h3>Título: <%= dataImage[index].title || 'Título no disponible' %>
