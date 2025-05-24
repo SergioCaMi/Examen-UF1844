@@ -1,79 +1,131 @@
 <%- include("template/cabecera", {title: title}) %>
 
-<div class="container" style="display: flex; justify-content: center; align-items: center;">
-    <div class="card" style="padding: 30px;overflow-y: auto;">
-        <% if (dataImage && dataImage[index]) { %>
-            <h3>Title: <%= dataImage[index].title || 'No title available' %></h3>
-            <p>URL de la Imagen: <%= dataImage[index].urlImagen || 'No image URL available' %></p>
-            <p>Date: <%= dataImage[index].date || 'No date available' %></p>
-            <p>Description: <%= dataImage[index].description || 'No description available' %></p>
-        
-        
-        
-        
-        <h5 id="colors">Colores principales:</h5>
-                                <% if (dataImage[index].colors && dataImage[index].colors.length) { %>
-                                    <div class="color-circles">
-                                        <% dataImage[index].colors.forEach(color=> { %>
-                                            <div class="color-circle"
-                                                style="background-color: rgba(<%= color._rgb.join(', ') %>);"
-                                                title="rgba(<%= color._rgb.join(', ') %>)"></div>
-                                            <% }); %>
-                                    </div>
-                                    <% } else { %>
-                                        <p style="color: red;">Colores no disponibles en esta imagen.</p>
-                                        <% } %>
-        
-        
-        
-        
-        <!--
-            <% if (dataImage[index].colors && dataImage[index].colors.length > 0) { %>
-                <% dataImage[index].colors.forEach(function(color) { %>
-                    <p>Color: <%= JSON.stringify(color._rgb) %></p>
-                <% }); %>
-            <% } else { %>
-                <p>No colors available</p>
-            <% } %>
-         -->
-            
-            <h2>EXIF Data</h2>
-            <% if (dataImage[index].exif) { %>
-                <p>Make: <%= dataImage[index].exif.Make || 'No make available' %></p>
-                <p>Model: <%= dataImage[index].exif.Model || 'No model available' %></p>
-                <p>ModifyDate: <%= dataImage[index].exif.ModifyDate || 'No modify date available' %></p>
-                <p>CreateDate: <%= dataImage[index].exif.CreateDate || 'No create date available' %></p>
-                <p>Latitude: <%= dataImage[index].exif.latitude || 'No latitude available' %></p>
-                <p>Longitude: <%= dataImage[index].exif.longitude || 'No longitude available' %></p>
-                <p>Contrast: <%= dataImage[index].exif.Contrast || 'No contrast available' %></p>
-                <h3>Enlace a Google Maps</h3>
-                <% if (dataImage[index].exif.latitude && dataImage[index].exif.longitude) { %>
-                    <p>
-                        <a href="https://www.google.com/maps?q=<%= dataImage[index].exif.latitude %>,<%= dataImage[index].exif.longitude %>" target="_blank">
-                            Ver en Google Maps
-                        </a>
-                    </p>
-                <% } else { %>
-                    <p>No location data available for Google Maps</p>
-                <% } %>
-            <% } else { %>
-                <p>No EXIF data available</p>
-            <% } %>
-           
-        <% } else { %>
-            <p>No image data available</p>
-        <% } %>
-        <i style="padding: 15px;" onclick="window.location.href='/image/<%= dataImage[index].id %>/view'"
-           title="Volver a la imagen"
-           class="fas fa-arrow-left back-icon"> Volver</i>
-    </div>
-</div>
+    <div class="container" style="display: flex; justify-content: center; align-items: center;">
+        <div class="card" style="padding: 30px; overflow-y: auto;">
+            <% if (dataImage && dataImage[index]) { %>
+                <!-- Datos introducidos por el usuario -->
+                <h3>Título: <%= dataImage[index].title || 'Título no disponible' %>
+                </h3>
+                <p>URL de la Imagen: <%= dataImage[index].urlImagen || 'URL de la imagen no disponible' %>
+                </p>
+                <p>Fecha: <%= dataImage[index].date || 'Fecha no disponible' %>
+                </p>
+                <p>Descripción: <%= dataImage[index].description || 'Descripción no disponible' %>
+                </p>
 
-<%- include("template/footer")%>
-<script>
-    const dataImage = <%- JSON.stringify(dataImage) %>;
-    const index = <%- index %>;
-</script>
-<script src="/viewImage.js" defer></script>
-</body>
-</html>
+                <!-- Colores -->
+                <h5 id="colors">Colores principales:</h5>
+                <% if (dataImage[index].colors && dataImage[index].colors.length) { %>
+                    <div class="color-circles">
+                        <% dataImage[index].colors.forEach(color=> { %>
+                            <div class="color-circle" style="background-color: rgba(<%= color._rgb.join(', ') %>);"
+                                title="rgba(<%= color._rgb.join(', ') %>)"></div>
+                            <% }); %>
+                    </div>
+                    <% } else { %>
+                        <p style="color: red;">Colores no disponibles en esta imagen.</p>
+                        <% } %>
+
+                            <!-- Datos EXIF -->
+                            <h2>Datos EXIF</h2>
+                            <% if (dataImage[index].exif) { %>
+                                <h4>Cámara</h4>
+                                <p>Cámara: <%= dataImage[index].exif.Make || 'Fabricante no disponible' %>
+                                        <%= dataImage[index].exif.Model || 'Modelo no disponible' %>
+                                </p>
+                                <p>Flash: <%= dataImage[index].exif.Flash || 'Flash no disponible' %>
+                                </p>
+                                <p>Fuente de Archivo: <%= dataImage[index].exif.FileSource
+                                        || 'Fuente de archivo no disponible' %>
+                                </p>
+                                <p>Tipo de Escena: <%= dataImage[index].exif.SceneType || 'Tipo de escena no disponible'
+                                        %>
+                                </p>
+                                <h4>Fechas</h4>
+                                <p>Fecha y Hora Original: <%= dataImage[index].exif.DateTimeOriginal
+                                        || 'Fecha y hora original no disponible' %>
+                                </p>
+                                <p>Fecha de Creación: <%= dataImage[index].exif.CreateDate
+                                        || 'Fecha de creación no disponible' %>
+                                </p>
+                                <p>Fecha de Modificación: <%= dataImage[index].exif.ModifyDate
+                                        || 'Fecha de modificación no disponible' %>
+                                </p>
+                                <h4>Parámetros de Disparo</h4>
+                                <p>Exposición: <%= dataImage[index].exif.ExposureTime || 'No disponible' %>, F: <%=
+                                            dataImage[index].exif.FNumber || 'No disponible' %>, ISO: <%=
+                                                dataImage[index].exif.ISO || 'No disponible' %>
+                                </p>
+                                <p>Longitud Focal: <%= dataImage[index].exif.FocalLength || 'No disponible' %> (<%=
+                                            dataImage[index].exif.FocalLengthIn35mmFormat || '35mm no disponible' %>)
+                                </p>
+                                <p>Valor de Apertura Máxima: <%= dataImage[index].exif.MaxApertureValue
+                                        || 'No disponible' %>
+                                </p>
+                                <p>Modo de Exposición: <%= dataImage[index].exif.ExposureMode || 'No disponible' %>
+                                </p>
+                                <p>Modo de Medición: <%= dataImage[index].exif.MeteringMode || 'No disponible' %>
+                                </p>
+                                <p>Balance de Blancos: <%= dataImage[index].exif.WhiteBalance || 'No disponible' %>
+                                </p>
+                                <p>Tipo de Captura de Escena: <%= dataImage[index].exif.SceneCaptureType
+                                        || 'No disponible' %>
+                                </p>
+                                <p>Control de Ganancia: <%= dataImage[index].exif.GainControl || 'No disponible' %>
+                                </p>
+                                <h4>Calidad de Imagen</h4>
+                                <p>Resolución: X: <%= dataImage[index].exif.XResolution || 'No disponible' %>, Y: <%=
+                                            dataImage[index].exif.YResolution || 'No disponible' %> (<%=
+                                                dataImage[index].exif.ResolutionUnit || 'Unidad no disponible' %>)</p>
+                                <p>Tamaño Imagen: <%= dataImage[index].exif.ExifImageWidth || 'Ancho no disponible' %> x
+                                        <%= dataImage[index].exif.ExifImageHeight || 'Alto no disponible' %>
+                                </p>
+                                <p>Orientación: <%= dataImage[index].exif.Orientation || 'No disponible' %>
+                                </p>
+                                <p>Espacio de Color: <%= dataImage[index].exif.ColorSpace || 'No disponible' %>
+                                </p>
+                                <p>Contraste: <%= dataImage[index].exif.Contrast || 'No disponible' %>, Saturación: <%=
+                                            dataImage[index].exif.Saturation || 'No disponible' %>, Nitidez: <%=
+                                                dataImage[index].exif.Sharpness || 'No disponible' %>
+                                </p>
+                                <h4>Datos GPS</h4>
+                                <p>GPS Latitud: <%= dataImage[index].exif.GPSLatitude ?
+                                        dataImage[index].exif.GPSLatitude.join(', ') : ' No disponible' %>
+                                </p>
+                                <p>GPS Fecha: <%= dataImage[index].exif.GPSDateStamp || 'No disponible' %>
+                                </p>
+                                <p>Latitud: <%= dataImage[index].exif.latitude || 'No disponible' %>, Longitud: <%=
+                                            dataImage[index].exif.longitude || 'No disponible' %>
+                                </p>
+
+
+
+                                <h3>Enlace a Google Maps</h3>
+                                <% if (dataImage[index].exif.latitude && dataImage[index].exif.longitude) { %>
+                                    <p>
+                                        <a href="https://www.google.com/maps?q=<%= dataImage[index].exif.latitude %>,<%= dataImage[index].exif.longitude %>"
+                                            target="_blank">
+                                            Ver en Google Maps
+                                        </a>
+                                    </p>
+                                    <% } else { %>
+                                        <p>Datos de ubicación no disponibles para Google Maps</p>
+                                        <% } %>
+                                            <% } else { %>
+                                                <p>Datos EXIF no disponibles</p>
+                                                <% } %>
+
+                                                    <% } else { %>
+                                                        <p>Datos de la imagen no disponibles</p>
+                                                        <% } %>
+                                                            <i style="padding: 15px;"
+                                                                onclick="window.location.href='/image/<%= dataImage[index].id %>/view'"
+                                                                title="Volver a la imagen"
+                                                                class="fas fa-arrow-left back-icon"> Volver</i>
+        </div>
+    </div>
+
+    <%- include("template/footer")%>
+        </body>
+
+        </html>
