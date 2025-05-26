@@ -3,6 +3,10 @@ const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 3000; //para renderizar
 
+// ********** Registro de todas las peticiones que vienen del cliente **********
+const morgan = require('morgan');
+app.use(morgan("dev")); 
+
 // ********** Colores predominantes **********
 const getColors = require("get-image-colors");
 
@@ -250,6 +254,12 @@ app.post("/edit-image", async (req, res) => {
 
   });
 });
+
+// ******************** URL noválida ********************
+app.use((req, res) => {
+  res.status(404).render('Page404.ejs', { endpoint: req.originalUrl });
+});
+
 
 // ******************** Iniciar el servidor ********************
 app.listen(PORT, () => {

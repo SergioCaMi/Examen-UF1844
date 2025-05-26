@@ -31,7 +31,7 @@ async function deleteImage(imageId) {
 async function downloadImage(imageId) {
   try {
     const response = await fetch(`/image/${imageId}/download`, {
-      method: "POST",
+      method: "GET",
     });
 
     alert("Imagen descargada en el directorio /downloads.");

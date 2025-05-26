@@ -1,0 +1,27 @@
+
+<%- include("template/cabecera", {title: title}) %>
+
+<div class="carousel">
+    <div class="carousel-inner">
+        <% dataImage.forEach(image => { %>
+            <div class="carousel-item ">
+                <img src="<%= image.urlImagen %>" alt="<%= image.title %>">
+                <div class="carousel-controls">
+                    <button class="close-btn" onclick="closeCarousel()"><i class="fas fa-times"></i></button>
+                    <button class="details-btn" onclick="showDetails()"><i class="fas fa-info-circle"></i></button>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+    <button class="nav-btn prev" onclick="prevSlide()">❮</button>
+    <button class="nav-btn next" onclick="nextSlide()">❯</button>
+
+</div>
+<%- include("template/footer")%>
+<script>
+    const dataImage = <%- JSON.stringify(dataImage) %>;
+    const index = <%- index %>;
+</script>
+<script src="/viewImage.js" defer></script>
+</body>
+</html>
