@@ -28,17 +28,15 @@ async function deleteImage(imageId) {
  * @param {imageId} imageId - id de la imagen a descargar
  * @returns Una promesa que se resuelve cuando la imagen se descarga correctamente o se rechaza si hay un error.
  */
-async function downloadImage(imageId) {
-  try {
-    const response = await fetch(`/image/${imageId}/download`, {
-      method: "GET",
-    });
-
-    alert("Imagen descargada en el directorio /downloads.");
-  } catch (err) {
-    alert("Error al descargar la imagen");
-  }
+function downloadImage(imageId) {
+  const link = document.createElement('a');
+  link.href = `/image/${imageId}/download`;
+  link.download = '';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
 }
+
 /**
  * Muestra u oculta los elementos de búsqueda y filtra las imágenes según el texto de búsqueda o la fecha.
  *

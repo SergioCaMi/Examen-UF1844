@@ -39,7 +39,7 @@ if (!existsSync(downloadDir)) {
     if (err) console.error("Error creando carpeta", err);
   });
 }
-app.post("/image/:id/download", async (req, res) => {
+app.get("/image/:id/download", async (req, res) => {
   const id = req.params.id;
   console.log("Petición recibida para descargar la imagen con ID:", id);
 
@@ -56,8 +56,14 @@ app.post("/image/:id/download", async (req, res) => {
       const buffer = await response.arrayBuffer();
       const fileName = `image-${Date.now()}.jpg`;
       const filePath = path.join(downloadDir, fileName);
+      // Guardamos el archivo en el directorio de descargas
       await writeFile(filePath, Buffer.from(buffer));
-      res.status(200).send("OK");
+      res.download(filePath, fileName, (err) => {
+        if (err) {
+          console.error("Error al enviar el archivo:", err);
+          res.status(500).send("No se pudo descargar la imagen.");
+        }
+      });
     }
   } catch (error) {
     console.error("Error:", error);
