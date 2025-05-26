@@ -19,24 +19,6 @@ async function deleteImage(imageId) {
 }
 
 
-
-/**
- * Descarga una imagen al directorio /downloads
- *
- * @async
- * @function downloadImage
- * @param {imageId} imageId - id de la imagen a descargar
- * @returns Una promesa que se resuelve cuando la imagen se descarga correctamente o se rechaza si hay un error.
- */
-function downloadImage(imageId) {
-  const link = document.createElement('a');
-  link.href = `/image/${imageId}/download`;
-  link.download = '';
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-}
-
 /**
  * Muestra u oculta los elementos de búsqueda y filtra las imágenes según el texto de búsqueda o la fecha.
  *

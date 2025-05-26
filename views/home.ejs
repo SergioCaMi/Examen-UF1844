@@ -8,7 +8,7 @@
             </h2>
         </div>
         <% } else { %>
-            
+
             <div class="gallery container">
                 <nav class="search" style="display: none; position: absolute; right: 250px; top: 30px;">
                     <div>
@@ -25,8 +25,9 @@
                                 style="display: flex; align-items: center; justify-content: space-between; padding: 5px;">
                                 <i onclick="window.location.href='/image/<%= image.id %>/edit'" title="Editar imagen"
                                     class="fas fa-edit edit-icon"></i>
-                                <i onclick="downloadImage('<%= image.id %>')" title="Descargar imagen"
-                                    class="fas fa-arrow-alt-circle-down download-icon"></i>
+                                <a href="/image/<%= image.id %>/download" title="Descargar imagen" download>
+                                    <i class="fas fa-arrow-alt-circle-down download-icon"></i>
+                                </a>
                                 <i onclick="window.location.href='/image/<%= image.id %>/view'" title="Ver imagen"
                                     class="fas fa-eye view-icon"></i>
                                 <i onclick="deleteImage('<%= image.id %>')" title="Eliminar imagen"
@@ -36,7 +37,8 @@
                             </h3>
                             <h5 id="date">Fecha: <%= image.date %>
                             </h5>
-                            <h5 style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px;" id="description">
+                            <h5 style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px;"
+                                id="description">
                                 <%= image.description %>
                             </h5>
                             <h5 id="colors">Colores principales:</h5>
@@ -58,10 +60,10 @@
             <% } %>
                 </div>
                 <%- include("template/footer", {title: title}) %>
-<script>
-  const dataImage = <%- JSON.stringify(dataImage) %>;
-</script>
-                     <script src="/home.js" defer></script>
+                    <script>
+                        const dataImage = <% - JSON.stringify(dataImage) %>;
+                    </script>
+                    <script src="/home.js" defer></script>
                     </body>
 
                     </html>
