@@ -9,12 +9,6 @@
     </div>
 <% } else { %>
     <div class="gallery container">
-        <nav class="search" style="display: none; position: absolute; right: 250px; top: 30px;">
-            <div>
-                <input type="text" class="searchInput" placeholder="Buscar...">
-                <input type="date" class="dateInput" title="Buscar por fecha">
-            </div>
-        </nav>
         <% dataImage.forEach(image=> { %>
             <div class="card" id="<%= image.id %>">
                 <img src="<%= image.urlImagen %>" alt="<%= image.title %>">

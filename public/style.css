@@ -58,6 +58,38 @@
       margin-top: 1rem;
     }
 
+    /* Búsqueda */
+    .search {
+
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(44, 83, 100, 0.15);
+    padding: 10px 20px;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 220px;
+}
+
+.search div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.search h6 {
+    margin: 0;
+    color: #203a43;
+    font-size: 0.95rem;
+}
+
+.search input {
+    width: 100%;
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+
     /* Footer */
     .container {
       padding: 2rem;
