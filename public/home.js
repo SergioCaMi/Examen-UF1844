@@ -30,7 +30,7 @@ async function deleteImage(imageId) {
  */
 async function downloadImage(imageId) {
   try {
-    const response = await fetch(`/image/${imageId}/download`, { method: "POST" });
+    const response = await fetch(`/image/${imageId}/download`, { method: "GET" });
     if (!response.ok) throw new Error("No se pudo descargar la imagen");
     const blob = await response.blob();
     const url = window.URL.createObjectURL(blob);
