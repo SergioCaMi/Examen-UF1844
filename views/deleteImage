@@ -1,0 +1,7 @@
+
+<%- include("template/cabecera", {title: title}) %>
+<%- include("template/aside")%>
+<h2><%= dataImage.urlImage %></h2>
+<%- include("template/footer")%>
+
+

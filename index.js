@@ -49,6 +49,10 @@ app.get("/logout", (req, res) => {
   });
 });
 
+// ********** Registro de todas las peticiones que vienen del cliente **********
+const morgan = require('morgan');
+app.use(morgan("dev")); 
+
 // ********** Colores predominantes **********
 const getColors = require("get-image-colors");
 
@@ -81,7 +85,7 @@ if (!existsSync(downloadDir)) {
     if (err) console.error("Error creando carpeta", err);
   });
 }
-app.post("/image/:id/download", async (req, res) => {
+app.get("/image/:id/download", async (req, res) => {
   const id = req.params.id;
   console.log("Petición recibida para descargar la imagen con ID:", id);
 
@@ -374,6 +378,12 @@ app.post("/edit-image", async (req, res) => {
         });
   });
 });
+
+// ******************** URL noválida ********************
+app.use((req, res) => {
+  res.status(404).render('Page404.ejs', { endpoint: req.originalUrl });
+});
+
 
 // ******************** Iniciar el servidor ********************
 app.listen(PORT, () => {

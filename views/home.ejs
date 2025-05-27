@@ -1,73 +1,68 @@
 <%- include("template/cabecera", {title: title, user: user }) %>
 
-    <% if (dataImage.length===0) { %>
-        <div class="container">
-            <h2>
-                Puedes añadir tus imágenes en este botón:
-                <button onclick="window.location.href='/new-image'">➕</button>
-            </h2>
-        </div>
-        <% } else { %>
-            
-            <div class="gallery container">
-                <nav class="search" style="display: none; position: absolute; right: 250px; top: 30px;">
-                    <div>
-                        <input type="text" class="searchInput" placeholder="Buscar...">
-                        <input type="date" class="dateInput" title="Buscar por fecha">
-                    </div>
-                </nav>
-
-                <% dataImage.forEach(image=> { %>
-                    <div class="card" id="<%= image.id %>">
-                        <img src="<%= image.urlImagen %>" alt="<%= image.title %>">
-                        <div class="card-content">
-                            <h3 id="icons"
-                                style="display: flex; align-items: center; justify-content: space-between; padding: 5px;">
-                                                                    <% if (user) { %>
-
-                                <i onclick="window.location.href='/image/<%= image.id %>/edit'" title="Editar imagen"
-                                    class="fas fa-edit edit-icon"></i>
-                                  
-                                <i onclick="downloadImage('<%= image.id %>')" title="Descargar imagen"
-                                    class="fas fa-arrow-alt-circle-down download-icon"></i>
-                                      <% } %>
-                                <i onclick="window.location.href='/image/<%= image.id %>/view'" title="Ver imagen"
-                                    class="fas fa-eye view-icon"></i>
-                                     <% if (user) { %>
-                                <i onclick="deleteImage('<%= image.id %>')" title="Eliminar imagen"
-                                    class="fas fa-trash delete-icon"></i>
-                                        <% } %>
-                            </h3>
-                            <h3 id="name">Nombre: <%= image.title.toUpperCase() %>
-                            </h3>
-                            <h5 id="date">Fecha: <%= image.date %>
-                            </h5>
-                            <h5 style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px;" id="description">
-                                <%= image.description %>
-                            </h5>
-                            <h5 id="colors">Colores principales:</h5>
-                            <% if (image.colors && image.colors.length) { %>
-                                <div class="color-circles">
-                                    <% image.colors.forEach(color=> { %>
-                                        <div class="color-circle"
-                                            style="background-color: rgba(<%= color._rgb.join(', ') %>);"
-                                            title="rgba(<%= color._rgb.join(', ') %>)"></div>
-                                        <% }); %>
-                                </div>
-                                <% } else { %>
-                                    <p style="color: red;">Colores no disponibles en esta imagen.</p>
-                                    <% } %>
-                        </div>
-                    </div>
-                    <% }); %>
+<% if (dataImage.length===0) { %>
+    <div class="container">
+        <h2>
+            Puedes añadir tus imágenes en este botón:
+            <button onclick="window.location.href='/new-image'">➕</button>
+        </h2>
+    </div>
+<% } else { %>
+    <div class="gallery container">
+        <nav class="search" style="display: none; position: absolute; right: 250px; top: 30px;">
+            <div>
+                <input type="text" class="searchInput" placeholder="Buscar...">
+                <input type="date" class="dateInput" title="Buscar por fecha">
             </div>
-            <% } %>
+        </nav>
+        <% dataImage.forEach(image=> { %>
+            <div class="card" id="<%= image.id %>">
+                <img src="<%= image.urlImagen %>" alt="<%= image.title %>">
+                <div class="card-content">
+                    <h3 id="icons"
+                        style="display: flex; align-items: center; justify-content: space-between; padding: 5px;">
+                        <% if (user) { %>
+                            <i onclick="window.location.href='/image/<%= image.id %>/edit'" title="Editar imagen"
+                                class="fas fa-edit edit-icon"></i>
+                            <i onclick="downloadImage('<%= image.id %>')" title="Descargar imagen"
+                                class="fas fa-arrow-alt-circle-down download-icon"></i>
+                        <% } %>
+                        <i onclick="window.location.href='/image/<%= image.id %>/view'" title="Ver imagen"
+                            class="fas fa-eye view-icon"></i>
+                        <% if (user) { %>
+                            <i onclick="deleteImage('<%= image.id %>')" title="Eliminar imagen"
+                                class="fas fa-trash delete-icon"></i>
+                        <% } %>
+                    </h3>
+                    <h3 id="name">Nombre: <%= image.title.toUpperCase() %>
+                    </h3>
+                    <h5 id="date">Fecha: <%= image.date %>
+                    </h5>
+                    <h5 style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px;" id="description">
+                        <%= image.description %>
+                    </h5>
+                    <h5 id="colors">Colores principales:</h5>
+                    <% if (image.colors && image.colors.length) { %>
+                        <div class="color-circles">
+                            <% image.colors.forEach(function(color) { %>
+                                <div class="color-circle"
+                                    style="background-color: rgba(<%= color._rgb.join(', ') %>);"
+                                    title="rgba(<%= color._rgb.join(', ') %>)"></div>
+                            <% }); %>
+                        </div>
+                    <% } else { %>
+                        <p style="color: red;">Colores no disponibles en esta imagen.</p>
+                    <% } %>
                 </div>
-                <%- include("template/footer", {title: title}) %>
-<script>
-  const dataImage = <%- JSON.stringify(dataImage) %>;
-</script>
-                     <script src="/home.js" defer></script>
-                    </body>
+            </div>
+        <% }); %>
+    </div>
+<% } %>
 
-                    </html>
+<%- include("template/footer", {title: title}) %>
+<script>
+    var dataImage = JSON.parse(`<%- JSON.stringify(dataImage) %>`);
+</script>
+<script src="/home.js" defer></script>
+</body>
+</html>
