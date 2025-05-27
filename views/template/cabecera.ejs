@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,24 +22,44 @@
                 <li>
                     <button onclick="window.location.href='/'" title="Inicio">📷</button>
                 </li>
+                                    <% if (user) { %>
+
                 <li>
                     <button onclick="window.location.href='/new-image'" title="Nueva imagen">➕</button>
                 </li>
+                                        <% } %>
+
                 <li>
                     <button onclick="showUtils()" title="Buscar">🔍</button>
                 </li>
+                <li>
+                    <% if (!user || !user.photo) { %>
+                        <button onclick="window.location.href='/auth/google'" title="Iniciar sesión">🔑</button>
+                        <% } %>
+                </li>
+                <li>
+                    <% if (user) { %>
+                        <button onclick="window.location.href='/logout'" title="Cerrar sesión">
+                            <% if (user.photo && user.photo.trim() !=="" ) { %>
+                                <img src="<%= user.photo %>" alt="Logout"
+                                    style="width: 28px; height: 28px; border-radius: 50%;">
+                                <% } else { %>
+                                    <i class="fas fa-user" style="font-size: 1.2rem;"></i>
+                                    <% } %>
+                        </button>
+                        <% } %>
             </ul>
         </nav>
-<nav class="search" style="display: none; position: absolute; right: 250px; top: 15px;">
-    <div>
-        <h6 style="margin: 0;">Buscar por nombre</h6>
-        <input type="text" class="searchInput" placeholder="Buscar...">
-    </div>
-    <div>
-        <h6 style="margin: 0;">Buscar por fecha</h6>
-        <input type="date" class="dateInput" title="Buscar por fecha">
-    </div>
-</nav>
+        <nav class="search" style="display: none; position: absolute; right: 250px; top: 15px;">
+            <div>
+                <h6 style="margin: 0;">Buscar por nombre</h6>
+                <input type="text" class="searchInput" placeholder="Buscar...">
+            </div>
+            <div>
+                <h6 style="margin: 0;">Buscar por fecha</h6>
+                <input type="date" class="dateInput" title="Buscar por fecha">
+            </div>
+        </nav>
     </header>
     <h1>
         <%= title %>

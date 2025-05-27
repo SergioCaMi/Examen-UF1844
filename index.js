@@ -1,7 +1,53 @@
 // ********** Server **********
 const express = require("express");
 const app = express();
-const PORT = process.env.PORT || 3000; //para renderizar
+const PORT = process.env.PORT || 5000; //para renderizar
+
+// ********** Sesión Google **********
+require("./auth");
+const session = require("express-session");
+const passport = require("passport");
+const { Profiler } = require("react");
+app.use(
+  session({
+    secret: "your-secret-key",
+    resave: false,
+    saveUninitialized: true,
+  })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+function isAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect("/");
+}
+app.get(
+  "/auth/google",
+  passport.authenticate("google", { scope: ["email", "profile"] })
+);
+
+app.get(
+  "/google/callback",
+  passport.authenticate("google", { failureRedirect: "/login" }),
+  function (req, res) {
+ res.render('welcome', { user: req.user });
+  }
+);
+
+app.get("/logout", (req, res) => {
+  req.logout((err) => {
+    if (err) {
+      console.error("Error al cerrar sesión:", err);
+      return res.status(500).send("Error al cerrar sesión");
+    }
+    console.log("Sesión cerrada correctamente");
+    res.redirect("/");
+  });
+});
 
 // ********** Colores predominantes **********
 const getColors = require("get-image-colors");
@@ -45,15 +91,16 @@ app.post("/image/:id/download", async (req, res) => {
     return res.status(404).send("Imagen no encontrada");
   }
   // Descargamos la imagen en el directorio /downloads
-  const urlImagen = image.urlImagen;
   try {
-    const response = await fetch(urlImagen);
+    const response = await fetch(image.urlImagen);
     if (response.ok) {
-      const buffer = await response.arrayBuffer();
-      const fileName = `image-${Date.now()}.jpg`;
-      const filePath = path.join(downloadDir, fileName);
-      await writeFile(filePath, Buffer.from(buffer));
-      res.status(200).send("OK");
+      const buffer = await response.buffer();
+      res.setHeader(
+        "Content-Disposition",
+        `attachment; filename="image-${Date.now()}.jpg"`
+      );
+      res.setHeader("Content-Type", "image/jpeg");
+      res.send(buffer);
     }
   } catch (error) {
     console.error("Error:", error);
@@ -90,16 +137,35 @@ app.use(express.static("public"));
 // ******************** Home ********************
 
 app.get("/", (req, res) => {
-  res.render("home.ejs", { title: "Home", dataImage: dataImage });
+  res.render("home.ejs", {
+    title: "Home",
+    dataImage: dataImage,
+    user:
+      req.isAuthenticated() &&
+      req.user &&
+      req.user.photos &&
+      req.user.photos.length > 0
+        ? { photo: req.user.photos[0].value }
+        : null,
+  });
 });
 
 // ******************** Add new image ********************
+
 app.get("/new-image", (req, res) => {
+
   // Mostramos la vista del formulario
   res.render("addImage.ejs", {
     title: "New Image",
     message: undefined,
     colorMessage: "black",
+    user:
+      req.isAuthenticated() &&
+      req.user &&
+      req.user.photos &&
+      req.user.photos.length > 0
+        ? { photo: req.user.photos[0].value }
+        : null,
   });
 });
 
@@ -113,6 +179,13 @@ app.post("/new-image", async (req, res) => {
       title: "New Image",
       message: `La imagen "${req.body.title}" ya se encontraba en el archivo.`,
       colorMessage: "red",
+      user:
+        req.isAuthenticated() &&
+        req.user &&
+        req.user.photos &&
+        req.user.photos.length > 0
+          ? { photo: req.user.photos[0].value }
+          : null,
     });
   } else {
     // NO
@@ -159,11 +232,25 @@ app.post("/new-image", async (req, res) => {
               title: "New Image",
               message: `Error al añadir la imagen "${req.body.title}".`,
               colorMessage: "red",
+              user:
+                req.isAuthenticated() &&
+                req.user &&
+                req.user.photos &&
+                req.user.photos.length > 0
+                  ? { photo: req.user.photos[0].value }
+                  : null,
             })
           : res.render("addImage.ejs", {
               title: "New Image",
               message: `La imagen "${req.body.title}" se ha añadido satisfactoriamente.`,
               colorMessage: "green",
+              user:
+                req.isAuthenticated() &&
+                req.user &&
+                req.user.photos &&
+                req.user.photos.length > 0
+                  ? { photo: req.user.photos[0].value }
+                  : null,
             });
       }
     );
@@ -197,6 +284,13 @@ app.get("/image/:id/view", (req, res) => {
     title: "View",
     dataImage: dataImage,
     index: index,
+    user:
+      req.isAuthenticated() &&
+      req.user &&
+      req.user.photos &&
+      req.user.photos.length > 0
+        ? { photo: req.user.photos[0].value }
+        : null,
   });
 });
 
@@ -208,6 +302,13 @@ app.get("/image/:id/details", (req, res) => {
     title: "Details",
     dataImage: dataImage,
     index: index,
+    user:
+      req.isAuthenticated() &&
+      req.user &&
+      req.user.photos &&
+      req.user.photos.length > 0
+        ? { photo: req.user.photos[0].value }
+        : null,
   });
 });
 
@@ -219,6 +320,13 @@ app.get("/image/:id/edit", (req, res) => {
     title: "Edit",
     dataImage: dataImage,
     index: index,
+    user:
+      req.isAuthenticated() &&
+      req.user &&
+      req.user.photos &&
+      req.user.photos.length > 0
+        ? { photo: req.user.photos[0].value }
+        : null,
   });
 });
 
@@ -245,9 +353,25 @@ app.post("/edit-image", async (req, res) => {
           title: "Edit Image",
           message: `Error al modificar la imagen "${req.body.title}".`,
           colorMessage: "red",
+          user:
+            req.isAuthenticated() &&
+            req.user &&
+            req.user.photos &&
+            req.user.photos.length > 0
+              ? { photo: req.user.photos[0].value }
+              : null,
         })
-      :   res.render("home.ejs", { title: "Home", dataImage: dataImage });
-
+      : res.render("home.ejs", {
+          title: "Home",
+          dataImage: dataImage,
+          user:
+            req.isAuthenticated() &&
+            req.user &&
+            req.user.photos &&
+            req.user.photos.length > 0
+              ? { photo: req.user.photos[0].value }
+              : null,
+        });
   });
 });
 

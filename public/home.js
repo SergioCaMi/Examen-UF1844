@@ -30,15 +30,22 @@ async function deleteImage(imageId) {
  */
 async function downloadImage(imageId) {
   try {
-    const response = await fetch(`/image/${imageId}/download`, {
-      method: "POST",
-    });
-
-    alert("Imagen descargada en el directorio /downloads.");
+    const response = await fetch(`/image/${imageId}/download`, { method: "POST" });
+    if (!response.ok) throw new Error("No se pudo descargar la imagen");
+    const blob = await response.blob();
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `imagen-${imageId}.jpg`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    window.URL.revokeObjectURL(url);
   } catch (err) {
     alert("Error al descargar la imagen");
   }
 }
+
 /**
  * Muestra u oculta los elementos de búsqueda y filtra las imágenes según el texto de búsqueda o la fecha.
  *

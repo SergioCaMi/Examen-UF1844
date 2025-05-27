@@ -1,4 +1,4 @@
-<%- include("template/cabecera", {title: title}) %>
+<%- include("template/cabecera", {title: title, user: user }) %>
 
     <% if (dataImage.length===0) { %>
         <div class="container">
@@ -23,14 +23,20 @@
                         <div class="card-content">
                             <h3 id="icons"
                                 style="display: flex; align-items: center; justify-content: space-between; padding: 5px;">
+                                                                    <% if (user) { %>
+
                                 <i onclick="window.location.href='/image/<%= image.id %>/edit'" title="Editar imagen"
                                     class="fas fa-edit edit-icon"></i>
+                                  
                                 <i onclick="downloadImage('<%= image.id %>')" title="Descargar imagen"
                                     class="fas fa-arrow-alt-circle-down download-icon"></i>
+                                      <% } %>
                                 <i onclick="window.location.href='/image/<%= image.id %>/view'" title="Ver imagen"
                                     class="fas fa-eye view-icon"></i>
+                                     <% if (user) { %>
                                 <i onclick="deleteImage('<%= image.id %>')" title="Eliminar imagen"
                                     class="fas fa-trash delete-icon"></i>
+                                        <% } %>
                             </h3>
                             <h3 id="name">Nombre: <%= image.title.toUpperCase() %>
                             </h3>
