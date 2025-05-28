@@ -13,6 +13,7 @@ async function deleteImage(imageId) {
   });
   if (response.ok) {
     document.getElementById(imageId).style.display = "none";
+    window.location.reload(); // Recarga la página tras eliminar para actualizar la galería
   } else {
     console.error("Error al eliminar la imagen");
   }
@@ -58,13 +59,13 @@ function showUtils() {
   const inputSearch = document.querySelector(".searchInput");
   const cards = document.querySelectorAll(".card");
   const inputDateSearch = document.querySelector(".dateInput");
-// Mostrar/Ocultar búsqueda
-    if (searchUtils.style.display === "flex") {
-      searchUtils.style.display = "none";
-      inputSearch.value = "";
-    } else {
-      searchUtils.style.display = "flex";
-    }
+  // Mostrar/Ocultar búsqueda
+  if (searchUtils.style.display === "flex") {
+    searchUtils.style.display = "none";
+    inputSearch.value = "";
+  } else {
+    searchUtils.style.display = "flex";
+  }
   inputSearch.addEventListener("input", (event) => {
     const searchText = event.target.value.toLowerCase();
     // Buscamos todas las cards cuyo texto a buscar esté incluido en su nombre

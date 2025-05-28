@@ -15,6 +15,7 @@
   <div class="form-group">
     <label for="urlImagen">URL de la imagen:</label>
     <input type="url" id="urlImagen" name="urlImagen" required>
+    <div id="msgUrl" style="margin-top:5px;font-size:0.95em;"></div>
   </div>
 
   <div class="form-group">
@@ -32,3 +33,17 @@
 
   </div> 
 <%- include("template/footer") %>
+<script>
+  document.querySelector("#urlImagen").addEventListener("blur", e => {
+    const url = e.target.value;
+    const msgUrl = document.getElementById("msgUrl");
+    const urlRegex = /^(https?:\/\/)[^\s]+\.(jpg|jpeg|png|gif|webp|bmp|svg)(\?.*)?$/i;
+    if (!urlRegex.test(url)) {
+      msgUrl.textContent = "Introduce una URL válida de imagen";
+      msgUrl.style.color = 'red';
+    } else {
+      msgUrl.textContent = "URL válida";
+      msgUrl.style.color = 'green';
+    }
+  });
+</script>

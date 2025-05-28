@@ -282,56 +282,45 @@ app.post("/image/:id/delete", (req, res) => {
 
 // ******************** Visualizar una imagen ********************
 app.get("/image/:id/view", (req, res) => {
-  const id = req.params.id;
-  const index = dataImage.findIndex((image) => image.id === id);
-  res.render("viewImage.ejs", {
-    title: "View",
-    dataImage: dataImage,
-    index: index,
-    user:
-      req.isAuthenticated() &&
+
+
+renderView(res, "viewImage.ejs", "View", dataImage, dataImage.findIndex((image) => image.id === req.params.id), req.isAuthenticated() &&
       req.user &&
       req.user.photos &&
       req.user.photos.length > 0
         ? { photo: req.user.photos[0].value }
-        : null,
-  });
+        : null)
+
+
+
 });
 
 // ******************** Detalles de una imagen ********************
 app.get("/image/:id/details", (req, res) => {
-  const id = req.params.id;
-  const index = dataImage.findIndex((image) => image.id === id);
-  res.render("detailsImage.ejs", {
-    title: "Details",
-    dataImage: dataImage,
-    index: index,
-    user:
-      req.isAuthenticated() &&
+
+renderView(res, "detailsImage.ejs", "Details", dataImage, dataImage.findIndex((image) => image.id === req.params.id), req.isAuthenticated() &&
       req.user &&
       req.user.photos &&
       req.user.photos.length > 0
         ? { photo: req.user.photos[0].value }
-        : null,
-  });
+        : null)
+
+
+
+
 });
 
 // ******************** Editar una imagen ********************
 app.get("/image/:id/edit", (req, res) => {
-  const id = req.params.id;
-  const index = dataImage.findIndex((image) => image.id === id);
-  res.render("editImage.ejs", {
-    title: "Edit",
-    dataImage: dataImage,
-    index: index,
-    user:
-      req.isAuthenticated() &&
+
+renderView(res, "editImage.ejs", "Edit", dataImage, dataImage.findIndex((image) => image.id === req.params.id), req.isAuthenticated() &&
       req.user &&
       req.user.photos &&
       req.user.photos.length > 0
         ? { photo: req.user.photos[0].value }
-        : null,
-  });
+        : null)
+
+  
 });
 
 app.post("/edit-image", async (req, res) => {
@@ -419,4 +408,25 @@ async function extractExifFromUrl(imageUrl) {
     console.error("Error al extraer los datos EXIF:", error);
     return null;
   }
+}
+
+
+/**
+ * Renderiza una vista EJS de forma reutilizable
+ *
+ * @function renderView
+ * @param {Object} res - Objeto de respuesta de Express
+ * @param {string} ejsFile - Nombre del archivo EJS a renderizar
+ * @param {string} title - Título de la página
+ * @param {Array} dataImage - Array con los datos de las imágenes
+ * @param {number} index - Índice de la imagen en el array
+ * @param {Object} user - Objeto con los datos del usuario
+ */
+function renderView(res, ejsFile, title, dataImage, index, user) {
+  res.render(ejsFile, {
+    title: title,
+    dataImage: dataImage,
+    index: index,
+    user: user,
+  });
 }
