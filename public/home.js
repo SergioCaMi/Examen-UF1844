@@ -54,20 +54,19 @@ async function downloadImage(imageId) {
  * @returns {}
  */
 function showUtils() {
-  const searchUtils = document.querySelectorAll(".search");
+  const searchUtils = document.querySelector(".search");
   const inputSearch = document.querySelector(".searchInput");
   const cards = document.querySelectorAll(".card");
   const inputDateSearch = document.querySelector(".dateInput");
-  // ********** Busqueda por título **********
-  searchUtils.forEach((element) => {
-    if (element.style.display === "flex") {
-      element.style.display = "none";
+// Mostrar/Ocultar búsqueda
+    if (searchUtils.style.display === "flex") {
+      alert("ocultar");
+      searchUtils.style.display = "none";
       inputSearch.value = "";
-      showUtils();
     } else {
-      element.style.display = "flex";
+      alert("mostrar")
+      searchUtils.style.display = "flex";
     }
-  });
   inputSearch.addEventListener("input", (event) => {
     const searchText = event.target.value.toLowerCase();
     // Buscamos todas las cards cuyo texto a buscar esté incluido en su nombre

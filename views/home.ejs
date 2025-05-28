@@ -39,9 +39,7 @@
                     <% if (image.colors && image.colors.length) { %>
                         <div class="color-circles">
                             <% image.colors.forEach(function(color) { %>
-                                <div class="color-circle"
-                                    style="background-color: rgba(<%= color._rgb.join(', ') %>);"
-                                    title="rgba(<%= color._rgb.join(', ') %>)"></div>
+                                <div class="color-circle" style="background-color: rgba(<%= color._rgb.join(',') %>);" title="rgba(<%= color._rgb.join(',') %>)"></div>
                             <% }); %>
                         </div>
                     <% } else { %>
