@@ -60,11 +60,9 @@ function showUtils() {
   const inputDateSearch = document.querySelector(".dateInput");
 // Mostrar/Ocultar búsqueda
     if (searchUtils.style.display === "flex") {
-      alert("ocultar");
       searchUtils.style.display = "none";
       inputSearch.value = "";
     } else {
-      alert("mostrar")
       searchUtils.style.display = "flex";
     }
   inputSearch.addEventListener("input", (event) => {
