@@ -7,7 +7,6 @@ const PORT = process.env.PORT || 5000; //para renderizar
 require("./auth");
 const session = require("express-session");
 const passport = require("passport");
-const { Profiler } = require("react");
 app.use(
   session({
     secret: "your-secret-key",
