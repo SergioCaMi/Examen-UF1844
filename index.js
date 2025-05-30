@@ -152,7 +152,7 @@ app.get("/", (req, res) => {
         : null,
   });
 });
-
+ 
 // ******************** Add new image ********************
 
 app.get("/new-image", (req, res) => {
