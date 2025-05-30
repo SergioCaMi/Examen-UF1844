@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bienvenido</title>
     <style>
-        /* Estilos generales para centrar y dar formato a la página */
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f9;
@@ -23,7 +22,6 @@
         p {
             color: #666;
         }
-        /* Estilo para la imagen de perfil del usuario */
         img {
             border-radius: 50%;
             width: 100px;
@@ -31,7 +29,6 @@
             object-fit: cover;
             border: 3px solid #333;
         }
-        /* Estilo para el botón/enlace de volver */
         a {
             display: inline-block;
             margin-top: 20px;
@@ -48,49 +45,35 @@
     </style>
 </head>
 <body>
-    <!-- Muestra el nombre del usuario autenticado -->
     <h1>Bienvenido, <%= user.displayName %>!</h1>
-    <!-- Muestra el correo electrónico del usuario -->
     <p>Correo electrónico: <%= user.emails[0].value %></p>
-    <!-- Muestra la foto de perfil del usuario -->
     <img src="<%= user.photos[0].value %>" alt="Foto de perfil">
     <br>
-    <!-- Enlace para volver a la página principal -->
     <a href="/">Volver a la página principal</a>
 </body>
 </html>
-<script>const express = require('express'); // Framework webconst session = require('express-session'); // Middleware de sesiónconst passport = require('passport'); // Autenticaciónrequire('./auth'); // Importa la configuración de Passportconst app = express();app.set('view engine', 'ejs'); // Usa EJS como motor de vistas// Configura la sesiónapp.use(session({  secret: 'secreto', // Cambia esto por un secreto seguro  resave: false,  saveUninitialized: false}));app.use(passport.initialize()); // Inicializa Passportapp.use(passport.session()); // Usa sesiones con Passport// Ruta principalapp.get('/', (req, res) => {  res.send('<a href="/auth/google">Iniciar sesión con Google</a>');});// Ruta para iniciar autenticación con Googleapp.get('/auth/google',  passport.authenticate('google', { scope: ['profile', 'email'] }));// Ruta de callback de Googleapp.get('/google/callback',   passport.authenticate('google', { failureRedirect: '/' }),  (req, res) => {    res.redirect('/welcome');  });// Ruta protegida de bienvenidaapp.get('/welcome', (req, res) => {  if (!req.isAuthenticated()) {    return res.redirect('/');  }  res.render('welcome', { user: req.user });});// Cierra sesiónapp.get('/logout', (req, res) => {  req.logout(() => {    res.redirect('/');  });});app.listen(5000, () => console.log('Servidor iniciado en http://localhost:5000'));</script>
+<script>const express = require('express'); </script>
 <script>
-const GoogleStrategy = require('passport-google-oauth20').Strategy; // Importa la estrategia de Google para Passport
-const passport = require('passport'); // Importa Passport para autenticación
+const GoogleStrategy = require('passport-google-oauth20').Strategy; 
+const passport = require('passport'); 
 require('dotenv').config(  
     {path: process.env.NODE_ENV === 'production' ? '.env' : '.env.development'}
-); // Carga variables de entorno según el entorno
-
-// const User = require('./models/User'); // (Opcional) Importa el modelo User si quieres guardar usuarios en BD
-
-// Configura la estrategia de autenticación de Google
+);
 passport.use(new GoogleStrategy({
-    clientID: process.env.GOOGLE_CLIENT_ID, // Tu client ID de Google
-    clientSecret: process.env.GOOGLE_CLIENT_SECRET, // Tu client secret de Google
-    callbackURL: "http://localhost:5000/google/callback", // URL a la que Google redirige tras autenticación
-    passReqToCallback: true // Permite acceder al request en el callback
+    clientID: process.env.GOOGLE_CLIENT_ID, 
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET, 
+    callbackURL: "https://gallery-2eu4.onrender.com/google/callback", // URL a la que Google redirige tras autenticación
+    passReqToCallback: true 
   },
   function(request, accessToken, refreshToken, profile, done) {
-    // Aquí puedes guardar el usuario en la base de datos si tienes un modelo User
-    // User.findOrCreate({ googleId: profile.id }, function (err, user) {
-    //   return done(err, user);
-    // });
-    return done(null, profile); // Si no guardas en BD, simplemente pasa el perfil
+    return done(null, profile);
   }
 ));
 
-// Serializa el usuario en la sesión
 passport.serializeUser(function(user, done) {
   done(null, user);
 });
 
-// Deserializa el usuario de la sesión
 passport.deserializeUser(function(user, done) {
   done(null, user);
 });
