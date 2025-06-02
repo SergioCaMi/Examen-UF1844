@@ -3,7 +3,11 @@ const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 5000; //para renderizar
 
-require('dotenv').config(); // Carga variables de entorno automáticamente
+if (process.env.NODE_ENV === "production") {
+  require('dotenv').config(); // Carga .env por defecto en producción
+} else {
+  require('dotenv').config({ path: ".env.development" }); // Carga .env.development en local
+}
 
 // ********** Sesión Google **********
 require("./auth");
