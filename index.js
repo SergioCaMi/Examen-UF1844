@@ -3,6 +3,8 @@ const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 5000; //para renderizar
 
+require('dotenv').config(); // Carga variables de entorno automáticamente
+
 // ********** Sesión Google **********
 require("./auth");
 const session = require("express-session");
