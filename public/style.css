@@ -270,7 +270,9 @@
 
 .carousel-item img {
     width: 100%;
+    min-width: 400px;
     height: auto;
+    max-height: 600px;
 }
 
 .carousel-item {

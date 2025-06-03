@@ -79,6 +79,7 @@ if (!fs.existsSync(dirPath)) {
   fs.mkdirSync(dirPath);
 }
 
+
 // Existe el directorio de descarga?
 const { writeFile } = require("fs/promises");
 const { mkdir, existsSync } = require("fs");
@@ -377,6 +378,19 @@ app.post("/edit-image", async (req, res) => {
 app.use((req, res) => {
   res.status(404).render('Page404.ejs', { endpoint: req.originalUrl });
 });
+
+// ******************** Errores ********************
+app.use((err, req, res, next) => {
+    console.error("Error. Informaremos a nuestros desarrolladores para solucionarlo lo antes posible.", err.message);
+    const errorLogPath = path.join(__dirname, "data", "errors.txt");
+    const errorMessage = `[${new Date().toISOString()}] ${err.stack || err.message}\n`;
+    fs.appendFile(errorLogPath, errorMessage, (error) => {
+      if (error) {
+      console.error("Error al guardar el error en errors.txt:", error);
+      }
+    });
+    res.status(500).send('<p>Ups! La operación ha fallado. Hemos informado a los desarrolladores. Vuelve a probarlo más tarde.Vuelve a la <a href="/">home page</a></p> ');
+})
 
 
 // ******************** Iniciar el servidor ********************
