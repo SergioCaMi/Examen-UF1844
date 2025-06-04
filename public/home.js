@@ -66,43 +66,46 @@ function showUtils() {
   } else {
     searchUtils.style.display = "flex";
   }
-  inputSearch.addEventListener("input", (event) => {
-    const searchText = event.target.value.toLowerCase();
-    // Buscamos todas las cards cuyo texto a buscar esté incluido en su nombre
-    let showCard = dataImage.filter((image) =>
-      image.title.toLowerCase().includes(searchText)
-    );
+}
 
-    // Recogemos todos los id de las cards a mostrar
-    const showId = showCard.map((image) => image.id);
-    // Dsiplay none a las que no se deben mostrar
+// BÚSQUEDA REACTIVA POR TÍTULO Y/O FECHA
+(function() {
+  const inputSearch = document.querySelector(".searchInput");
+  const inputDateSearch = document.querySelector(".dateInput");
+  const cards = document.querySelectorAll(".card");
+  if (!inputSearch || !inputDateSearch || !cards.length) return;
+
+  function filterCards() {
+    const searchText = inputSearch.value.toLowerCase();
+    const dateValue = inputDateSearch.value;
     cards.forEach((card) => {
-      if (!showId.includes(card.id)) {
+      const nameElem = card.querySelector("#name");
+      if (!nameElem) {
         card.style.display = "none";
-      } else {
+        return;
+      }
+      const cardTitle = nameElem.textContent.replace('Nombre:', '').trim().toLowerCase();
+      let matchesTitle = cardTitle.includes(searchText);
+      let matchesDate = true;
+      if (dateValue) {
+        const searchDate = new Date(dateValue);
+        const currentDate = new Date();
+        const imageDateElem = card.querySelector("#date");
+        if (imageDateElem) {
+          const imageDate = new Date(imageDateElem.textContent.replace('Fecha:', '').trim());
+          matchesDate = imageDate >= searchDate && imageDate <= currentDate;
+        } else {
+          matchesDate = false;
+        }
+      }
+      if (matchesTitle && matchesDate) {
         card.style.display = "flex";
+      } else {
+        card.style.display = "none";
       }
     });
+  }
 
-    // ********** Búsqueda por fecha de partida **********
-    inputDateSearch.addEventListener("input", (event) => {
-      const searchDate = new Date(event.target.value);
-      const currentDate = new Date();
-      // Buscamos todas las cards cuya fecha sea menor o igual a la indicada por el user
-      const showCard = dataImage.filter((image) => {
-        const imageDate = new Date(image.date);
-        return imageDate >= searchDate && imageDate <= currentDate;
-      });
-      // Recogemos todos los id de las cards a mostrar
-      const showId = showCard.map((image) => image.id);
-      // Dsiplay none a las que no se deben mostrar
-      cards.forEach((card) => {
-        if (!showId.includes(card.id)) {
-          card.style.display = "none";
-        } else {
-          card.style.display = "flex";
-        }
-      });
-    });
-  });
-}
+  inputSearch.addEventListener("input", filterCards);
+  inputDateSearch.addEventListener("input", filterCards);
+})();
