@@ -59,7 +59,6 @@ function showUtils() {
   const inputSearch = document.querySelector(".searchInput");
   const cards = document.querySelectorAll(".card");
   const inputDateSearch = document.querySelector(".dateInput");
-  // Mostrar/Ocultar búsqueda
   if (searchUtils.style.display === "flex") {
     searchUtils.style.display = "none";
     inputSearch.value = "";
@@ -68,7 +67,7 @@ function showUtils() {
   }
 }
 
-// BÚSQUEDA REACTIVA POR TÍTULO Y/O FECHA
+
 (function() {
   const inputSearch = document.querySelector(".searchInput");
   const inputDateSearch = document.querySelector(".dateInput");

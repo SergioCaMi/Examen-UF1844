@@ -13,6 +13,7 @@ if (process.env.NODE_ENV === "production") {
 require("./auth");
 const session = require("express-session");
 const passport = require("passport");
+
 app.use(
   session({
     secret: "your-secret-key",
@@ -30,6 +31,7 @@ function isAuthenticated(req, res, next) {
   }
   res.redirect("/");
 }
+
 app.get(
   "/auth/google",
   passport.authenticate("google", { scope: ["email", "profile"] })
@@ -56,7 +58,7 @@ app.get("/logout", (req, res) => {
 
 // ********** Registro de todas las peticiones que vienen del cliente **********
 const morgan = require('morgan');
-app.use(morgan("dev")); 
+app.use(morgan("dev"));
 
 // ********** Colores predominantes **********
 const getColors = require("get-image-colors");
@@ -79,22 +81,9 @@ if (!fs.existsSync(dirPath)) {
   fs.mkdirSync(dirPath);
 }
 
-
-// Existe el directorio de descarga?
-const { writeFile } = require("fs/promises");
-const { mkdir, existsSync } = require("fs");
-const { fileURLToPath } = require("url");
-
-const downloadDir = path.join(__dirname, "downloads");
-if (!existsSync(downloadDir)) {
-  mkdir(downloadDir, { recursive: true }, (err) => {
-    if (err) console.error("Error creando carpeta", err);
-  });
-}
 app.get("/image/:id/download", async (req, res) => {
   const id = req.params.id;
   console.log("Petición recibida para descargar la imagen con ID:", id);
-
   // Encuentra la imagen por ID
   const image = dataImage.find((img) => img.id === id);
   if (!image) {
@@ -131,7 +120,6 @@ try {
   }
 } catch (err) {
   console.log("Error al leer el archivo JSON:", err);
-  console.log();
 }
 
 // ********** Nos permite procesar peticiones POST que vengan de un formulario **********
@@ -145,7 +133,6 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 
 // ******************** Home ********************
-
 app.get("/", (req, res) => {
   res.render("home.ejs", {
     title: "Home",
@@ -159,11 +146,9 @@ app.get("/", (req, res) => {
         : null,
   });
 });
- 
+
 // ******************** Add new image ********************
-
 app.get("/new-image", (req, res) => {
-
   // Mostramos la vista del formulario
   res.render("addImage.ejs", {
     title: "New Image",
@@ -208,16 +193,13 @@ app.post("/new-image", async (req, res) => {
       console.error("Error al leer los colores de la imagen:", error);
       colors = null;
     }
-
     //Crear ID unico
     const id = uuidv4();
-
     //Datos EXIF
-
     const exifData = await extractExifFromUrl(req.body.urlImagen);
-
     console.log("Body del formulario: ", req.body);
-    console.log(`id: ${id} \n colores: ${colors}`);
+    console.log(`id: ${id} 
+ colores: ${colors}`);
     // Construir el objeto newImage con los colores obtenidos
     const newImage = {
       id: id,
@@ -271,7 +253,6 @@ app.post("/new-image", async (req, res) => {
 app.post("/image/:id/delete", (req, res) => {
   const id = req.params.id;
   console.log("Petición recibida para eliminar la imagen con ID:", id);
-
   // Creamos los datos con la imagen ya eliminada
   const newArray = dataImage.filter((image) => image.id != id);
   // Guardamos los nuevos datos
@@ -288,45 +269,32 @@ app.post("/image/:id/delete", (req, res) => {
 
 // ******************** Visualizar una imagen ********************
 app.get("/image/:id/view", (req, res) => {
-
-
-renderView(res, "viewImage.ejs", "View", dataImage, dataImage.findIndex((image) => image.id === req.params.id), req.isAuthenticated() &&
-      req.user &&
-      req.user.photos &&
-      req.user.photos.length > 0
-        ? { photo: req.user.photos[0].value }
-        : null)
-
-
-
+  renderView(res, "viewImage.ejs", "View", dataImage, dataImage.findIndex((image) => image.id === req.params.id), req.isAuthenticated() &&
+    req.user &&
+    req.user.photos &&
+    req.user.photos.length > 0
+    ? { photo: req.user.photos[0].value }
+    : null)
 });
 
 // ******************** Detalles de una imagen ********************
 app.get("/image/:id/details", (req, res) => {
-
-renderView(res, "detailsImage.ejs", "Details", dataImage, dataImage.findIndex((image) => image.id === req.params.id), req.isAuthenticated() &&
-      req.user &&
-      req.user.photos &&
-      req.user.photos.length > 0
-        ? { photo: req.user.photos[0].value }
-        : null)
-
-
-
-
+  renderView(res, "detailsImage.ejs", "Details", dataImage, dataImage.findIndex((image) => image.id === req.params.id), req.isAuthenticated() &&
+    req.user &&
+    req.user.photos &&
+    req.user.photos.length > 0
+    ? { photo: req.user.photos[0].value }
+    : null)
 });
 
 // ******************** Editar una imagen ********************
 app.get("/image/:id/edit", (req, res) => {
-
-renderView(res, "editImage.ejs", "Edit", dataImage, dataImage.findIndex((image) => image.id === req.params.id), req.isAuthenticated() &&
-      req.user &&
-      req.user.photos &&
-      req.user.photos.length > 0
-        ? { photo: req.user.photos[0].value }
-        : null)
-
-  
+  renderView(res, "editImage.ejs", "Edit", dataImage, dataImage.findIndex((image) => image.id === req.params.id), req.isAuthenticated() &&
+    req.user &&
+    req.user.photos &&
+    req.user.photos.length > 0
+    ? { photo: req.user.photos[0].value }
+    : null)
 });
 
 app.post("/edit-image", async (req, res) => {
@@ -349,28 +317,28 @@ app.post("/edit-image", async (req, res) => {
   fs.writeFile(filePath, JSON.stringify(dataImage, null, 3), "utf8", (err) => {
     err
       ? res.render("editImage.ejs", {
-          title: "Edit Image",
-          message: `Error al modificar la imagen "${req.body.title}".`,
-          colorMessage: "red",
-          user:
-            req.isAuthenticated() &&
-            req.user &&
-            req.user.photos &&
-            req.user.photos.length > 0
-              ? { photo: req.user.photos[0].value }
-              : null,
-        })
+        title: "Edit Image",
+        message: `Error al modificar la imagen "${req.body.title}".`,
+        colorMessage: "red",
+        user:
+          req.isAuthenticated() &&
+          req.user &&
+          req.user.photos &&
+          req.user.photos.length > 0
+            ? { photo: req.user.photos[0].value }
+            : null,
+      })
       : res.render("home.ejs", {
-          title: "Home",
-          dataImage: dataImage,
-          user:
-            req.isAuthenticated() &&
-            req.user &&
-            req.user.photos &&
-            req.user.photos.length > 0
-              ? { photo: req.user.photos[0].value }
-              : null,
-        });
+        title: "Home",
+        dataImage: dataImage,
+        user:
+          req.isAuthenticated() &&
+          req.user &&
+          req.user.photos &&
+          req.user.photos.length > 0
+            ? { photo: req.user.photos[0].value }
+            : null,
+      });
   });
 });
 
@@ -381,17 +349,17 @@ app.use((req, res) => {
 
 // ******************** Errores ********************
 app.use((err, req, res, next) => {
-    console.error("Error. Informaremos a nuestros desarrolladores para solucionarlo lo antes posible.", err.message);
-    const errorLogPath = path.join(__dirname, "data", "errors.txt");
-    const errorMessage = `[${new Date().toISOString()}] ${err.stack || err.message}\n`;
-    fs.appendFile(errorLogPath, errorMessage, (error) => {
-      if (error) {
+  console.error("Error. Informaremos a nuestros desarrolladores para solucionarlo lo antes posible.", err.message);
+  const errorLogPath = path.join(__dirname, "data", "errors.txt");
+  const errorMessage = `[${new Date().toISOString()}] ${err.stack || err.message}
+`;
+  fs.appendFile(errorLogPath, errorMessage, (error) => {
+    if (error) {
       console.error("Error al guardar el error en errors.txt:", error);
-      }
-    });
-    res.status(500).send('<p>Ups! La operación ha fallado. Hemos informado a los desarrolladores. Vuelve a probarlo más tarde.Vuelve a la <a href="/">home page</a></p> ');
+    }
+  });
+  res.status(500).send('<p>Ups! La operación ha fallado. Hemos informado a los desarrolladores. Vuelve a probarlo más tarde.Vuelve a la <a href="/">home page</a></p> ');
 })
-
 
 // ******************** Iniciar el servidor ********************
 app.listen(PORT, () => {
@@ -414,13 +382,10 @@ async function extractExifFromUrl(imageUrl) {
     if (!response.ok) {
       throw new Error(`Error al descargar la imagen: ${response.statusText}`);
     }
-
     // Convertir la respuesta a un buffer
     const imageBuffer = await response.buffer();
-
     // Extraer los datos EXIF
     const exifData = await exifr.parse(imageBuffer);
-
     console.log("Datos EXIF:", exifData);
     return exifData;
   } catch (error) {
@@ -428,7 +393,6 @@ async function extractExifFromUrl(imageUrl) {
     return null;
   }
 }
-
 
 /**
  * Renderiza una vista EJS de forma reutilizable
