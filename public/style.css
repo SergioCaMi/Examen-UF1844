@@ -2,7 +2,6 @@
     box-sizing: border-box;
 }
 
-/* Header */
 body {
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -58,7 +57,6 @@ h1 {
     margin-top: 1rem;
 }
 
-/* Búsqueda */
 .search {
     background: #fff;
     border-radius: 10px;
@@ -88,7 +86,6 @@ h1 {
     border: 1px solid #ccc;
 }
 
-/* Footer */
 .container {
     padding: 2rem;
     min-height: calc(100vh - 600px);
@@ -111,7 +108,6 @@ footer p {
     margin: 0;
 }
 
-/* Galería */
 .gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -189,7 +185,6 @@ footer p {
     border-radius: 50%;
 }
 
-/* Form */
 .formulario {
     max-width: 600px;
     margin: 2rem auto;
@@ -253,7 +248,6 @@ footer p {
     font-weight: bold;
 }
 
-/* Vistas */
 .carousel {
     position: relative;
     max-width: 600px;
@@ -309,7 +303,6 @@ footer p {
     width: 800px;
 }
 
-/* Contenedor principal */
 .custom-image-container {
     display: flex;
     justify-content: center;
@@ -317,7 +310,6 @@ footer p {
     padding: 0 1rem;
 }
 
-/* Tarjeta personalizada para la imagen */
 .custom-card {
     width: 100%;
     max-width: 800px;
@@ -333,7 +325,6 @@ footer p {
     margin-bottom: 2rem;
 }
 
-/* Imagen grande con proporciones controladas */
 .custom-image {
     width: 100%;
     height: auto;
@@ -342,14 +333,12 @@ footer p {
     border-radius: 10px;
 }
 
-/* Mensaje cuando no hay imagen */
 .custom-no-image {
     text-align: center;
     padding: 2rem;
     color: #999;
 }
 
-/* Tarjeta de detalles - ahora responsive y centrada */
 .custom-details-card {
     width: 100%;
     max-width: 80%;
@@ -405,7 +394,6 @@ footer p {
     margin-top: 1rem;
 }
 
-/* Contenedor principal */
 .container.details {
     display: flex;
     justify-content: center;
@@ -413,7 +401,6 @@ footer p {
     width: 100%;
 }
 
-/* Tarjeta de detalles - ahora responsive y centrada */
 .custom-details-card {
     width: 80%;
     max-width: 900px;
@@ -425,7 +412,6 @@ footer p {
     box-sizing: border-box;
 }
 
-/* Estilos específicos para la página de detalles de la imagen */
 .image-details-container {
     display: flex;
     justify-content: center;
@@ -541,7 +527,6 @@ footer p {
     margin-bottom: 1.5rem;
 }
 
-/* Estilo para la tarjeta de detalles con desplazamiento vertical */
 .custom-details-card {
     width: 100%;
     max-width: 80%;
