@@ -1,0 +1,16 @@
+<!-- views/partials/imageCard.ejs -->
+
+<% if (dataImage && dataImage.length > 0) { %>
+  <% const image = dataImage[0]; %>
+
+  <div class="custom-image-container">
+    <div class="custom-card">
+      <img src="<%= image.urlImagen %>" alt="<%= image.title %>" class="custom-image" />
+    </div>
+  </div>
+
+<% } else { %>
+  <div class="custom-no-image">
+    <p>Imagen no disponible</p>
+  </div>
+<% } %>

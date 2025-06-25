@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Error 404 - Imagen no encontrada</title>
+  <title>Error 404 - URL no encontrada</title>
   <style>
     * {
       box-sizing: border-box;
@@ -54,6 +55,10 @@
       border-radius: 30px;
       font-weight: bold;
       transition: background 0.3s, transform 0.3s;
+      margin-top: 50px;
+      /* 👈 Aquí está el cambio */
+      display: inline-block;
+      /* Para que el margin funcione correctamente */
     }
 
     a:hover {
@@ -68,30 +73,56 @@
     }
 
     @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-10px);
+      }
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
     }
 
     @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.85; transform: scale(1.05); }
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.85;
+        transform: scale(1.05);
+      }
     }
   </style>
 </head>
+
 <body>
   <div class="container">
     <div class="illustration">🖼️📷</div>
-    <h1>Error 404</h1>
-    <p>Lo sentimos, no pudimos encontrar esta imagen o galería.</p>
-    <div class="page-attempt">
-      <strong>Intentaste acceder a:</strong>
-    </div>
+    <h1>Error <%= status %>
+    </h1>
+    <p>
+      <%= message %>
+    </p>
+
     <a href="/">Volver a la galería principal</a>
   </div>
 </body>
+
 </html>

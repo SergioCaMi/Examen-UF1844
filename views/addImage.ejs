@@ -1,11 +1,7 @@
 <%- include("template/cabecera", {title: title}) %>
 
 <form class="formulario container" id="imageForm" action="/new-image" method="POST">
-  <% if (message) { %>
-    <div class="message-box" style="color: <%= colorMessage %>">
-      <%= message %>
-    </div>
-  <% } %>
+
 
   <div class="form-group">
     <label for="title">Título:</label>

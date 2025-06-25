@@ -61,6 +61,12 @@
         </nav>
     </header>
 
-    <h1>
-        <%= title %>
-    </h1>
+    <% if (title !=="Home" ){ %>
+        <h2 style="text-align: center; margin-top: 10px; color: #333;">
+            <%= title %>
+        </h2>
+        <% }else{ %>
+            <h1>
+                <%= title %>
+            </h1>
+            <%} %>

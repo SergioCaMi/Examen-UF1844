@@ -1,27 +1,87 @@
+<%- include("template/cabecera", { title: "Detalles de la Imagen" }) %>
 
-<%- include("template/cabecera", {title: title}) %>
+<!-- Muestra la imagen grande -->
+<%- include("template/imageCard.ejs", { dataImage: dataImage }) %>
 
-<div class="carousel">
-    <div class="carousel-inner">
-        <% dataImage.forEach(image => { %>
-            <div class="carousel-item ">
-                <img src="<%= image.urlImagen %>" alt="<%= image.title %>">
-                <div class="carousel-controls">
-                    <button class="close-btn" onclick="closeCarousel()"><i class="fas fa-times"></i></button>
-                    <button class="details-btn" onclick="window.location.href='/image/<%= image.id %>/details'"><i class="fas fa-info-circle"></i></button>
-                </div>
-            </div>
-        <% }); %>
-    </div>
-    <button class="nav-btn prev" onclick="prevSlide()">❮</button>
-    <button class="nav-btn next" onclick="nextSlide()">❯</button>
+<!-- Contenedor principal -->
+<div class="container details" style="display: flex; justify-content: center; padding: 2rem 1rem;">
+  <div style="width: 100%; max-width: 900px;">
+    <% if (dataImage && dataImage.length > 0) { %>
+      <% const image = dataImage[0]; %>
 
+      <div class="custom-details-card">
+        <h3>Título: <%= image.title || 'Título no disponible' %></h3>
+        <p><strong>URL de la Imagen:</strong> <%= image.urlImagen || 'URL no disponible' %></p>
+        <p><strong>Fecha:</strong> <%= image.date ? new Date(image.date).toLocaleDateString() : 'Fecha no disponible' %></p>
+        <p><strong>Descripción:</strong> <%= image.description || 'Sin descripción' %></p>
+
+        <!-- Colores -->
+        <h5>Colores principales:</h5>
+        <% if (image.colors && image.colors.length) { %>
+          <div class="color-circles">
+            <% image.colors.forEach(function(color) { %>
+              <% let rgb = Array.isArray(color._rgb) ? color._rgb : [0, 0, 0, 1] %>
+              <div class="color-circle" style="background-color: rgba(<%= rgb.join(',') %>);" title="rgba(<%= rgb.join(',') %>)"></div>
+            <% }) %>
+          </div>
+        <% } else { %>
+          <p style="color: red;">Colores no disponibles en esta imagen.</p>
+        <% } %>
+
+        <!-- Datos EXIF -->
+        <h4>Datos EXIF</h4>
+        <% if (image.exif) { %>
+          <div class="exif-section">
+            <h5>Cámara</h5>
+            <p><strong>Fabricante:</strong> <%= image.exif.Make || 'No disponible' %></p>
+            <p><strong>Modelo:</strong> <%= image.exif.Model || 'No disponible' %></p>
+            <p><strong>Flash:</strong> <%= image.exif.Flash || 'No disponible' %></p>
+
+            <h5>Fechas</h5>
+            <p><strong>Fecha original:</strong> <%= image.exif.DateTimeOriginal || 'No disponible' %></p>
+            <p><strong>Creación:</strong> <%= image.exif.CreateDate || 'No disponible' %></p>
+            <p><strong>Modificación:</strong> <%= image.exif.ModifyDate || 'No disponible' %></p>
+
+            <h5>Parámetros de Disparo</h5>
+            <p><strong>Exposición:</strong> <%= image.exif.ExposureTime || 'No disponible' %>, F: <%= image.exif.FNumber || 'No disponible' %>, ISO: <%= image.exif.ISO || 'No disponible' %></p>
+            <p><strong>Longitud focal:</strong> <%= image.exif.FocalLength || 'No disponible' %> (<%= image.exif.FocalLengthIn35mmFormat || 'No disponible' %>)</p>
+
+            <h5>Otras propiedades</h5>
+            <p><strong>Balance de blancos:</strong> <%= image.exif.WhiteBalance || 'No disponible' %></p>
+            <p><strong>Método de medición:</strong> <%= image.exif.MeteringMode || 'No disponible' %></p>
+            <p><strong>Modo de exposición:</strong> <%= image.exif.ExposureMode || 'No disponible' %></p>
+
+            <h5>GPS</h5>
+            <% if (image.exif.latitude && image.exif.longitude) { %>
+              <p>
+                <a href="https://www.google.com/maps?q=<%= image.exif.latitude %>,<%= image.exif.longitude %>" target="_blank">
+                  Ver ubicación en Google Maps
+                </a>
+              </p>
+            <% } else { %>
+              <p>No hay datos GPS disponibles.</p>
+            <% } %>
+          </div>
+        <% } else { %>
+          <p class="text-muted">Datos EXIF no disponibles.</p>
+        <% } %>
+      </div>
+
+      <div class="details-bottom">
+        <a href="/" class="btn btn-back">← Volver al inicio</a>
+      </div>
+
+    <% } else { %>
+      <div class="no-image">
+        <h2>Imagen no encontrada.</h2>
+        <a href="/" class="btn btn-back">← Volver al inicio</a>
+      </div>
+    <% } %>
+  </div>
 </div>
-<%- include("template/footer")%>
+
+<%- include("template/footer") %>
+
 <script>
-    const dataImage = <%- JSON.stringify(dataImage) %>;
-    const index = <%- index %>;
+  const imageData = <%= JSON.stringify(dataImage[0] || null) %>;
 </script>
-<script src="/viewImage.js" defer></script>
-</body>
-</html>
