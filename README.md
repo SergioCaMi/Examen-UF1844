@@ -1,13 +1,12 @@
 # Fototeca Express
 
-[Read this in English](#fototeca-express-english)
-
-¡Bienvenido/a a **Fototeca Express**! Este proyecto es una galería de imágenes web desarrollada con Node.js, Express y EJS, que permite a los usuarios gestionar, visualizar y analizar imágenes de forma sencilla y moderna.
+¡Bienvenido/a a **Fototeca Express**! Este proyecto es una galería de imágenes web desarrollada con Node.js, Express, EJS y MongoDB (Mongoose), que permite a los usuarios gestionar, visualizar y analizar imágenes de forma sencilla y moderna.
 
 ## Tecnologías utilizadas
 
 - **Node.js** y **Express**: Backend y servidor web.
 - **EJS**: Motor de plantillas para renderizar vistas dinámicas.
+- **MongoDB + Mongoose**: Base de datos NoSQL para almacenar imágenes y usuarios.
 - **Passport + Google OAuth**: Autenticación de usuarios mediante Google.
 - **get-image-colors** y **exifr**: Extracción de colores predominantes y metadatos EXIF de las imágenes.
 - **CSS personalizado**: Interfaz moderna y responsive.
@@ -15,13 +14,8 @@
 ## Estructura del proyecto
 
 ```
-├── auth.js                # Configuración de autenticación Google
-├── index.js               # Servidor principal Express
-├── package.json           # Dependencias y scripts
-├── data/
-│   └── images.json        # Base de datos de imágenes (JSON)
-├── downloads/             # Carpeta de descargas
-├── public/                # Archivos estáticos (JS, CSS)
+├── models/                # Modelos de Mongoose (por ejemplo, image.model.js)
+├── routes/                # Rutas Express (por ejemplo, imageRoutes.js)
 ├── views/                 # Vistas EJS
 │   ├── addImage.ejs
 │   ├── home.ejs
@@ -29,6 +23,10 @@
 │   └── template/
 │       ├── cabecera.ejs
 │       └── footer.ejs
+├── public/                # Archivos estáticos (JS, CSS)
+├── index.js               # Servidor principal Express
+├── auth.js                # Configuración de autenticación Google
+├── package.json           # Dependencias y scripts
 └── README.md              # (Este archivo)
 ```
 
@@ -51,45 +49,30 @@
 - `👁️` (Ver): Visualizar imagen en modo carrusel.
 - `ℹ️` (Detalles): Ver detalles completos de la imagen.
 
-## Funcionalidades detalladas
+## Funcionalidades principales
 
-### 1. Galería visual
-- Visualiza todas las imágenes en una galería moderna y responsive.
-- Cada imagen muestra su título, fecha, descripción, colores predominantes y acciones disponibles según el estado de autenticación.
+- **Galería visual**: Visualiza todas las imágenes en una galería moderna y responsive.
+- **Añadir imágenes**: Añade imágenes por URL (no se permite la subida de archivos locales). El formulario solicita título, URL, fecha y descripción.
+- **Visualizar imagen (carrusel)**: Navega entre imágenes y accede a detalles o cierra la vista.
+- **Ver detalles**: Consulta título, URL, fecha, descripción, colores predominantes (con código RGBA al pasar el ratón), datos EXIF y mapa de coordenadas (enlace a Google Maps si hay GPS).
+- **Editar imagen**: Modifica título, fecha o descripción de la imagen (solo autenticado).
+- **Eliminar imagen**: Elimina imágenes de la galería (solo autenticado).
+- **Descargar imagen**: Descarga cualquier imagen (solo autenticado).
+- **Búsqueda y filtrado**: Busca imágenes por nombre o filtra por fecha (desde la fecha indicada hasta la actual).
 
-### 2. Añadir imágenes (solo autenticado)
-- Haz clic en `➕` para acceder al formulario de "Añadir imagen".
-- Solo se permite añadir imágenes por URL (no se permite la subida de archivos locales).
-- El formulario solicita título, URL de la imagen, fecha y descripción.
-- La URL se valida automáticamente para asegurar que es una imagen válida.
+## Cómo ejecutar el proyecto
 
-### 3. Visualizar imagen (carrusel)
-- Haz clic en `👁️` para abrir la imagen en modo carrusel.
-- Navega entre imágenes con los botones de navegación `❮` y `❯`.
-- Desde el carrusel puedes acceder a los detalles (`ℹ️`) o cerrar la vista.
-
-### 4. Ver detalles de la imagen
-- Haz clic en `ℹ️` para ver información detallada:
-  - **Datos introducidos**: título, URL, fecha, descripción.
-  - **Colores predominantes**: se muestran como círculos de color. Al pasar el ratón por encima, se muestra el código RGBA de cada color.
-  - **Datos EXIF**: si la imagen contiene metadatos EXIF, se muestran detalles como cámara, fechas, parámetros de disparo, calidad de imagen, datos GPS, etc.
-  - **Mapa de coordenadas**: si la imagen tiene datos GPS, se muestra un enlace a Google Maps con la ubicación.
-
-### 5. Editar imagen (solo autenticado)
-- Haz clic en `✏️` para editar el título, fecha o descripción de la imagen.
-- El formulario de edición es similar al de añadir imagen.
-
-### 6. Eliminar imagen (solo autenticado)
-- Haz clic en `🗑️` para eliminar la imagen de la galería.
-- La galería se actualiza automáticamente tras la eliminación.
-
-### 7. Descargar imagen (solo autenticado)
-- Haz clic en `⬇️` para descargar la imagen al instante.
-
-### 8. Búsqueda y filtrado
-- Haz clic en `🔍` para mostrar las opciones de búsqueda.
-- **Buscar por nombre**: Escribe en el campo de búsqueda para filtrar imágenes por título.
-- **Buscar por fecha**: Selecciona una fecha para mostrar solo imágenes a partir de esa fecha.
+1. **Instala las dependencias**:
+   ```
+npm install
+   ```
+2. **Configura las variables de entorno**:
+   - Crea un archivo `.env` o `.env.development` con tus credenciales de Google OAuth y la URI de tu base de datos MongoDB.
+3. **Inicia el servidor**:
+   ```
+npm start
+   ```
+   El servidor estará disponible en [http://localhost:5000](http://localhost:5000)
 
 ## Consejos de uso
 
@@ -123,6 +106,7 @@ Welcome to **Fototeca Express**! This project is a web image gallery built with 
 
 - **Node.js** and **Express**: Backend and web server.
 - **EJS**: Template engine for dynamic views.
+- **MongoDB + Mongoose**: NoSQL database for storing images and users.
 - **Passport + Google OAuth**: User authentication via Google.
 - **get-image-colors** and **exifr**: Extract dominant colors and EXIF metadata from images.
 - **Custom CSS**: Modern and responsive interface.
@@ -130,13 +114,8 @@ Welcome to **Fototeca Express**! This project is a web image gallery built with 
 ## Project Structure
 
 ```
-├── auth.js                # Google authentication config
-├── index.js               # Main Express server
-├── package.json           # Dependencies and scripts
-├── data/
-│   └── images.json        # Image database (JSON)
-├── downloads/             # Download folder
-├── public/                # Static files (JS, CSS)
+├── models/                # Mongoose models (e.g., image.model.js)
+├── routes/                # Express routes (e.g., imageRoutes.js)
 ├── views/                 # EJS views
 │   ├── addImage.ejs
 │   ├── home.ejs
@@ -144,6 +123,10 @@ Welcome to **Fototeca Express**! This project is a web image gallery built with 
 │   └── template/
 │       ├── cabecera.ejs
 │       └── footer.ejs
+├── public/                # Static files (JS, CSS)
+├── index.js               # Main Express server
+├── auth.js                # Google authentication config
+├── package.json           # Dependencies and scripts
 └── README.md              # (This file)
 ```
 
@@ -168,43 +151,28 @@ Welcome to **Fototeca Express**! This project is a web image gallery built with 
 
 ## Detailed Features
 
-### 1. Visual Gallery
-- View all images in a modern, responsive gallery.
-- Each image displays its title, date, description, dominant colors, and available actions depending on authentication status.
+- **Visual Gallery**: View all images in a modern, responsive gallery.
+- **Add Images**: Add images by URL (no local file upload). The form requires title, image URL, date, and description.
+- **View Image (Carousel)**: Navigate between images and access details or close the view.
+- **View Details**: Check title, URL, date, description, dominant colors (with RGBA code on hover), EXIF data, and map coordinates (Google Maps link if GPS data is present).
+- **Edit Image**: Modify the image's title, date, or description (authenticated only).
+- **Delete Image**: Remove images from the gallery (authenticated only).
+- **Download Image**: Download any image (authenticated only).
+- **Search and Filter**: Search images by name or filter by date (from the selected date to the current date).
 
-### 2. Add Images (authenticated only)
-- Click `➕` to access the "Add Image" form.
-- Only images by URL are allowed (no local file upload).
-- The form requires title, image URL, date, and description.
-- The URL is automatically validated to ensure it is a valid image.
+## How to Run the Project
 
-### 3. View Image (Carousel)
-- Click `👁️` to open the image in carousel mode.
-- Navigate between images with `❮` and `❯` buttons.
-- From the carousel, you can access details (`ℹ️`) or close the view.
-
-### 4. View Image Details
-- Click `ℹ️` to see detailed information:
-  - **Entered data**: title, URL, date, description.
-  - **Dominant colors**: shown as color circles. Hover to see the RGBA code.
-  - **EXIF data**: if available, shows camera, dates, shooting parameters, image quality, GPS data, etc.
-  - **Map coordinates**: if GPS data is present, a Google Maps link is shown.
-
-### 5. Edit Image (authenticated only)
-- Click `✏️` to edit the image's title, date, or description.
-- The edit form is similar to the add image form.
-
-### 6. Delete Image (authenticated only)
-- Click `🗑️` to remove the image from the gallery.
-- The gallery updates automatically after deletion.
-
-### 7. Download Image (authenticated only)
-- Click `⬇️` to instantly download the image.
-
-### 8. Search and Filter
-- Click `🔍` to show search options.
-- **Search by name**: Type in the search field to filter images by title.
-- **Search by date**: Select a date to show only images from that date onwards.
+1. **Install dependencies**:
+   ```
+npm install
+   ```
+2. **Set up environment variables**:
+   - Create a `.env` or `.env.development` file with your Google OAuth credentials and MongoDB database URI.
+3. **Start the server**:
+   ```
+npm start
+   ```
+   The server will be available at [http://localhost:5000](http://localhost:5000)
 
 ## Usage Tips
 
@@ -227,8 +195,3 @@ Contributions are welcome! If you have ideas for new features, interface improve
 ---
 
 Thank you for using and improving Fototeca Express! 📸
-
-
-
-
-588037d
