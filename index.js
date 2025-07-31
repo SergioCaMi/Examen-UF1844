@@ -9,11 +9,8 @@ const fs = require("fs");
 // ****************************** Sesión Google + Autenticación ******************************
 
 // ********** Cargar las variables de entorno **********
-if (process.env.NODE_ENV === "production") {
-  require("dotenv").config(); // Usa .env por defecto en producción
-} else {
-  require("dotenv").config({ path: ".env.development" }); // Usa .env.development en desarrollo
-}
+
+require("dotenv").config();
 
 // ********** Configura la sesión del usuario **********
 const session = require("express-session");
