@@ -30,22 +30,51 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+// ********** Rutas de autenticación (dummy o real según configuración) **********
+if (process.env.USE_DUMMY_AUTH === 'true') {
+  // Modo dummy: simular autenticación sin Google OAuth
+  app.get("/auth/google", (req, res) => {
+    // Simular usuario logueado
+    req.session.dummyUser = {
+      id: 'dummy_user_123',
+      displayName: 'Usuario de Prueba',
+      emails: [{ value: 'dummy@test.com' }],
+      photos: [{ value: 'https://via.placeholder.com/50x50/4285f4/fff?text=Demo' }]
+    };
+    res.redirect('/google/callback');
+  });
 
-
-// ********** Ruta que manda al usuario a iniciar sesión con Google **********
-app.get(
-  "/auth/google",
-  passport.authenticate("google", { scope: ["email", "profile"] })
-);
-
-// ********** Ruta a la que vuelve Google después del login **********
-app.get(
-  "/google/callback",
-  passport.authenticate("google", { failureRedirect: "/login" }),
-  function (req, res) {
+  app.get("/google/callback", (req, res) => {
+    // En modo dummy, verificar que existe usuario dummy
+    if (!req.session.dummyUser) {
+      // Si no existe usuario dummy, redirigir a auth
+      return res.redirect('/auth/google');
+    }
+    
+    // En modo dummy, simular el comportamiento de passport
+    req.user = req.session.dummyUser;
+    
+    // Simular la serialización de passport para mantener la sesión
+    req.session.passport = { user: req.session.dummyUser };
+    
     res.render("welcome", { user: req.user });
-  }
-);
+  });
+
+} else {
+  // Modo real: usar Google OAuth
+  app.get(
+    "/auth/google",
+    passport.authenticate("google", { scope: ["email", "profile"] })
+  );
+
+  app.get(
+    "/google/callback",
+    passport.authenticate("google", { failureRedirect: "/login" }),
+    function (req, res) {
+      res.render("welcome", { user: req.user });
+    }
+  );
+}
 
 // ********** Cerrar sesión **********
 app.get("/logout", (req, res) => {
@@ -61,10 +90,33 @@ app.get("/logout", (req, res) => {
 // ********** Conexión a la base de datos **********
 const mongoose = require("mongoose");
 const Image = require("./models/image.model");
-main().catch((err) => console.log(err));
 
 async function main() {
-  await mongoose.connect(process.env.MONGO_URI);
+  // Configuración de MongoDB con fallback para modo demo
+  const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/fototeca_demo';
+
+  if (process.env.USE_DUMMY_AUTH === 'true') {
+    console.log('� Modo demo: Intentando conectar a MongoDB (opcional)...');
+    try {
+      await mongoose.connect(mongoUri, { 
+        serverSelectionTimeoutMS: 3000,
+        connectTimeoutMS: 3000 
+      });
+      console.log('✅ Conectado a MongoDB exitosamente');
+    } catch (error) {
+      console.log('⚠️ MongoDB no disponible. Continuando en modo demo sin persistencia...');
+      // En modo demo, continúa sin base de datos
+    }
+  } else {
+    console.log('📊 Modo producción: Conectando a MongoDB...');
+    try {
+      await mongoose.connect(mongoUri);
+      console.log('✅ Conectado a MongoDB exitosamente');
+    } catch (error) {
+      console.error('❌ Error conectando a MongoDB:', error.message);
+      process.exit(1);
+    }
+  }
 
   // ********** Morgan para visualizar el flujo por consola **********
   const morgan = require("morgan");
@@ -116,6 +168,12 @@ async function main() {
     console.log(`Servidor escuchando en http://localhost:${PORT}`);
   });
 }
+
+// Iniciar la aplicación
+main().catch((err) => {
+  console.error('❌ Error fatal al iniciar la aplicación:', err);
+  process.exit(1);
+});
 
 // Mensajes de Error:
 //     res.status(x).render("Page404.ejs", { message: "message", status: x , user: req.user});

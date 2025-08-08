@@ -1,0 +1,57 @@
+[2025-08-08T21:43:39.078Z] TypeError: C:\Users\sergi\Desktop\IronHack\Modulo 2 MF0492\Examen UF1844\views\welcome.ejs:48
+    46| </head>
+    47| <body>
+ >> 48|     <h1>Bienvenido, <%= user.displayName %>!</h1>
+    49|     <p>Correo electrónico: <%= user.emails[0].value %></p>
+    50|     <img src="<%= user.photos[0].value %>" alt="Foto de perfil">
+    51|     <br>
+
+Cannot read properties of undefined (reading 'displayName')
+    at eval (eval at compile (C:\Users\sergi\Desktop\IronHack\Modulo 2 MF0492\Examen UF1844\node_modules\ejs\lib\ejs.js:673:12), <anonymous>:12:31)
+    at welcome (C:\Users\sergi\Desktop\IronHack\Modulo 2 MF0492\Examen UF1844\node_modules\ejs\lib\ejs.js:703:17)
+    at tryHandleCache (C:\Users\sergi\Desktop\IronHack\Modulo 2 MF0492\Examen UF1844\node_modules\ejs\lib\ejs.js:274:36)
+    at exports.renderFile [as engine] (C:\Users\sergi\Desktop\IronHack\Modulo 2 MF0492\Examen UF1844\node_modules\ejs\lib\ejs.js:491:10)
+    at View.render (C:\Users\sergi\Desktop\IronHack\Modulo 2 MF0492\Examen UF1844\node_modules\express\lib\view.js:139:8)
+    at tryRender (C:\Users\sergi\Desktop\IronHack\Modulo 2 MF0492\Examen UF1844\node_modules\express\lib\application.js:627:10)
+    at Function.render (C:\Users\sergi\Desktop\IronHack\Modulo 2 MF0492\Examen UF1844\node_modules\express\lib\application.js:574:3)
+    at ServerResponse.render (C:\Users\sergi\Desktop\IronHack\Modulo 2 MF0492\Examen UF1844\node_modules\express\lib\response.js:909:7)
+    at C:\Users\sergi\Desktop\IronHack\Modulo 2 MF0492\Examen UF1844\index.js:54:9
+    at Layer.handleRequest (C:\Users\sergi\Desktop\IronHack\Modulo 2 MF0492\Examen UF1844\node_modules\router\lib\layer.js:152:17)
+[2025-08-08T21:43:44.874Z] TypeError: C:\Users\sergi\Desktop\IronHack\Modulo 2 MF0492\Examen UF1844\views\welcome.ejs:48
+    46| </head>
+    47| <body>
+ >> 48|     <h1>Bienvenido, <%= user.displayName %>!</h1>
+    49|     <p>Correo electrónico: <%= user.emails[0].value %></p>
+    50|     <img src="<%= user.photos[0].value %>" alt="Foto de perfil">
+    51|     <br>
+
+Cannot read properties of undefined (reading 'displayName')
+    at eval (eval at compile (C:\Users\sergi\Desktop\IronHack\Modulo 2 MF0492\Examen UF1844\node_modules\ejs\lib\ejs.js:673:12), <anonymous>:12:31)
+    at welcome (C:\Users\sergi\Desktop\IronHack\Modulo 2 MF0492\Examen UF1844\node_modules\ejs\lib\ejs.js:703:17)
+    at tryHandleCache (C:\Users\sergi\Desktop\IronHack\Modulo 2 MF0492\Examen UF1844\node_modules\ejs\lib\ejs.js:274:36)
+    at exports.renderFile [as engine] (C:\Users\sergi\Desktop\IronHack\Modulo 2 MF0492\Examen UF1844\node_modules\ejs\lib\ejs.js:491:10)
+    at View.render (C:\Users\sergi\Desktop\IronHack\Modulo 2 MF0492\Examen UF1844\node_modules\express\lib\view.js:139:8)
+    at tryRender (C:\Users\sergi\Desktop\IronHack\Modulo 2 MF0492\Examen UF1844\node_modules\express\lib\application.js:627:10)
+    at Function.render (C:\Users\sergi\Desktop\IronHack\Modulo 2 MF0492\Examen UF1844\node_modules\express\lib\application.js:574:3)
+    at ServerResponse.render (C:\Users\sergi\Desktop\IronHack\Modulo 2 MF0492\Examen UF1844\node_modules\express\lib\response.js:909:7)
+    at C:\Users\sergi\Desktop\IronHack\Modulo 2 MF0492\Examen UF1844\index.js:54:9
+    at Layer.handleRequest (C:\Users\sergi\Desktop\IronHack\Modulo 2 MF0492\Examen UF1844\node_modules\router\lib\layer.js:152:17)
+[2025-08-08T21:44:12.989Z] TypeError: C:\Users\sergi\Desktop\IronHack\Modulo 2 MF0492\Examen UF1844\views\welcome.ejs:48
+    46| </head>
+    47| <body>
+ >> 48|     <h1>Bienvenido, <%= user.displayName %>!</h1>
+    49|     <p>Correo electrónico: <%= user.emails[0].value %></p>
+    50|     <img src="<%= user.photos[0].value %>" alt="Foto de perfil">
+    51|     <br>
+
+Cannot read properties of undefined (reading 'displayName')
+    at eval (eval at compile (C:\Users\sergi\Desktop\IronHack\Modulo 2 MF0492\Examen UF1844\node_modules\ejs\lib\ejs.js:673:12), <anonymous>:12:31)
+    at welcome (C:\Users\sergi\Desktop\IronHack\Modulo 2 MF0492\Examen UF1844\node_modules\ejs\lib\ejs.js:703:17)
+    at tryHandleCache (C:\Users\sergi\Desktop\IronHack\Modulo 2 MF0492\Examen UF1844\node_modules\ejs\lib\ejs.js:274:36)
+    at exports.renderFile [as engine] (C:\Users\sergi\Desktop\IronHack\Modulo 2 MF0492\Examen UF1844\node_modules\ejs\lib\ejs.js:491:10)
+    at View.render (C:\Users\sergi\Desktop\IronHack\Modulo 2 MF0492\Examen UF1844\node_modules\express\lib\view.js:139:8)
+    at tryRender (C:\Users\sergi\Desktop\IronHack\Modulo 2 MF0492\Examen UF1844\node_modules\express\lib\application.js:627:10)
+    at Function.render (C:\Users\sergi\Desktop\IronHack\Modulo 2 MF0492\Examen UF1844\node_modules\express\lib\application.js:574:3)
+    at ServerResponse.render (C:\Users\sergi\Desktop\IronHack\Modulo 2 MF0492\Examen UF1844\node_modules\express\lib\response.js:909:7)
+    at C:\Users\sergi\Desktop\IronHack\Modulo 2 MF0492\Examen UF1844\index.js:54:9
+    at Layer.handleRequest (C:\Users\sergi\Desktop\IronHack\Modulo 2 MF0492\Examen UF1844\node_modules\router\lib\layer.js:152:17)

@@ -246,6 +246,96 @@ footer p {
     margin-bottom: 1.5rem;
     text-align: center;
     font-weight: bold;
+    border-left: 4px solid #2c5364;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: slideIn 0.3s ease-out;
+    position: relative;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Variantes por colores */
+.message-box.red {
+    background: linear-gradient(135deg, #dc3545, #c82333);
+    color: white;
+    border-left-color: #721c24;
+}
+
+.message-box.red:before {
+    content: '❌ ';
+    margin-right: 0.5rem;
+}
+
+.message-box.green {
+    background: linear-gradient(135deg, #28a745, #218838);
+    color: white;
+    border-left-color: #155724;
+}
+
+.message-box.green:before {
+    content: '✅ ';
+    margin-right: 0.5rem;
+}
+
+.message-box.blue {
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+    border-left-color: #004085;
+}
+
+.message-box.blue:before {
+    content: 'ℹ️ ';
+    margin-right: 0.5rem;
+}
+
+.message-box.yellow {
+    background: linear-gradient(135deg, #ffc107, #e0a800);
+    color: #856404;
+    border-left-color: #b69500;
+}
+
+.message-box.yellow:before {
+    content: '⚠️ ';
+    margin-right: 0.5rem;
+}
+
+/* Botón de cerrar */
+.message-box .close-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.75rem;
+    background: none;
+    border: none;
+    color: inherit;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.message-box .close-btn:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.message-box .close-btn:before {
+    content: '×';
+}
+
+/* Efectos hover */
+.message-box:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
 
 .carousel {
