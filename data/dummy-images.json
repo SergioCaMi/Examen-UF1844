@@ -1,0 +1,16 @@
+[
+  {
+    "_id": "dummy1754692856572",
+    "id": "dummy1754692856572",
+    "title": "aaa",
+    "urlImagen": "https://www.tooltyp.com/wp-content/uploads/2014/10/1900x920-8-beneficios-de-usar-imagenes-en-nuestros-sitios-web.jpg",
+    "url": "https://www.tooltyp.com/wp-content/uploads/2014/10/1900x920-8-beneficios-de-usar-imagenes-en-nuestros-sitios-web.jpg",
+    "date": "2025-08-08T22:40:56.572Z",
+    "description": "aaa",
+    "colors": null,
+    "user": {
+      "name": "Usuario de Prueba",
+      "email": "dummy@test.com"
+    }
+  }
+]

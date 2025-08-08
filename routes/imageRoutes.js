@@ -4,43 +4,41 @@ const Image = require("../models/image.model");
 const getColors = require("get-image-colors");
 const fetch = require("node-fetch");
 const exifr = require("exifr");
+const fs = require("fs");
+const path = require("path");
+
+// ********** Archivo temporal para persistir datos dummy **********
+const dummyDataFile = path.join(__dirname, '../data/dummy-images.json');
+
+// ********** Función para cargar datos dummy desde archivo **********
+function loadDummyImages() {
+  try {
+    if (fs.existsSync(dummyDataFile)) {
+      const data = fs.readFileSync(dummyDataFile, 'utf8');
+      return JSON.parse(data);
+    }
+  } catch (error) {
+    console.log('📝 Creando nuevo archivo de datos dummy...');
+  }
+  return [];
+}
+
+// ********** Función para guardar datos dummy en archivo **********
+function saveDummyImages(images) {
+  try {
+    // Crear directorio si no existe
+    const dataDir = path.dirname(dummyDataFile);
+    if (!fs.existsSync(dataDir)) {
+      fs.mkdirSync(dataDir, { recursive: true });
+    }
+    fs.writeFileSync(dummyDataFile, JSON.stringify(images, null, 2));
+  } catch (error) {
+    console.error('Error guardando datos dummy:', error);
+  }
+}
 
 // ********** Datos de ejemplo para modo dummy **********
-const dummyImages = [
-  {
-    _id: 'dummy1',
-    id: 'dummy1', // Compatible con vistas EJS
-    title: 'Imagen Demo 1',
-    url: 'https://via.placeholder.com/400x300/4285f4/fff?text=Demo+1',
-    urlImagen: 'https://via.placeholder.com/400x300/4285f4/fff?text=Demo+1', // Compatible con MongoDB schema
-    description: 'Esta es una imagen de demostración para probar la aplicación sin base de datos.',
-    date: new Date('2024-01-15'),
-    author: 'Usuario Demo',
-    colors: ['#4285f4', '#ffffff']
-  },
-  {
-    _id: 'dummy2',
-    id: 'dummy2', // Compatible con vistas EJS
-    title: 'Imagen Demo 2',
-    url: 'https://via.placeholder.com/400x300/34a853/fff?text=Demo+2',
-    urlImagen: 'https://via.placeholder.com/400x300/34a853/fff?text=Demo+2', // Compatible con MongoDB schema
-    description: 'Segunda imagen de ejemplo que muestra las funcionalidades.',
-    date: new Date('2024-01-20'),
-    author: 'Usuario Demo',
-    colors: ['#34a853', '#ffffff']
-  },
-  {
-    _id: 'dummy3',
-    id: 'dummy3', // Compatible con vistas EJS
-    title: 'Imagen Demo 3', 
-    url: 'https://via.placeholder.com/400x300/ea4335/fff?text=Demo+3',
-    urlImagen: 'https://via.placeholder.com/400x300/ea4335/fff?text=Demo+3', // Compatible con MongoDB schema
-    description: 'Tercera imagen para completar la galería de demostración.',
-    date: new Date('2024-01-25'),
-    author: 'Usuario Demo',
-    colors: ['#ea4335', '#ffffff']
-  }
-];
+let dummyImages = loadDummyImages();
 
 // ********** Función auxiliar para operaciones de base de datos **********
 async function getImages() {
@@ -63,7 +61,8 @@ async function getImageById(id) {
 
 async function findImageByUrl(url) {
   if (process.env.USE_DUMMY_AUTH === 'true') {
-    return dummyImages.find(img => img.url === url) || null;
+    // En modo dummy, también verificar duplicados por URL
+    return dummyImages.find(img => img.url === url || img.urlImagen === url) || null;
   } else {
     return await Image.findOne({ urlImagen: url });
   }
@@ -80,6 +79,10 @@ async function saveImage(imageData) {
       date: new Date()
     };
     dummyImages.push(newImage);
+    
+    // Persistir en archivo JSON
+    saveDummyImages(dummyImages);
+    
     return newImage;
   } else {
     const newImage = new Image(imageData);
@@ -92,6 +95,10 @@ async function deleteImageById(id) {
     const index = dummyImages.findIndex(img => img._id === id || img.id === id);
     if (index > -1) {
       dummyImages.splice(index, 1);
+      
+      // Persistir cambios en archivo JSON
+      saveDummyImages(dummyImages);
+      
       return true;
     }
     return false;
@@ -106,6 +113,10 @@ async function updateImageById(id, updateData) {
     const imageIndex = dummyImages.findIndex(img => img._id === id || img.id === id);
     if (imageIndex > -1) {
       dummyImages[imageIndex] = { ...dummyImages[imageIndex], ...updateData };
+      
+      // Persistir cambios en archivo JSON
+      saveDummyImages(dummyImages);
+      
       return dummyImages[imageIndex];
     }
     return null;
@@ -223,8 +234,13 @@ router.post("/new-image", isAuthenticated, async (req, res) => {
   try {
     const dataImage = await getImages();
     
+    console.log('🔍 Debug: Verificando URL duplicada:', req.body.urlImagen);
+    console.log('🔍 Debug: Modo actual:', process.env.USE_DUMMY_AUTH === 'true' ? 'DUMMY' : 'PRODUCCIÓN');
+    
     const existingImage = await findImageByUrl(req.body.urlImagen);
+    
     if (existingImage) {
+      console.log('❌ Debug: ¡DUPLICADO ENCONTRADO!', existingImage.title || existingImage._id);
       const renderData = getRenderObject(
         "New Image",
         dataImage,
@@ -232,8 +248,10 @@ router.post("/new-image", isAuthenticated, async (req, res) => {
         `La imagen "${req.body.title}" ya se encontraba en el archivo.`,
         "red"
       );
-      return res.status(500).render("addImage.ejs", renderData);
+      return res.status(400).render("addImage.ejs", renderData);
     }
+    
+    console.log('✅ Debug: URL nueva, procediendo a crear imagen...');
 
     let colors;
     try {
