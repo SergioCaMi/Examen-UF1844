@@ -1,10 +1,10 @@
 # Fototeca Express
 
-¡Bienvenido/a a **Fototeca Express**! Este proyecto es una galería de imágenes web desarrollada con Node.js, Express, EJS y MongoDB (Mongoose), que permite a los usuarios gestionar, visualizar y analizar imágenes de forma sencilla y moderna.
+¡Bienvenido/a a **Fototeca**! Este proyecto es una galería de imágenes web desarrollada con Node.js, Express, EJS y MongoDB (Mongoose), que permite a los usuarios gestionar, visualizar y analizar imágenes de forma sencilla y moderna.
 
 ## Cómo usar el proyecto
 
-### 🚀 Modo de desarrollo rápido (con Usuario Dummy)
+### Modo de desarrollo rápido (con Usuario Dummy)
 
 **¿Qué es el Usuario Dummy?**
 
@@ -93,6 +93,21 @@ Cuando está activo (`USE_DUMMY_AUTH=true`):
 - **Configuración**: Requiere credenciales de Google y MongoDB
 - **Ventajas**: Persistencia de datos, usuarios reales, escalabilidad
 
+### ¿Cómo cambiar entre modos?
+```bash
+# Para modo Dummy
+echo "USE_DUMMY_AUTH=true" > .env
+
+# Para modo Producción  
+echo "USE_DUMMY_AUTH=false" > .env
+```
+
+### ¿Qué datos incluye el modo Dummy?
+- **Usuario**: "Usuario de Prueba" con email dummy@test.com
+- **Imágenes**: 3 imágenes de demostración con diferentes colores
+- **Funciones**: Todas disponibles (ver, añadir, editar, eliminar, descargar)
+
+
 ## Características principales
 
 - **🔄 Modo Dual**: Funciona con Usuario Dummy (desarrollo) o OAuth real (producción)
@@ -157,32 +172,6 @@ PORT=5000
 4. Crea credenciales OAuth 2.0
 5. Configura las URLs de redirección autorizadas
 
-## ❓ Preguntas frecuentes (FAQ)
-
-### ¿Por qué usar el Usuario Dummy?
-- **Evaluación rápida**: Permite probar todas las funciones sin configuración
-- **Desarrollo ágil**: Evita depender de servicios externos durante desarrollo
-- **Demostración**: Ideal para mostrar el proyecto funcionando
-- **Aprendizaje**: Permite entender la funcionalidad sin barreras técnicas
-
-### ¿Es seguro el modo Dummy?
-- **Solo para desarrollo**: No usar en producción
-- **Sin datos reales**: Los datos se almacenan temporalmente en memoria
-- **Sin persistencia**: Los datos se pierden al reiniciar
-
-### ¿Cómo cambiar entre modos?
-```bash
-# Para modo Dummy
-echo "USE_DUMMY_AUTH=true" > .env
-
-# Para modo Producción  
-echo "USE_DUMMY_AUTH=false" > .env
-```
-
-### ¿Qué datos incluye el modo Dummy?
-- **Usuario**: "Usuario de Prueba" con email dummy@test.com
-- **Imágenes**: 3 imágenes de demostración con diferentes colores
-- **Funciones**: Todas disponibles (ver, añadir, editar, eliminar, descargar)
 
 ## Contribuir
 

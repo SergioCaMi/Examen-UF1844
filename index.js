@@ -9,22 +9,47 @@ const fs = require("fs");
 // ****************************** Sesión Google + Autenticación ******************************
 
 // ********** Cargar las variables de entorno **********
-
 require("dotenv").config();
+
+// Debug inicial: verificar carga de variables de entorno
+console.log('🔧 Iniciando aplicación...');
+console.log('🔍 NODE_ENV:', process.env.NODE_ENV);
+console.log('🔍 USE_DUMMY_AUTH:', process.env.USE_DUMMY_AUTH);
+
+// Verificar si estamos en Render
+if (process.env.RENDER) {
+  console.log('🌐 Detectado entorno Render');
+}
 
 // ********** Configura la sesión del usuario **********
 const session = require("express-session");
+const MongoStore = require("connect-mongo");
 const passport = require("passport");
 require("./auth");
 
 // ********** Configura una sesión segura para cada usuario **********
-app.use(
-  session({
-    secret: process.env.SESSION_SECRET || "your-secret-key",
-    resave: false,
-    saveUninitialized: true,
-  })
-);
+const sessionConfig = {
+  secret: process.env.SESSION_SECRET || "your-secret-key",
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    secure: false, // En producción con HTTPS, cambiar a true
+    maxAge: 24 * 60 * 60 * 1000 // 24 horas
+  }
+};
+
+// En producción, usar MongoDB para almacenar sesiones
+if (process.env.USE_DUMMY_AUTH === 'false' && process.env.MONGODB_URI) {
+  sessionConfig.store = MongoStore.create({
+    mongoUrl: process.env.MONGODB_URI,
+    touchAfter: 24 * 3600 // lazy session update
+  });
+  console.log('🗄️ Configurando sesiones con MongoDB Store');
+} else {
+  console.log('⚠️ Usando MemoryStore para sesiones (solo desarrollo)');
+}
+
+app.use(session(sessionConfig));
 
 // ********** Iniciar Passport y lo conecta con las sesiones de Express **********
 app.use(passport.initialize());
@@ -92,8 +117,16 @@ const mongoose = require("mongoose");
 const Image = require("./models/image.model");
 
 async function main() {
+  // Debug: Verificar variables de entorno en producción
+  console.log('🔍 Debug Variables de Entorno:');
+  console.log('USE_DUMMY_AUTH:', process.env.USE_DUMMY_AUTH);
+  console.log('MONGODB_URI:', process.env.MONGODB_URI ? 'CONFIGURADO' : 'NO CONFIGURADO');
+  console.log('MONGODB_URI valor:', process.env.MONGODB_URI);
+  
   // Configuración de MongoDB con fallback para modo demo
   const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/fototeca_demo';
+  
+  console.log('🔗 URI final a usar:', mongoUri);
 
   if (process.env.USE_DUMMY_AUTH === 'true') {
     console.log('� Modo demo: Intentando conectar a MongoDB (opcional)...');
@@ -110,10 +143,18 @@ async function main() {
   } else {
     console.log('📊 Modo producción: Conectando a MongoDB...');
     try {
-      await mongoose.connect(mongoUri);
+      // Configuración específica para Render
+      const connectOptions = {
+        serverSelectionTimeoutMS: 30000, // 30 segundos
+        connectTimeoutMS: 30000,
+        family: 4 // Forzar IPv4
+      };
+      
+      await mongoose.connect(mongoUri, connectOptions);
       console.log('✅ Conectado a MongoDB exitosamente');
     } catch (error) {
       console.error('❌ Error conectando a MongoDB:', error.message);
+      console.error('❌ Stack completo:', error);
       process.exit(1);
     }
   }
