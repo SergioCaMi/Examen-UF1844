@@ -19,6 +19,19 @@ console.log('🔍 USE_DUMMY_AUTH:', process.env.USE_DUMMY_AUTH);
 // Verificar si estamos en Render
 if (process.env.RENDER) {
   console.log('🌐 Detectado entorno Render');
+  
+  // En Render, asegurar que las variables críticas están definidas
+  if (process.env.USE_DUMMY_AUTH === 'false') {
+    console.log('🔧 Modo producción en Render - Verificando variables...');
+    
+    // Lista de todas las variables de entorno de Render
+    console.log('📋 Todas las variables de entorno disponibles:');
+    Object.keys(process.env).forEach(key => {
+      if (key.includes('MONGO') || key.includes('GOOGLE') || key.includes('USE_DUMMY') || key.includes('SESSION')) {
+        console.log(`  ${key}: ${key.includes('SECRET') || key.includes('PASSWORD') ? '[OCULTO]' : process.env[key]}`);
+      }
+    });
+  }
 }
 
 // ********** Configura la sesión del usuario **********
@@ -39,9 +52,10 @@ const sessionConfig = {
 };
 
 // En producción, usar MongoDB para almacenar sesiones
-if (process.env.USE_DUMMY_AUTH === 'false' && process.env.MONGODB_URI) {
+const mongoUriForSessions = process.env.MONGO_URI || process.env.MONGODB_URI;
+if (process.env.USE_DUMMY_AUTH === 'false' && mongoUriForSessions) {
   sessionConfig.store = MongoStore.create({
-    mongoUrl: process.env.MONGODB_URI,
+    mongoUrl: mongoUriForSessions,
     touchAfter: 24 * 3600 // lazy session update
   });
   console.log('🗄️ Configurando sesiones con MongoDB Store');
@@ -121,10 +135,21 @@ async function main() {
   console.log('🔍 Debug Variables de Entorno:');
   console.log('USE_DUMMY_AUTH:', process.env.USE_DUMMY_AUTH);
   console.log('MONGODB_URI:', process.env.MONGODB_URI ? 'CONFIGURADO' : 'NO CONFIGURADO');
+  console.log('MONGO_URI:', process.env.MONGO_URI ? 'CONFIGURADO' : 'NO CONFIGURADO');
   console.log('MONGODB_URI valor:', process.env.MONGODB_URI);
+  console.log('MONGO_URI valor:', process.env.MONGO_URI);
   
   // Configuración de MongoDB con fallback para modo demo
-  const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/fototeca_demo';
+  // IMPORTANTE: Render usa MONGO_URI, no MONGODB_URI
+  let mongoUri = process.env.MONGO_URI || process.env.MONGODB_URI;
+  
+  // CRÍTICO: Si no hay URI en producción, usar Atlas directamente
+  if (!mongoUri && process.env.USE_DUMMY_AUTH === 'false') {
+    console.log('⚠️ MONGO_URI no encontrado. Usando Atlas directamente...');
+    mongoUri = 'mongodb+srv://sergiocami84:Msg--300183@cluster0.mo4mc0w.mongodb.net/gallery';
+  } else if (!mongoUri) {
+    mongoUri = 'mongodb://localhost:27017/fototeca_demo';
+  }
   
   console.log('🔗 URI final a usar:', mongoUri);
 
