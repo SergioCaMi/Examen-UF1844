@@ -36,23 +36,26 @@ Cuando está activo (`USE_DUMMY_AUTH=true`):
    npm install
    ```
 
-3. **Copia el archivo de configuración**:
-   ```bash
-   cp .env.example .env
-   ```
-   *El archivo ya viene configurado con `USE_DUMMY_AUTH=true`*
-
-4. **Ejecuta en modo dummy**:
+3. **Ejecuta en modo dummy**:
    ```bash
    npm run dev
    ```
 
-**¡Listo!** El proyecto estará disponible en [http://localhost:5000](http://localhost:5000)
+4. **¡Listo! Abre tu navegador**:
+   - Ve a [http://localhost:5000](http://localhost:5000)
+   - Haz clic en "Iniciar sesión" o ve a `/auth/google`
+   - Entrarás automáticamente como "Usuario de Prueba"
+   - Verás 3 imágenes de demostración pre-cargadas
 
-- Al ir a `/auth/google` entrarás automáticamente como "Usuario de Prueba"
-- Verás 3 imágenes de demostración pre-cargadas
-- Todas las funciones estarán disponibles sin configurar OAuth real
-- Podrás añadir nuevas imágenes que se mantendrán durante la sesión
+**📋 Mensajes normales que verás:**
+```
+🔍 USE_DUMMY_AUTH: true
+🔓 Modo dummy activado - Sin autenticación OAuth real
+⚠️ MongoDB no disponible. Continuando en modo demo sin persistencia...
+Servidor escuchando en http://localhost:5000
+```
+
+**✅ Esto es NORMAL** - El proyecto funciona sin base de datos en modo demo.
 
 ### ⚙️ Instalación completa (con OAuth real)
 
