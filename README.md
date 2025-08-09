@@ -1,6 +1,11 @@
-# Fototeca Express
+# Fototeca 
 
 ¡Bienvenido/a a **Fototeca**! Este proyecto es una galería de imágenes web desarrollada con Node.js, Express, EJS y MongoDB (Mongoose), que permite a los usuarios gestionar, visualizar y analizar imágenes de forma sencilla y moderna.
+
+## Proyecto en línea
+
+Puedes probar **Fototeca** funcionando en producción aquí:  
+[https://gallery-2eu4.onrender.com/](https://gallery-2eu4.onrender.com/)
 
 ## Cómo usar el proyecto
 
@@ -8,7 +13,7 @@
 
 **¿Qué es el Usuario Dummy?**
 
-El sistema de Usuario Dummy es una función especial que permite probar todas las características de Fototeca Express **sin necesidad de configurar credenciales de Google OAuth**. Es ideal para:
+El sistema de Usuario Dummy es una función especial que permite probar todas las características de Fototeca **sin necesidad de configurar credenciales de Google OAuth**. Es ideal para:
 - ✅ Desarrollo y pruebas rápidas
 - ✅ Demostración del proyecto sin configuración
 - ✅ Aprendizaje y evaluación de funcionalidades
@@ -182,4 +187,4 @@ Las contribuciones son bienvenidas. Si tienes ideas para nuevas características
 
 ---
 
-¡Gracias por usar Fototeca Express! 📸
+¡Gracias por usar Fototeca! 📸
